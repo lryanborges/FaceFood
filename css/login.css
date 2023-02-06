@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,400;1,600&display=swap');
 
-body{
+*{
     margin: 0px;
     padding: 0px;
     font-family: 'Poppins', sans-serif;
@@ -10,7 +10,6 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
     margin: 30px;
 }
 
@@ -45,7 +44,7 @@ footer{
 h1{
     color: #000000;
     font-size: medium;
-    height: 40px;
+    height: 60px;
     display: flex; 
     flex-direction: row; 
     font-family: 'Poppins',sans-serif;
@@ -71,9 +70,14 @@ div{
 form{
     display: flex; 
     flex-direction: column;
+    padding: 50px;
     background-color: #E4F5ED;
     border-radius: 10px;
     border: #000000 solid 1px;
+}
+
+.esqueci-senha{
+    margin-bottom: 75px;
 }
 
 h2{
@@ -83,7 +87,7 @@ h2{
 .botao-entrar{
     background-color: #FF0038; 
     color: #F1F9E4;
-    width: 436px;
+    width: 236px;
     height: 67px;
     border-radius: 4px;
     font-family: 'Poppins',sans-serif; 
