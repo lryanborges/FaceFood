@@ -22,8 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufersa.facefood.api.dto.IngredienteDTO;
 import br.edu.ufersa.facefood.api.dto.InsertIngredienteDTO;
+import br.edu.ufersa.facefood.api.dto.InsertUserDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateIngredienteDTO;
+import br.edu.ufersa.facefood.api.dto.UpdateUserDTO;
+import br.edu.ufersa.facefood.api.dto.UserDTO;
 import br.edu.ufersa.facefood.domain.entity.Ingrediente;
+import br.edu.ufersa.facefood.domain.entity.Ingrediente.TipoIngrediente;
+import br.edu.ufersa.facefood.domain.entity.User;
 import br.edu.ufersa.facefood.domain.service.IngredienteService;
 
 @RestController
@@ -44,13 +49,40 @@ public class IngredienteController {
 	}
 
 	@GetMapping("/{ingredienteId}")
-	public ResponseEntity<IngredienteDTO> buscar(@PathVariable Long ingredienteId) {
+	public ResponseEntity<IngredienteDTO> buscar(@PathVariable long ingredienteId) {
 		IngredienteDTO dto = mapper.map(service.getById(ingredienteId), IngredienteDTO.class);
 		if (dto != null)
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		else
 			return ResponseEntity.notFound().build();
 	}
+	
+	
+	//Busca por nome
+	@GetMapping("/nome/{ingredienteNome}")
+	public ResponseEntity<IngredienteDTO> buscar(@PathVariable String ingredienteNome) {
+		IngredienteDTO dto = mapper.map(service.getByNome(ingredienteNome), IngredienteDTO.class);
+		if (dto != null)
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		else
+			return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/tipo/{tipoIngrediente}")
+	public ResponseEntity<List<IngredienteDTO>> buscarPorTipo(@PathVariable TipoIngrediente tipoIngrediente) {
+	List<Ingrediente> ingredientes = service.getByTipo(tipoIngrediente);
+	List<IngredienteDTO> dtos = new ArrayList<>();
+	for (Ingrediente ingrediente : ingredientes) {
+	IngredienteDTO dto = mapper.map(ingrediente, IngredienteDTO.class);
+	dtos.add(dto);
+	}
+	if (!dtos.isEmpty()) {
+	return new ResponseEntity<>(dtos, HttpStatus.OK);
+	} else {
+	return ResponseEntity.notFound().build();
+	}
+	}
+
 
 	@PostMapping
 	public ResponseEntity<IngredienteDTO> criar(@Valid @RequestBody InsertIngredienteDTO dto) {
@@ -62,31 +94,33 @@ public class IngredienteController {
 			return new ResponseEntity<>(criado, HttpStatus.CREATED);
 		}
 	}
-
+	//Apresenta erro
 	@PutMapping
 	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody UpdateIngredienteDTO dto) {
-		Ingrediente ingrediente = service.updateIngrediente(mapper.map(dto, Ingrediente.class));
-		IngredienteDTO atualizado = mapper.map(ingrediente, IngredienteDTO.class);
-		if (atualizado != null)
-			return new ResponseEntity<>(atualizado, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@PatchMapping("/{id}")
-	public ResponseEntity<IngredienteDTO> alterar(@PathVariable Long id, @Valid @RequestBody UpdateIngredienteDTO dto) {
-	    Ingrediente ingrediente = service.getById(id);
-	    if (ingrediente == null) {
-	        return ResponseEntity.notFound().build();
+	    Ingrediente ingrediente = service.updateIngrediente(mapper.map(dto, Ingrediente.class));
+	    IngredienteDTO atualizado = mapper.map(ingrediente, IngredienteDTO.class);
+	    if(atualizado!=null) {
+	    	return new ResponseEntity<>(atualizado, HttpStatus.OK);
+	    }else {
+	    	return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
-	    mapper.map(dto, ingrediente);
-	    Ingrediente updatedIngrediente = service.updateIngrediente(ingrediente);
-	    IngredienteDTO updatedDTO = mapper.map(updatedIngrediente, IngredienteDTO.class);
-	    return ResponseEntity.ok(updatedDTO);
+	}
+
+	
+	@PatchMapping("/{nome}")
+	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody InsertIngredienteDTO dto) {
+	    Ingrediente ingrediente = service.updateIngredientePatch(mapper.map(dto, Ingrediente.class));
+	    IngredienteDTO atualizado = mapper.map(ingrediente, IngredienteDTO.class);
+	    if(atualizado!=null) {
+	    	return new ResponseEntity<>(atualizado, HttpStatus.OK);
+	    }else {
+	    	return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 	}
 	
-	@DeleteMapping("/{ingredienteId}")
-	public ResponseEntity<Long> deletar(@PathVariable Long ingredienteId) {
+	
+	@DeleteMapping("/id/{ingredienteId}")
+	public ResponseEntity<Long> deletar(@PathVariable long ingredienteId) {
 	String result = service.deleteIngrediente(ingredienteId);
 	if (result.equals("ok")) {
 	return new ResponseEntity<>(ingredienteId, HttpStatus.OK);
@@ -94,4 +128,15 @@ public class IngredienteController {
 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	}
+	
+	@DeleteMapping("/nome/{ingredienteNome}")
+	public ResponseEntity<String> deletar(@PathVariable String ingredienteNome) {
+	String result = service.deleteIngrediente(ingredienteNome);
+	if (result.equals("ok")) {
+	return new ResponseEntity<>(ingredienteNome, HttpStatus.OK);
+	} else {
+	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	}
+	
 }

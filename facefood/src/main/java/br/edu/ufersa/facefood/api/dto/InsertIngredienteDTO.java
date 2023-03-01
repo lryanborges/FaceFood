@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 public class InsertIngredienteDTO {
 	
-	@NotNull(message = "As calorias não podem ser nulas")
+	@NotNull(message="As calorias não podem ser nulas!!!")
 	private float calorias;
 	
 	@NotEmpty(message = "O nome do ingrediente não pode estar vazio")

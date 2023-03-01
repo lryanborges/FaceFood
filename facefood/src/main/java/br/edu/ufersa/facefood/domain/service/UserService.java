@@ -53,7 +53,7 @@ public class UserService {
 		User userDelete = rep.findByUuid(uuid);
 		if (userDelete == null) return "usuario não encontrado";
 		rep.delete(userDelete);
-		return "Ok";
+		return "ok";
 	}	
 	
 }

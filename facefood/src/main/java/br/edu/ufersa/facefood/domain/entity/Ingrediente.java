@@ -17,9 +17,9 @@ public class Ingrediente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(nullable = false)
+    @Column(unique=true, nullable=false)
     private String nome;
 
     @Enumerated(EnumType.STRING)
@@ -29,11 +29,11 @@ public class Ingrediente {
     @Column(nullable = false)
     private float calorias;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

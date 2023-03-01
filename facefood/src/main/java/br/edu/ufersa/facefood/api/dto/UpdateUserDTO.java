@@ -13,7 +13,6 @@ public class UpdateUserDTO {
     private String email;
     @NotBlank(message="A senha não pode ser null ou vazia!")
     @Size(min=5,max=20,message="A senha deve ter entre 5 e 20 caracteres!!!")
-    @Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",message="A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial")
     private String senha;
     private UUID uuid;
     

@@ -79,6 +79,7 @@ public class UserController {
 		else return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<UUID> deletar(@PathVariable UUID userId) {
 		String teste = service.deleteUser(userId);

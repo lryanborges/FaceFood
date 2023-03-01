@@ -14,7 +14,6 @@ import br.edu.ufersa.facefood.domain.repository.IngredienteRepository;
 
 @Service
 public class IngredienteService {
-	
 	@Autowired
 	private IngredienteRepository ingredienteRepository;
 	
@@ -23,15 +22,14 @@ public class IngredienteService {
 		return ingredientes;
 	}
 	
+	public Ingrediente getById(long id) {
+		Ingrediente ingrediente = ingredienteRepository.findById(id);
+		return ingrediente;
+	}
 	
-	public Ingrediente getById(Long id) {
-	    Optional<Ingrediente> optionalIngrediente = ingredienteRepository.findById(id);
-	    if (optionalIngrediente.isPresent()) {
-	        return optionalIngrediente.get();
-	    } else {
-	        // Lança uma exceção informando que não foi possível encontrar o ingrediente com o ID informado
-	        throw new IllegalArgumentException("Não foi possível encontrar o ingrediente com o ID informado");
-	    }
+	public Ingrediente getByNome(String nome) {
+		Ingrediente ingrediente = ingredienteRepository.findByNome(nome);
+		return ingrediente;
 	}
 	
 	
@@ -40,42 +38,46 @@ public class IngredienteService {
 		return ingrediente;
 	}
 	
+	/*
+	 * public User updateUser(User user) {
+		User userData = rep.findByUuid(user.getUuid());
+		user.setId(userData.getId());
+		return rep.save(user);
+	}	
+	 */
+	
+	
 	public Ingrediente updateIngrediente(Ingrediente ingrediente) {
-		Optional<Ingrediente> optionalIngrediente = ingredienteRepository.findById(ingrediente.getId());
-		if (optionalIngrediente.isPresent()) {
-			Ingrediente ingredienteData = optionalIngrediente.get();
-			ingredienteData.setNome(ingrediente.getNome());
-			ingredienteData.setTipo(ingrediente.getTipo());
-			ingredienteData.setCalorias(ingrediente.getCalorias());
-			return ingredienteRepository.save(ingredienteData);
-		}
-		return null;
+	    Ingrediente ingredienteData = ingredienteRepository.findById(ingrediente.getId());
+	    ingrediente.setId(ingredienteData.getId());    
+	    return ingredienteRepository.save(ingrediente);
 	}
 	
 	
 	public Ingrediente updateIngredientePatch(Ingrediente ingrediente) {
 		Ingrediente ingredienteData = ingredienteRepository.findByNome(ingrediente.getNome());
 		ingrediente.setId(ingredienteData.getId());
-		ingrediente.setCalorias(ingrediente.getCalorias());
-		ingrediente.setTipo(ingredienteData.getTipo());
 		return ingredienteRepository.save(ingrediente);
 	}
 	
-	public String deleteIngrediente(Long id) {
-		Optional<Ingrediente> optionalIngrediente = ingredienteRepository.findById(id);
-		if (optionalIngrediente.isPresent()) {
-			ingredienteRepository.deleteById(id);
-			return "Ok";
-		}
-		return "Ingrediente não encontrado";
+
+	public String deleteIngrediente(long id) {
+		Ingrediente ingredienteDelete = ingredienteRepository.findById(id);
+		if(ingredienteDelete == null)return "ingrediente não encontrado";
+		ingredienteRepository.delete(ingredienteDelete);
+		return "ok";
 	}
+	
+	public String deleteIngrediente(String nome) {
+		Ingrediente ingredienteDelete = ingredienteRepository.findByNome(nome);
+		if(ingredienteDelete == null)return "ingrediente não encontrado";
+		ingredienteRepository.delete(ingredienteDelete);
+		return "ok";
+	}
+	
 	
 	public List<Ingrediente> getByTipo(TipoIngrediente tipo) {
 		return ingredienteRepository.findByTipo(tipo);
 	}
 	
-	public Ingrediente getByNome(String nome) {
-		Ingrediente ingrediente = ingredienteRepository.findByNome(nome);
-		return ingrediente;
-	}
 }
