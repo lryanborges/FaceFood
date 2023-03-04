@@ -43,7 +43,7 @@ public class IngredienteController {
 		return ingredientes;
 	}
 
-	@GetMapping("/{ingredienteId}")
+	@GetMapping("/id/{ingredienteId}")
 	public ResponseEntity<IngredienteDTO> buscar(@PathVariable long ingredienteId) {
 		IngredienteDTO dto = mapper.map(service.getById(ingredienteId), IngredienteDTO.class);
 		if (dto != null)
@@ -89,7 +89,8 @@ public class IngredienteController {
 			return new ResponseEntity<>(criado, HttpStatus.CREATED);
 		}
 	}
-	//Apresenta erro
+	
+	// PUT deveria poder trocar o nome também, mas por enquanto não dá porque não temos uma variável de uuid para ingredientes
 	@PutMapping
 	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody UpdateIngredienteDTO dto) {
 	    Ingrediente ingrediente = service.updateIngrediente(mapper.map(dto, Ingrediente.class));
@@ -102,7 +103,7 @@ public class IngredienteController {
 	}
 
 	
-	@PatchMapping("/{nome}")
+	@PatchMapping
 	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody InsertIngredienteDTO dto) {
 	    Ingrediente ingrediente = service.updateIngredientePatch(mapper.map(dto, Ingrediente.class));
 	    IngredienteDTO atualizado = mapper.map(ingrediente, IngredienteDTO.class);

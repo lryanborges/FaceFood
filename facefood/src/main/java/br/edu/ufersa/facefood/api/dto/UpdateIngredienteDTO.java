@@ -16,6 +16,7 @@ public class UpdateIngredienteDTO {
 	@NotNull(message = "As calorias não podem ser nulas ou vazias!")
 	@Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "As calorias devem ser um número positivo com até 2 casas decimais!")
 	private String calorias;
+	private long id;
 	
 	public String getNome() {
 		return nome;
@@ -39,6 +40,14 @@ public class UpdateIngredienteDTO {
 
 	public void setCalorias(String calorias) {
 		this.calorias = calorias;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public enum TipoIngrediente {

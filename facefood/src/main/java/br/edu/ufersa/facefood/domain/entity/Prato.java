@@ -3,6 +3,9 @@ package br.edu.ufersa.facefood.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class Prato extends Ingrediente {
 	private List<Ingrediente> listaIngredientes = new ArrayList<Ingrediente>();
 	private int idDoCriador;

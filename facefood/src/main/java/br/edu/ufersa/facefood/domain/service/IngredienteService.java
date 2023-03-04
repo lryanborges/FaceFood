@@ -29,7 +29,6 @@ public class IngredienteService {
 		return ingrediente;
 	}
 	
-	
 	public Ingrediente createIngrediente(Ingrediente ingrediente) {
 		ingredienteRepository.save(ingrediente);
 		return ingrediente;
