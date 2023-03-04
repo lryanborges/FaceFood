@@ -1,5 +1,7 @@
 package br.edu.ufersa.facefood.api.dto;
 
+//import br.edu.ufersa.facefood.api.dto.IngredienteDTO.TipoIngrediente;
+
 public class IngredienteDTO {
 	private float calorias;
     private String nome;

@@ -1,14 +1,11 @@
 package br.edu.ufersa.facefood.domain.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ufersa.facefood.domain.entity.Ingrediente;
-import br.edu.ufersa.facefood.domain.entity.User;
 import br.edu.ufersa.facefood.domain.entity.Ingrediente.TipoIngrediente;
 import br.edu.ufersa.facefood.domain.repository.IngredienteRepository;
 

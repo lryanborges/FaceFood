@@ -2,7 +2,6 @@ package br.edu.ufersa.facefood.api.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -22,13 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufersa.facefood.api.dto.IngredienteDTO;
 import br.edu.ufersa.facefood.api.dto.InsertIngredienteDTO;
-import br.edu.ufersa.facefood.api.dto.InsertUserDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateIngredienteDTO;
-import br.edu.ufersa.facefood.api.dto.UpdateUserDTO;
-import br.edu.ufersa.facefood.api.dto.UserDTO;
 import br.edu.ufersa.facefood.domain.entity.Ingrediente;
 import br.edu.ufersa.facefood.domain.entity.Ingrediente.TipoIngrediente;
-import br.edu.ufersa.facefood.domain.entity.User;
 import br.edu.ufersa.facefood.domain.service.IngredienteService;
 
 @RestController
