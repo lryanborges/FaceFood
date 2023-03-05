@@ -36,8 +36,45 @@ public class PratoService {
 		return prato;
 	}
 	
+	/*
+	 public Ingrediente updateIngrediente(Ingrediente ingrediente) {
+	    Ingrediente ingredienteData = ingredienteRepository.findById(ingrediente.getId());
+	    ingrediente.setId(ingredienteData.getId());    
+	    return ingredienteRepository.save(ingrediente);
+	}
+	 */
 	public Prato updatePrato(Prato prato) {
-		return null;
+		Prato pratoData = pratoRep.findByUuid(prato.getUuid());
+		prato.setId(pratoData.getId());
+		Prato pratoUpdated = pratoRep.save(prato);
+		return pratoUpdated;
+	}
+	
+	public Prato updatePratoPatch(Prato prato) {
+		Prato pratoData = pratoRep.findByNome(prato.getNome());
+		prato.setId(pratoData.getId());
+		Prato pratoUpdated = pratoRep.save(prato);
+		return pratoUpdated;
+	}
+	
+	public String deletePrato(long id) {
+		Prato pratoDelete = pratoRep.findById(id);
+		if(pratoDelete == null) {
+			return "prato não foi encontrado";
+		} else {
+			pratoRep.delete(pratoDelete);
+			return "ok";
+		}
+	}
+	
+	public String deletePrato(String nome) {
+		Prato pratoDelete = pratoRep.findByNome(nome);
+		if(pratoDelete == null) {
+			return "prato não foi encontrado";
+		} else {
+			pratoRep.delete(pratoDelete);
+			return "ok";
+		}
 	}
 	
 }
