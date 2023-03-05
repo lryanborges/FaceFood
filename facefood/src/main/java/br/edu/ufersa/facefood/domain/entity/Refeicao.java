@@ -22,6 +22,7 @@ public class Refeicao {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
+    @Column(unique = true)
     private LocalDateTime horario;
     
     @ManyToOne
