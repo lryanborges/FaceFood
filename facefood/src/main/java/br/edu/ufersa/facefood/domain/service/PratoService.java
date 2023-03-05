@@ -1,6 +1,5 @@
 package br.edu.ufersa.facefood.domain.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,10 +20,24 @@ public class PratoService {
 		return pratos;
 	}
 	
+	public Prato getById(long id) {
+		Prato prato = pratoRep.findById(id);
+		return prato;
+	}
+	
+	public Prato getByNome(String nome) {
+		Prato prato = pratoRep.findByNome(nome);
+		return prato;
+	}
+	
 	public Prato createPrato(Prato prato) {
 		prato.setUuid(UUID.randomUUID());
 		pratoRep.save(prato);
 		return prato;
+	}
+	
+	public Prato updatePrato(Prato prato) {
+		return null;
 	}
 	
 }

@@ -1,15 +1,7 @@
 package br.edu.ufersa.facefood.api.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.Type;
 
 import br.edu.ufersa.facefood.domain.entity.Ingrediente;
 import br.edu.ufersa.facefood.domain.entity.User;

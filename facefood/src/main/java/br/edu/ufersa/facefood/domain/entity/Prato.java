@@ -1,11 +1,9 @@
 package br.edu.ufersa.facefood.domain.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -32,7 +30,8 @@ public class Prato {
 	private String descricao;
 	@ElementCollection
     private List<String> tipos;
-	@OneToMany(mappedBy="id")
+	@ManyToMany
+	@JoinColumn(name = "id")
 	private List<Ingrediente> ingredientes;
 	@ManyToOne
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
