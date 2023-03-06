@@ -32,8 +32,8 @@ public class PratoService {
 	
 	public Prato createPrato(Prato prato) {
 		prato.setUuid(UUID.randomUUID());
-		pratoRep.save(prato);
-		return prato;
+		Prato saved = pratoRep.save(prato);
+		return saved;
 	}
 	
 	/*
