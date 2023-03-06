@@ -1,6 +1,6 @@
 package br.edu.ufersa.facefood.domain.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,7 +22,7 @@ public class Refeicao {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
-    private LocalDateTime horario;
+    private LocalTime horario;
     
     @ManyToOne
     private Prato prato;
@@ -30,11 +30,21 @@ public class Refeicao {
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
+    @ManyToOne
+    private Rotina rotina;
     
-    public Refeicao() {
+    public Rotina getRotina() {
+		return rotina;
+	}
+
+	public void setRotina(Rotina rotina) {
+		this.rotina = rotina;
+	}
+
+	public Refeicao() {
     }
     
-    public Refeicao(LocalDateTime horario, Prato prato, UUID uuid) {
+    public Refeicao(LocalTime horario, Prato prato, UUID uuid) {
         this.horario = horario;
         this.prato = prato;
         this.uuid = uuid;
@@ -48,11 +58,11 @@ public class Refeicao {
         this.id = id;
     }
     
-    public LocalDateTime getHorario() {
+    public LocalTime getHorario() {
         return horario;
     }
     
-    public void setHorario(LocalDateTime horario) {
+    public void setHorario(LocalTime horario) {
         this.horario = horario;
     }
     

@@ -20,10 +20,10 @@ public class Prato extends Ingrediente {
 	@Column(nullable=false)
 	private String nome;
 	private float calorias;
-	private List<Ingrediente> listaIngredientes = new ArrayList<Ingrediente>();
-	private List<String> tipos = new ArrayList<String>();
+	//private List<Ingrediente> listaIngredientes = new ArrayList<Ingrediente>();
+	//private List<String> tipos = new ArrayList<String>();
 	private String descricao;
-	private User autor;
+	//private User autor;
 	
 	public long getId() {
 		return id;
@@ -43,6 +43,7 @@ public class Prato extends Ingrediente {
 	public void setCalorias(float calorias) {
 		this.calorias = calorias;
 	}
+	/*
 	public List<Ingrediente> getListaIngredientes() {
 		return listaIngredientes;
 	}
@@ -55,17 +56,18 @@ public class Prato extends Ingrediente {
 	public void setTipos(List<String> tipos) {
 		this.tipos = tipos;
 	}
+	*/
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public User getAutor() {
+	/*public User getAutor() {
 		return autor;
 	}
 	public void setAutor(User autor) {
 		this.autor = autor;
 	}
-	
+	*/
 }
