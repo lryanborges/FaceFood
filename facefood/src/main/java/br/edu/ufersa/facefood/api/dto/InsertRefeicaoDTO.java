@@ -13,8 +13,6 @@ public class InsertRefeicaoDTO {
 	 private LocalDateTime horario;
 	@NotEmpty(message="Coloque um prato atrelado a refeição")
 	 private Prato prato;
-	@NotNull
-	Rotina rotina;
 	public LocalDateTime getHorario() {
 		return horario;
 	}

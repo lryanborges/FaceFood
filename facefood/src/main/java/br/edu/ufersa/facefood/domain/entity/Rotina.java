@@ -27,7 +27,8 @@ public class Rotina {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(mappedBy="rotina")
+	@OneToMany
+	@JoinColumn(name="rotina_id")
 	private List<Refeicao> listaRefeicoes = new ArrayList<Refeicao>();
 	
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")

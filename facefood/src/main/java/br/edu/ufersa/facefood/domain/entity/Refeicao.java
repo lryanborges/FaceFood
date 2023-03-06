@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,16 +31,6 @@ public class Refeicao {
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
-    @ManyToOne
-    private Rotina rotina;
-    
-    public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
-	}
 
 	public Refeicao() {
     }

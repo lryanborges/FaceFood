@@ -30,7 +30,6 @@ public class RotinaService {
 	public Rotina createRotina(Rotina rotina) {
 		rotina.setUuid(UUID.randomUUID());
 		for(Refeicao refeicao : rotina.getListaRefeicoes()) {
-			refeicao.setRotina(rotina);
 			refService.createRefeicao(refeicao);
 		}
 		rep.save(rotina);
