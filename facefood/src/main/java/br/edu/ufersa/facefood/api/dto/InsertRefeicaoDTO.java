@@ -10,11 +10,9 @@ import br.edu.ufersa.facefood.domain.entity.Rotina;
 
 public class InsertRefeicaoDTO {
 	@NotEmpty(message="Coloque um horario atrelado a refeição")
-	 private LocalDateTime horario;
+	 private LocalTime horario;
 	@NotEmpty(message="Coloque um prato atrelado a refeição")
 	 private Prato prato;
-	@NotNull
-	Rotina rotina;
   
 	public LocalTime getHorario() {
 		return horario;

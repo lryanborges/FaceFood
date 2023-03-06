@@ -21,15 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufersa.facefood.api.dto.InsertRefeicaoDTO;
-import br.edu.ufersa.facefood.api.dto.InsertUserDTO;
 import br.edu.ufersa.facefood.api.dto.RefeicaoDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateRefeicaoDTO;
-import br.edu.ufersa.facefood.api.dto.UpdateUserDTO;
-import br.edu.ufersa.facefood.api.dto.UserDTO;
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
-import br.edu.ufersa.facefood.domain.entity.User;
 import br.edu.ufersa.facefood.domain.service.RefeicaoService;
-import br.edu.ufersa.facefood.domain.service.UserService;
 
 
 @RestController

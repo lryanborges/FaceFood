@@ -43,6 +43,18 @@ public class Prato {
 	public long getId() {
 		return id;
 	}
+	public UUID getUuid() {
+		return uuid;
+	}
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -66,7 +78,6 @@ public class Prato {
 	}
 	public void setTipos(List<String> tipos) {
 		this.tipos = tipos;
-	}
 	}
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;

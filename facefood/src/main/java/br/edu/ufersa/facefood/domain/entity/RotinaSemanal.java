@@ -1,8 +1,6 @@
 package br.edu.ufersa.facefood.domain.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RotinaSemanal {
 	private Rotina[] rotina = new Rotina[7];
