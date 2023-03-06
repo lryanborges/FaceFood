@@ -1,6 +1,6 @@
 package br.edu.ufersa.facefood.api.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -15,10 +15,11 @@ public class InsertRefeicaoDTO {
 	 private Prato prato;
 	@NotNull
 	Rotina rotina;
-	public LocalDateTime getHorario() {
+  
+	public LocalTime getHorario() {
 		return horario;
 	}
-	public void setHorario(LocalDateTime horario) {
+	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
 	public Prato getPrato() {

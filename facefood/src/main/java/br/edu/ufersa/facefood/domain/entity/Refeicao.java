@@ -21,15 +21,16 @@ public class Refeicao {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
+    @Column(unique = true)
     private LocalTime horario;
     
     @ManyToOne
     private Prato prato;
     
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
-	@Type(type = "uuid-char")
-	private UUID uuid;
+	  @Type(type = "uuid-char")
+	  private UUID uuid;
+
     @ManyToOne
     private Rotina rotina;
     
@@ -42,6 +43,12 @@ public class Refeicao {
 	}
 
 	public Refeicao() {
+    }
+    
+    public Refeicao(LocalTime horario, Prato prato, UUID uuid) {
+
+    
+    public Refeicao() {
     }
     
     public Refeicao(LocalTime horario, Prato prato, UUID uuid) {
