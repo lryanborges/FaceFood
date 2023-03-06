@@ -58,9 +58,6 @@ public class Prato {
 	public void setCalorias(float calorias) {
 		this.calorias = calorias;
 	}
-	public String getDescricao() {
-		return descricao;
-	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
@@ -70,8 +67,6 @@ public class Prato {
 	public void setTipos(List<String> tipos) {
 		this.tipos = tipos;
 	}
-	public List<Ingrediente> getIngredientes() {
-		return ingredientes;
 	}
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
@@ -81,17 +76,6 @@ public class Prato {
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}
-	public UUID getUuid() {
-		return uuid;
-	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(calorias, descricao, id, nome, tipos, user, uuid);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -107,5 +91,4 @@ public class Prato {
 				&& Objects.equals(tipos, other.tipos) && Objects.equals(user, other.user)
 				&& Objects.equals(uuid, other.uuid);
 	}
-	
 }
