@@ -43,8 +43,17 @@ public class UserController {
 		return users;
 	}
 	
+	@GetMapping("/{userUuid}")
+	public ResponseEntity<UserDTO> buscar (@PathVariable UUID userUuid){
+		UserDTO dto = mapper.map(service.getByUuid(userUuid), UserDTO.class);
+		if(dto != null)
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		else 
+			return ResponseEntity.notFound().build();
+	}
+	
 	@GetMapping("/{userId}")
-	public ResponseEntity<UserDTO> buscar (@PathVariable UUID userId){
+	public ResponseEntity<UserDTO> buscar (@PathVariable long userId){
 		UserDTO dto = mapper.map(service.getById(userId), UserDTO.class);
 		if(dto != null)
 			return new ResponseEntity<>(dto, HttpStatus.OK);
