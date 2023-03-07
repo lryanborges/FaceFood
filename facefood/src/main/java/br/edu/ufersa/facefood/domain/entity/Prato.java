@@ -37,7 +37,7 @@ public class Prato {
 	@JoinColumn(name = "id")
 	private List<Ingrediente> ingredientes;
 	@ManyToOne
-	@JoinColumn(name = "cliente_id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	@NotNull(message="O usuário não pode ser null!")
 	private User user; // user = autor
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")

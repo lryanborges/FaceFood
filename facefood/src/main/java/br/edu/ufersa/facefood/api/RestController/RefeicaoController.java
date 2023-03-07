@@ -49,9 +49,6 @@ public class RefeicaoController {
 		return refeicoes;
 	}
 	
-	
-
-	
 	@GetMapping("/id/{refeicaoId}")
 	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable long refeicaoId){
 		RefeicaoDTO dto = mapper.map(service.getById(refeicaoId), RefeicaoDTO.class);

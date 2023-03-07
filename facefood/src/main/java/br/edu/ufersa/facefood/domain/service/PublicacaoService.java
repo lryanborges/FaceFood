@@ -13,7 +13,9 @@ import br.edu.ufersa.facefood.domain.repository.PublicacaoRepository;
 public class PublicacaoService {
 
 	@Autowired
-	PublicacaoRepository publicacaoRep;
+	private PublicacaoRepository publicacaoRep;
+	@Autowired
+	private PratoService pratoService;
 	
 	public List<Publicacao> getAll() {
 		List<Publicacao> publicacoes = publicacaoRep.findAll();
@@ -27,6 +29,7 @@ public class PublicacaoService {
 	
 	public Publicacao createPublicacao(Publicacao publicacao) {
 		publicacao.setUuid(UUID.randomUUID());
+		publicacao.setPrato(pratoService.getById(publicacao.getPrato().getId()));
 		Publicacao saved = publicacaoRep.save(publicacao);
 		return saved;
 	}
