@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.ufersa.facefood.api.dto.PratoDTO;
 import br.edu.ufersa.facefood.api.dto.UpdatePratoDTO;
 import br.edu.ufersa.facefood.domain.entity.Prato;
+import br.edu.ufersa.facefood.domain.entity.User;
 import br.edu.ufersa.facefood.domain.service.PratoService;
+import br.edu.ufersa.facefood.domain.service.UserService;
 
 @RestController
 @RequestMapping("/api/prato")
