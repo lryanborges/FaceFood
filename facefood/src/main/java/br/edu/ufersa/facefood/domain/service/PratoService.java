@@ -1,11 +1,13 @@
 package br.edu.ufersa.facefood.domain.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.ufersa.facefood.domain.entity.Ingrediente;
 import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.repository.PratoRepository;
 
@@ -14,6 +16,10 @@ public class PratoService {
 
 	@Autowired
 	PratoRepository pratoRep;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private IngredienteService ingredienteService;
 	
 	public List<Prato> getAll() {
 		List<Prato> pratos = pratoRep.findAll();
@@ -32,6 +38,13 @@ public class PratoService {
 	
 	public Prato createPrato(Prato prato) {
 		prato.setUuid(UUID.randomUUID());
+		prato.setUser(userService.getById(prato.getUser().getId()));
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getById(ingrediente.getId());
+			ingredientes.add(ingrediente);
+		}
+		prato.setIngredientes(ingredientes);
 		Prato saved = pratoRep.save(prato);
 		return saved;
 	}
