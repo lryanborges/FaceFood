@@ -77,17 +77,17 @@ public class Refeicao {
         this.uuid = uuid;
     }
 
-	public List<Prato> getPratos() {
+	/*public List<Prato> getPratos() {
 		return pratos;
 	}
 
 	public void setPratos(List<Prato> pratos) {
 		this.pratos = pratos;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(horario, id, pratos, rotina, uuid);
+		return Objects.hash(horario, id, prato, rotina, uuid);
 	}
 
 	@Override
@@ -100,15 +100,15 @@ public class Refeicao {
 			return false;
 		Refeicao other = (Refeicao) obj;
 		return Objects.equals(horario, other.horario) && Objects.equals(id, other.id)
-				&& Objects.equals(pratos, other.pratos) && Objects.equals(rotina, other.rotina)
+				&& Objects.equals(prato, other.prato) && Objects.equals(rotina, other.rotina)
 				&& Objects.equals(uuid, other.uuid);
 	}
 
-	public Refeicao(Long id, LocalTime horario, List<Prato> pratos, UUID uuid, Rotina rotina) {
+	public Refeicao(Long id, LocalTime horario, Prato prato, UUID uuid, Rotina rotina) {
 		super();
 		this.id = id;
 		this.horario = horario;
-		this.pratos = pratos;
+		this.prato = prato;
 		this.uuid = uuid;
 		this.rotina = rotina;
 	}
