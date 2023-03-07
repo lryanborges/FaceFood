@@ -36,14 +36,12 @@ public class RotinaService {
 		return rotina;
 	}
 	
-	public Rotina updateRotina(Rotina rotina) {
-		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
-		rotina.setId(rotinaData.getId());
-		return rep.save(rotina);
-	}
-	
 	public Rotina updateRotinaPatch(Rotina rotina) {
-		Rotina rotinaData = rep.findByData(rotina.getData());
+		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
+		for(Refeicao refeicao : rotina.getListaRefeicoes()) {
+			//Refeicao temp = refService.getById(null);
+			refService.updateRefeicao(refeicao);
+		}
 		rotina.setId(rotinaData.getId());
 		rotina.setUuid(rotinaData.getUuid());
 		return rep.save(rotina);
@@ -54,6 +52,9 @@ public class RotinaService {
 		Rotina rotinaDelete = rep.findByUuid(uuid);
 		if (rotinaDelete == null) return "Refeição não encontrada";
 		rep.delete(rotinaDelete);
+		for(Refeicao refeicao : rotinaDelete.getListaRefeicoes()) {
+			refService.deleteRefeicao(refeicao.getUuid());
+		}
 		return "ok";
 	}
 	

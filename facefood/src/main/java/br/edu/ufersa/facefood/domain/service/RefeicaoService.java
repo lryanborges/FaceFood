@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
+import br.edu.ufersa.facefood.domain.entity.Rotina;
 import br.edu.ufersa.facefood.domain.repository.RefeicaoRepository;
 
 @Service
@@ -23,7 +24,6 @@ public class RefeicaoService {
 		Refeicao refeicao = rep.findByUuid(id);
 		return refeicao;
 	}
-	
 	public Refeicao createRefeicao(Refeicao refeicao) {
 		refeicao.setUuid(UUID.randomUUID());
 		rep.save(refeicao);
