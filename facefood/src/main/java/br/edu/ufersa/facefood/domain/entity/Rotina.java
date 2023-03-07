@@ -27,7 +27,7 @@ public class Rotina {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany
+	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name="rotina_id")
 	private List<Refeicao> listaRefeicoes = new ArrayList<Refeicao>();
 	

@@ -1,4 +1,4 @@
-package br.edu.ufersa.facefood.domain.service;
+ package br.edu.ufersa.facefood.domain.service;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,10 +38,6 @@ public class RotinaService {
 	
 	public Rotina updateRotinaPatch(Rotina rotina) {
 		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
-		for(Refeicao refeicao : rotina.getListaRefeicoes()) {
-			//Refeicao temp = refService.getById(null);
-			refService.updateRefeicao(refeicao);
-		}
 		rotina.setId(rotinaData.getId());
 		rotina.setUuid(rotinaData.getUuid());
 		return rep.save(rotina);
@@ -52,9 +48,6 @@ public class RotinaService {
 		Rotina rotinaDelete = rep.findByUuid(uuid);
 		if (rotinaDelete == null) return "Refeição não encontrada";
 		rep.delete(rotinaDelete);
-		for(Refeicao refeicao : rotinaDelete.getListaRefeicoes()) {
-			refService.deleteRefeicao(refeicao.getUuid());
-		}
 		return "ok";
 	}
 	
