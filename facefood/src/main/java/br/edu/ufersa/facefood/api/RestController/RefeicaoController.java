@@ -1,5 +1,6 @@
 package br.edu.ufersa.facefood.api.RestController;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufersa.facefood.api.dto.InsertRefeicaoDTO;
+import br.edu.ufersa.facefood.api.dto.PratoDTO;
 import br.edu.ufersa.facefood.api.dto.RefeicaoDTO;
+import br.edu.ufersa.facefood.api.dto.UpdatePratoDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateRefeicaoDTO;
+import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
 import br.edu.ufersa.facefood.domain.service.RefeicaoService;
 
@@ -35,6 +39,7 @@ public class RefeicaoController {
 	@Autowired
 	private RefeicaoService service;
 	
+	
 	@GetMapping
 	public List<RefeicaoDTO> listar(){
 		List<RefeicaoDTO> refeicoes = new ArrayList<RefeicaoDTO>();
@@ -44,9 +49,9 @@ public class RefeicaoController {
 		return refeicoes;
 	}
 	
-	@GetMapping("/{refeicaoId}")
-	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable UUID refeicaoId){
-		RefeicaoDTO dto = mapper.map(service.getByUuid(refeicaoId), RefeicaoDTO.class);
+	@GetMapping("/id/{refeicaoId}")
+	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable long refeicaoId){
+		RefeicaoDTO dto = mapper.map(service.getById(refeicaoId), RefeicaoDTO.class);
 		if(dto != null)
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		else
@@ -54,6 +59,17 @@ public class RefeicaoController {
 	}
 	
 	
+		@GetMapping("/horario/{refeicaoHorario}")
+		public ResponseEntity<RefeicaoDTO> buscar(@PathVariable LocalTime horario){
+			RefeicaoDTO dto = mapper.map(service.getByHorario(horario), RefeicaoDTO.class);
+			if(dto == null) {
+				return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			}else {
+				return new ResponseEntity<>(dto,HttpStatus.OK);
+			}
+		}
+		
+		
 	@PostMapping
 	public ResponseEntity<RefeicaoDTO> criar (@Valid @RequestBody InsertRefeicaoDTO dto){
 		Refeicao refeicao = service.createRefeicao(mapper.map(dto, Refeicao.class));
@@ -64,6 +80,7 @@ public class RefeicaoController {
 			return new ResponseEntity<> (criado, HttpStatus.CREATED);
 		}
 	}
+	
 
 	@PutMapping
 	public ResponseEntity<RefeicaoDTO> alterar(@Valid @RequestBody UpdateRefeicaoDTO dto){
@@ -73,19 +90,29 @@ public class RefeicaoController {
 		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+
 	@PatchMapping
-	public ResponseEntity<RefeicaoDTO> alterar(@Valid @RequestBody InsertRefeicaoDTO dto){
+	public ResponseEntity<RefeicaoDTO> alterar(@Valid @RequestBody RefeicaoDTO dto){
 		Refeicao refeicao = service.updateRefeicaoPatch(mapper.map(dto, Refeicao.class));
 		RefeicaoDTO atualizado = mapper.map(refeicao, RefeicaoDTO.class);
 		if(atualizado != null) return new ResponseEntity<>(atualizado, HttpStatus.OK);
 		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
 
-	@DeleteMapping("/{refeicaoId}")
-	public ResponseEntity<UUID> deletar (@PathVariable UUID refeicaoId){
+	@DeleteMapping("/id/{refeicaoId}")
+	public ResponseEntity<Long> deletar (@PathVariable long refeicaoId){
 		String teste = service.deleteRefeicao(refeicaoId);
 		if(teste.equals("ok")) return new ResponseEntity<>(refeicaoId, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/horario/{refeicaoHorario}")
+	public ResponseEntity<String> deletar(@PathVariable LocalTime horario) {
+		String result = service.deleteRefeicao(horario);
+		if (result.equals("ok")) {
+			return new ResponseEntity<>("refeição deletada no horario " + horario, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }
