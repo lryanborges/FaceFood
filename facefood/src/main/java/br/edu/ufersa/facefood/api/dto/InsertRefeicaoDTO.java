@@ -8,32 +8,31 @@ import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 
 public class InsertRefeicaoDTO {
-	 private LocalTime horario;
-	    private List<Prato> pratos;
-		private UUID uuid;
-	    private Rotina rotina;
-		public LocalTime getHorario() {
-			return horario;
-		}
-		public void setHorario(LocalTime horario) {
-			this.horario = horario;
-		}
-		public List<Prato> getPratos() {
-			return pratos;
-		}
-		public void setPratos(List<Prato> pratos) {
-			this.pratos = pratos;
-		}
-		public UUID getUuid() {
-			return uuid;
-		}
-		public void setUuid(UUID uuid) {
-			this.uuid = uuid;
-		}
-		public Rotina getRotina() {
-			return rotina;
-		}
-		public void setRotina(Rotina rotina) {
-			this.rotina = rotina;
-		}
+
+	//@NotEmpty(message="Coloque um horario atrelado a refeição")
+	private LocalTime horario;
+	@NotNull(message="Coloque um prato atrelado a refeição")
+	private Prato prato;
+	@NotNull(message="Coloque uma rotina para a refeição")
+	private Rotina rotina;
+  
+	public LocalTime getHorario() {
+		return horario;
+	}
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
+	public Prato getPrato() {
+		return prato;
+	}
+	public void setPrato(Prato prato) {
+		this.prato = prato;
+	}
+	public Rotina getRotina() {
+		return rotina;
+	}
+	public void setRotina(Rotina rotina) {
+		this.rotina = rotina;
+	}
+	
 }
