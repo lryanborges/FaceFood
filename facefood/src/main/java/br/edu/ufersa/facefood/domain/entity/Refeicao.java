@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood.domain.entity;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,7 +27,8 @@ public class Refeicao {
     @Column(unique = true)
     private LocalTime horario;
     
-    @ManyToOne
+    @ManyToMany
+    @JoinColumn(name = "id")
     private Prato prato;
     
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
