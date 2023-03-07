@@ -23,19 +23,20 @@ public class Refeicao {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", insertable=false, updatable=false)
     private Long id;
     @Column(unique = true)
     private LocalTime horario;
     
-    @ManyToMany
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "prato_id", referencedColumnName = "id")
     private Prato prato;
     
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
     @ManyToOne
-    @JoinColumn(name="id_rotina")
+    @JoinColumn(name="id_rotina", referencedColumnName = "id")
     private Rotina rotina;
     public Rotina getRotina() {
 		return rotina;

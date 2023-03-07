@@ -15,7 +15,7 @@ import br.edu.ufersa.facefood.domain.repository.PratoRepository;
 public class PratoService {
 
 	@Autowired
-	PratoRepository pratoRep;
+	private PratoRepository pratoRep;
 	@Autowired
 	private UserService userService;
 	@Autowired

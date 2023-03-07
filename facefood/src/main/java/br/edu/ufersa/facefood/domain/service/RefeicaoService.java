@@ -66,6 +66,12 @@ public class RefeicaoService {
 		return "ok";
 	}
 	
+	public String deleteRefeicao(UUID uuid) {
+		Refeicao refeicaoDelete = rep.findByUuid(uuid);
+		if (refeicaoDelete == null) return "Refeição não encontrada";
+		rep.delete(refeicaoDelete);
+		return "ok";
+	}
 	
 	public String deleteRefeicao(LocalTime horario) {
 		Refeicao refeicaoDelete = rep.findByHorario(horario);

@@ -21,7 +21,7 @@ public class Publicacao {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne //(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_prato", referencedColumnName = "id")
 	private Prato prato;
 	private String descricao;
