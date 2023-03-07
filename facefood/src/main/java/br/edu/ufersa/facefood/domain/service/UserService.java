@@ -61,4 +61,11 @@ public class UserService {
 		return "ok";
 	}	
 	
+	public String deleteUser(long id) {
+		User userDelete = rep.findById(id);
+		if (userDelete == null) return "usuario não encontrado";
+		rep.delete(userDelete);
+		return "ok";
+	}	
+	
 }

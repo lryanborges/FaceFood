@@ -43,7 +43,7 @@ public class UserController {
 		return users;
 	}
 	
-	@GetMapping("/{userUuid}")
+	@GetMapping("/uuid/{userUuid}")
 	public ResponseEntity<UserDTO> buscar (@PathVariable UUID userUuid){
 		UserDTO dto = mapper.map(service.getByUuid(userUuid), UserDTO.class);
 		if(dto != null)
@@ -52,7 +52,7 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping("/{userId}")
+	@GetMapping("/id/{userId}")
 	public ResponseEntity<UserDTO> buscar (@PathVariable long userId){
 		UserDTO dto = mapper.map(service.getById(userId), UserDTO.class);
 		if(dto != null)
@@ -88,11 +88,17 @@ public class UserController {
 		else return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	
-	@DeleteMapping("/{userId}")
-	public ResponseEntity<UUID> deletar(@PathVariable UUID userId) {
+	@DeleteMapping("/id/{userId}")
+	public ResponseEntity<Long> deletar(@PathVariable long userId) {
 		String teste = service.deleteUser(userId);
 		if (teste.equals("ok")) return new ResponseEntity<>(userId, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/uuid/{userUuid}")
+	public ResponseEntity<UUID> deletar(@PathVariable UUID userUuid) {
+		String teste = service.deleteUser(userUuid);
+		if (teste.equals("ok")) return new ResponseEntity<>(userUuid, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
