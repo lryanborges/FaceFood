@@ -44,9 +44,9 @@ public class RefeicaoController {
 		return refeicoes;
 	}
 	
-	@GetMapping("/{refeicaoId}")
-	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable UUID refeicaoId){
-		RefeicaoDTO dto = mapper.map(service.getByUuid(refeicaoId), RefeicaoDTO.class);
+	@GetMapping("/id/{refeicaoId}")
+	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable long refeicaoId){
+		RefeicaoDTO dto = mapper.map(service.getById(refeicaoId), RefeicaoDTO.class);
 		if(dto != null)
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		else
