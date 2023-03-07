@@ -44,6 +44,7 @@ public class PublicacaoService {
 	public Publicacao updatePublicacaoPatch(Publicacao publicacao) {
 		Publicacao publicacaoData = publicacaoRep.findByDescricao(publicacao.getDescricao());
 		publicacao.setId(publicacaoData.getId());
+		publicacao.setUuid(publicacaoData.getUuid());
 		Publicacao publicacaoUpdated = publicacaoRep.save(publicacao);
 		return publicacaoUpdated;
 	}
