@@ -1,13 +1,18 @@
 package br.edu.ufersa.facefood.api.dto;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 
 public class RefeicaoDTO {
+
 	    private LocalDateTime horario;
+      //private List<Prato> pratos;
+	    //private UUID uuid;
 	    private Prato prato;
 	    private Rotina rotina;
 		private UUID uuid;
@@ -36,6 +41,5 @@ public class RefeicaoDTO {
 		public void setUuid(UUID uuid) {
 			this.uuid = uuid;
 		}
-		
 		
 }

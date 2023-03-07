@@ -1,14 +1,14 @@
 package br.edu.ufersa.facefood.api.dto;
 
 import java.time.LocalTime;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.UUID;
 
 import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 
 public class InsertRefeicaoDTO {
+
 	//@NotEmpty(message="Coloque um horario atrelado a refeição")
 	private LocalTime horario;
 	@NotNull(message="Coloque um prato atrelado a refeição")
