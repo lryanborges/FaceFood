@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 import br.edu.ufersa.facefood.domain.repository.RotinaRepository;
@@ -49,6 +50,13 @@ public class RotinaService {
 		if (rotinaDelete == null) return "Refeição não encontrada";
 		rep.delete(rotinaDelete);
 		return "ok";
+	}
+	public Rotina updateRotina(Rotina rotina) {
+		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
+		System.out.println(rotinaData.getUuid());
+		rotina.setId(rotinaData.getId());
+		Rotina rotinaUpdated = rep.save(rotina);
+		return rotinaUpdated;
 	}
 	
 }
