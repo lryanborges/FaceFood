@@ -41,7 +41,8 @@ public class PratoService {
 		prato.setUser(userService.getById(prato.getUser().getId()));
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 		for(Ingrediente ingrediente : prato.getIngredientes()) {
-			ingrediente = ingredienteService.getById(ingrediente.getId());
+	//		ingrediente = ingredienteService.findById(ingrediente.getId());
+			ingrediente = ingredienteService.getByUuid(ingrediente.getUuid());
 			ingredientes.add(ingrediente);
 		}
 		prato.setIngredientes(ingredientes);

@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood.domain.entity;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "tb_ingredientes")
 public class Ingrediente {
@@ -18,6 +21,10 @@ public class Ingrediente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
+	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+	@Type(type = "uuid-char")
+	private UUID uuid;
 
     @Column(unique=true, nullable=false)
     private String nome;
@@ -29,11 +36,31 @@ public class Ingrediente {
     @Column(nullable = false)
     private float calorias;
 
-    public long getId() {
+    public Ingrediente() {
+    }
+    
+    public Ingrediente(UUID uuid, String nome, TipoIngrediente tipo, float calorias) {
+		this.uuid = uuid;
+		this.nome = nome;
+		this.tipo = tipo;
+		this.calorias = calorias;
+	}
+
+
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -63,7 +90,7 @@ public class Ingrediente {
 
     @Override
     public int hashCode() {
-        return Objects.hash(calorias, id, nome, tipo);
+        return Objects.hash(calorias, id, nome, tipo, uuid);
     }
 
     @Override
@@ -80,7 +107,7 @@ public class Ingrediente {
     }
 
     public enum TipoIngrediente {
-        CARNES, PEIXES, FRUTOS_DO_MAR, VEGETAIS, GRÃOS, CEREAIS, FRUTAS, LATICÍNIOS, TEMPEROS, ERVAS
+    	CARNES, PEIXES, FRUTOS_DO_MAR, VEGETAIS, GRÃOS, CEREAIS, FRUTAS, LATICÍNIOS, TEMPEROS, ERVAS, ÓLEOS_E_GORDURAS, NOZES_E_SEMENTES, MASSAS, DOCES_E_SOBREMESAS, BEBIDAS
     }
 
 }
