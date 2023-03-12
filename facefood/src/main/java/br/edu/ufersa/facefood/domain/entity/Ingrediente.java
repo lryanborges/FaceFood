@@ -1,5 +1,6 @@
 package br.edu.ufersa.facefood.domain.entity;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -35,6 +37,9 @@ public class Ingrediente {
 
     @Column(nullable = false)
     private float calorias;
+    
+    @ManyToMany(mappedBy = "ingredientes")
+    List<Prato> pratos;
 
     public Ingrediente() {
     }
@@ -110,4 +115,9 @@ public class Ingrediente {
     	CARNES, PEIXES, FRUTOS_DO_MAR, VEGETAIS, GRÃOS, CEREAIS, FRUTAS, LATICÍNIOS, TEMPEROS, ERVAS, ÓLEOS_E_GORDURAS, NOZES_E_SEMENTES, MASSAS, DOCES_E_SOBREMESAS, BEBIDAS
     }
 
+    public String toString() {
+    	String retornar = "id: " + id + "\nuuid: " + uuid + "\nnome: " + nome + "\ncalorias: " + calorias + "\ntipo: " + tipo;
+    	return retornar;
+    }
+    
 }

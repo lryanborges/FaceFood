@@ -1,7 +1,8 @@
 package br.edu.ufersa.facefood.domain.service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,19 @@ public class PratoService {
 	private IngredienteService ingredienteService;
 	
 	public List<Prato> getAll() {
+		System.out.println("Antes da busca");
 		List<Prato> pratos = pratoRep.findAll();
+		System.out.println("Depois da busca");
 		return pratos;
 	}
 	
 	public Prato getById(long id) {
-		Prato prato = pratoRep.findById(id);
+		Prato prato = pratoRep.findById(id); // por ter N de coluna de TIPO com tal id, vai retornar N vezes os tipos
+		return prato;
+	}
+	
+	public Prato getByUuid(UUID uuid) {
+		Prato prato = pratoRep.findByUuid(uuid);
 		return prato;
 	}
 	
@@ -39,13 +47,21 @@ public class PratoService {
 	public Prato createPrato(Prato prato) {
 		prato.setUuid(UUID.randomUUID());
 		prato.setUser(userService.getById(prato.getUser().getId()));
-		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		Set<Ingrediente> hashIngredientes = new HashSet<Ingrediente>();
 		for(Ingrediente ingrediente : prato.getIngredientes()) {
-	//		ingrediente = ingredienteService.findById(ingrediente.getId());
-			ingrediente = ingredienteService.getByUuid(ingrediente.getUuid());
-			ingredientes.add(ingrediente);
+			ingrediente = ingredienteService.getById(ingrediente.getId());
+			hashIngredientes.add(ingrediente);
 		}
-		prato.setIngredientes(ingredientes);
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByUuid(ingrediente.getUuid());
+			hashIngredientes.add(ingrediente);
+		}
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByNome(ingrediente.getNome());
+			hashIngredientes.add(ingrediente);
+		}
+		//ArrayList<Ingrediente> arrayIngredientes = new ArrayList<>(hashIngredientes);
+		prato.setIngredientes(hashIngredientes);
 		Prato saved = pratoRep.save(prato);
 		return saved;
 	}
@@ -60,6 +76,20 @@ public class PratoService {
 	public Prato updatePrato(Prato prato) {
 		Prato pratoData = pratoRep.findByUuid(prato.getUuid());
 		prato.setId(pratoData.getId());
+		Set<Ingrediente> hashIngredientes = new HashSet<Ingrediente>();
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getById(ingrediente.getId());
+			hashIngredientes.add(ingrediente);
+		}
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByUuid(ingrediente.getUuid());
+			hashIngredientes.add(ingrediente);
+		}
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByNome(ingrediente.getNome());
+			hashIngredientes.add(ingrediente);
+		}
+		prato.setIngredientes(hashIngredientes);
 		Prato pratoUpdated = pratoRep.save(prato);
 		return pratoUpdated;
 	}
@@ -67,12 +97,36 @@ public class PratoService {
 	public Prato updatePratoPatch(Prato prato) {
 		Prato pratoData = pratoRep.findByNome(prato.getNome());
 		prato.setId(pratoData.getId());
+		Set<Ingrediente> hashIngredientes = new HashSet<Ingrediente>();
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getById(ingrediente.getId());
+			hashIngredientes.add(ingrediente);
+		}
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByUuid(ingrediente.getUuid());
+			hashIngredientes.add(ingrediente);
+		}
+		for(Ingrediente ingrediente : prato.getIngredientes()) {
+			ingrediente = ingredienteService.getByNome(ingrediente.getNome());
+			hashIngredientes.add(ingrediente);
+		}
+		prato.setIngredientes(hashIngredientes);
 		Prato pratoUpdated = pratoRep.save(prato);
 		return pratoUpdated;
 	}
 	
 	public String deletePrato(long id) {
 		Prato pratoDelete = pratoRep.findById(id);
+		if(pratoDelete == null) {
+			return "prato não foi encontrado";
+		} else {
+			pratoRep.delete(pratoDelete);
+			return "ok";
+		}
+	}
+	
+	public String deletePrato(UUID uuid) {
+		Prato pratoDelete = pratoRep.findByUuid(uuid);
 		if(pratoDelete == null) {
 			return "prato não foi encontrado";
 		} else {

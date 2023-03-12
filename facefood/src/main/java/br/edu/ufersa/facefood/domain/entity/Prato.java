@@ -2,19 +2,20 @@ package br.edu.ufersa.facefood.domain.entity;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -31,14 +32,19 @@ public class Prato {
 	private String nome;
 	private float calorias;
 	private String descricao;
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> tipos;
-	@ManyToMany
-	@JoinColumn(name = "id")
-	private List<Ingrediente> ingredientes;
+	/* @ManyToMany
+    @JoinTable(name = "rel_prato_ingrediente",
+        joinColumns = @JoinColumn(name = "prato_id"),
+        inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))*/
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_pratos_ingredientes",
+				joinColumns = @JoinColumn(name = "pratos_id"),
+				inverseJoinColumns = @JoinColumn(name = "ingredientes_id"))
+	private Set<Ingrediente> ingredientes;
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	@NotNull(message="O usuário não pode ser null!")
 	private User user; // user = autor
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
@@ -56,7 +62,7 @@ public class Prato {
 	public String getDescricao() {
 		return descricao;
 	}
-	public List<Ingrediente> getIngredientes() {
+	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
 	public void setId(long id) {
@@ -83,7 +89,7 @@ public class Prato {
 	public void setTipos(List<String> tipos) {
 		this.tipos = tipos;
 	}
-	public void setIngredientes(List<Ingrediente> ingredientes) {
+	public void setIngredientes(Set<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 	public User getUser() {
@@ -106,4 +112,18 @@ public class Prato {
 				&& Objects.equals(tipos, other.tipos) && Objects.equals(user, other.user)
 				&& Objects.equals(uuid, other.uuid);
 	}
+	public String toString() {
+		String retornar = "id: " + id + "\nuuid: " + uuid + "\nnome: " + nome + "\ndescricao: " + descricao + "\ncalorias: " + calorias;
+		retornar = retornar + "\nLista de ingredientes: ";
+		int i = 0;
+		for(Ingrediente ig : ingredientes) {
+			retornar = "\nIngr" + i++ + ": " + ig; 
+		}
+		int j = 0;
+		for(String tp : tipos) {
+			retornar = "\nTipo" + j++ + tp.indexOf(j);
+		}
+		return retornar;
+	}
+	
 }
