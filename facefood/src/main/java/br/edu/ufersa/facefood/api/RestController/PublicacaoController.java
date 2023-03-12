@@ -2,6 +2,7 @@ package br.edu.ufersa.facefood.api.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -46,6 +47,17 @@ public class PublicacaoController {
 	@GetMapping("/id/{publicacaoId}")
 	public ResponseEntity<PublicacaoDTO> buscar(@PathVariable long publicacaoId) {
 		Publicacao publicacao = service.getById(publicacaoId);
+		PublicacaoDTO dto = mapper.map(publicacao, PublicacaoDTO.class);
+		if(dto == null) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/uuid/{publicacaoUuid}")
+	public ResponseEntity<PublicacaoDTO> buscar(@PathVariable UUID publicacaoUuid) {
+		Publicacao publicacao = service.getByUuid(publicacaoUuid);
 		PublicacaoDTO dto = mapper.map(publicacao, PublicacaoDTO.class);
 		if(dto == null) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

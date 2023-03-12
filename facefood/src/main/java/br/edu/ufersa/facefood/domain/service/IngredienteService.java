@@ -17,6 +17,7 @@ public class IngredienteService {
 	
 	public List<Ingrediente> getAll() {
 		List<Ingrediente> ingredientes = ingredienteRepository.findAll();
+		System.out.println(ingredientes);
 		return ingredientes;
 	}
 	

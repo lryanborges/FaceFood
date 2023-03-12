@@ -1,11 +1,14 @@
 package br.edu.ufersa.facefood.domain.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Publicacao;
 import br.edu.ufersa.facefood.domain.repository.PublicacaoRepository;
 
@@ -27,9 +30,20 @@ public class PublicacaoService {
 		return publicacao;
 	}
 	
+	public Publicacao getByUuid(UUID uuid) {
+		Publicacao publicacao = publicacaoRep.findByUuid(uuid);
+		return publicacao;
+	}
+	
 	public Publicacao createPublicacao(Publicacao publicacao) {
 		publicacao.setUuid(UUID.randomUUID());
-		publicacao.setPrato(pratoService.getById(publicacao.getPrato().getId()));
+		Set<Prato> hashPratos = new HashSet<Prato>();
+		hashPratos.add(pratoService.getById(publicacao.getPrato().getId()));
+		hashPratos.add(pratoService.getByUuid(publicacao.getPrato().getUuid()));
+		hashPratos.add(pratoService.getByNome(publicacao.getPrato().getNome()));
+		for(Prato prato : hashPratos) {
+			publicacao.setPrato(prato);
+		}
 		Publicacao saved = publicacaoRep.save(publicacao);
 		return saved;
 	}
@@ -37,6 +51,13 @@ public class PublicacaoService {
 	public Publicacao updatePublicacao(Publicacao publicacao) {
 		Publicacao publicacaoData = publicacaoRep.findByUuid(publicacao.getUuid());
 		publicacao.setId(publicacaoData.getId());
+		Set<Prato> hashPratos = new HashSet<Prato>();
+		hashPratos.add(pratoService.getById(publicacao.getPrato().getId()));
+		hashPratos.add(pratoService.getByUuid(publicacao.getPrato().getUuid()));
+		hashPratos.add(pratoService.getByNome(publicacao.getPrato().getNome()));
+		for(Prato prato : hashPratos) {
+			publicacao.setPrato(prato);
+		}
 		Publicacao publicacaoUpdated = publicacaoRep.save(publicacao);
 		return publicacaoUpdated;
 	}
@@ -45,6 +66,13 @@ public class PublicacaoService {
 		Publicacao publicacaoData = publicacaoRep.findByDescricao(publicacao.getDescricao());
 		publicacao.setId(publicacaoData.getId());
 		publicacao.setUuid(publicacaoData.getUuid());
+		Set<Prato> hashPratos = new HashSet<Prato>();
+		hashPratos.add(pratoService.getById(publicacao.getPrato().getId()));
+		hashPratos.add(pratoService.getByUuid(publicacao.getPrato().getUuid()));
+		hashPratos.add(pratoService.getByNome(publicacao.getPrato().getNome()));
+		for(Prato prato : hashPratos) {
+			publicacao.setPrato(prato);
+		}
 		Publicacao publicacaoUpdated = publicacaoRep.save(publicacao);
 		return publicacaoUpdated;
 	}
