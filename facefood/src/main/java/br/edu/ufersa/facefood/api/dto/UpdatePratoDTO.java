@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,6 +25,8 @@ public class UpdatePratoDTO {
 	@NotNull(message = "Você precisa informar o autor do prato(user).")
 	private User user;
 	private UUID uuid;
+	@NotNull(message = "Por favor, insira o URL da imagem.")
+	private String imgUrl;
 	
 	public String getNome() {
 		return nome;

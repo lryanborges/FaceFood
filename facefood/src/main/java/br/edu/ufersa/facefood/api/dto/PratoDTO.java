@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -28,6 +27,8 @@ public class PratoDTO {
 	@NotNull(message = "Por favor, informe o usuário autor do prato.")
 	private User user;
 	private UUID uuid;
+	@NotNull(message = "Por favor, insira o URL da imagem.")
+	private String imgUrl;
 	
 	public long getId() {
 		return id;
@@ -76,6 +77,12 @@ public class PratoDTO {
 	}
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 	public String toString() {
