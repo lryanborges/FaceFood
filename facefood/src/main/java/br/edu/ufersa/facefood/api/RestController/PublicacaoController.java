@@ -109,4 +109,14 @@ public class PublicacaoController {
 		}
 	}
 	
+	@DeleteMapping("/uuid/{publicacaoUuid}")
+	public ResponseEntity<UUID> deletar(@PathVariable UUID publicacaoUuid){
+		String result = service.deletePublicacao(publicacaoUuid);
+		if(result.equals("ok")) {
+			return new ResponseEntity<>(publicacaoUuid,HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 }

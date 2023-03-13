@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,6 +26,7 @@ import br.edu.ufersa.facefood.domain.service.UserDetailsServiceImpl;
 public class SecurityConfig {
 	@Autowired
     private UserDetailsServiceImpl userDetailsService;
+	
     @Bean
     public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder(); }
@@ -41,7 +43,7 @@ public class SecurityConfig {
             .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .anyRequest().permitAll().and()
+                .anyRequest().authenticated().and()
             .addFilterBefore(new LoginFilter("/api/login", authenticationManager), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .authenticationManager(authenticationManager)
@@ -51,4 +53,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+    
  }

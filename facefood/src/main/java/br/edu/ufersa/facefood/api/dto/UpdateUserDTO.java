@@ -11,7 +11,7 @@ public class UpdateUserDTO {
     @Email(message="Digite um email valido!!!")
     private String email;
     @NotBlank(message="A senha não pode ser null ou vazia!")
-    @Size(min=5,max=20,message="A senha deve ter entre 5 e 20 caracteres!!!")
+    @Size(min=5,max=200,message="A senha deve ter entre 5 e 200 caracteres!!!")
     private String senha;
     private UUID uuid;
     
