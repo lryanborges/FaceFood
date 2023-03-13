@@ -1,85 +1,49 @@
 package br.edu.ufersa.facefood.domain.entity;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
-/*
- * Algumas versões:
- *    @ManyToOne
-@JoinColumn(name = "prato_id", referencedColumnName = "id")
-private Prato prato;
-
-/*@ManyToMany
-@JoinColumn(name = "id")
-private List<Prato> pratos;
-//private Prato prato; VERSÃO DE JOVIT. TESTAR DEPOIS
- * 
- *  @ManyToOne
-    @JoinColumn(name="id_rotina", referencedColumnName = "id")
-    private Rotina rotina;
-    public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
-	}
-
- */
 
 @Entity
 @Table(name="tb_refeicoes")
 public class Refeicao {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	 
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
     
     @Column(unique = true, nullable = false)
     private LocalTime horario;
     
-    @ManyToMany
-    @JoinColumn(name = "id")
-    private List<Prato> pratos = new ArrayList<Prato>();    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_refeicoes_pratos", joinColumns = @JoinColumn(name = "refeicoes_id"), inverseJoinColumns = @JoinColumn(name = "pratos_id"))
+    private Set<Prato> pratos; 
     
     @ManyToOne
-    @JoinColumn(name="id_rotina", referencedColumnName = "id")
+    @JoinColumn(name="rotina_id", referencedColumnName = "id")
     private Rotina rotina;
-    
-	public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
-	}
-
-	public Refeicao() {
-    }
-	
-	public Refeicao(UUID uuid, LocalTime horario, List<Prato> pratos) {
-		this.uuid = uuid;
-		this.horario = horario;
-		this.pratos = pratos;
-	}
 
 	public long getId() {
 		return id;
@@ -97,6 +61,14 @@ public class Refeicao {
 		this.uuid = uuid;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public LocalTime getHorario() {
 		return horario;
 	}
@@ -105,17 +77,25 @@ public class Refeicao {
 		this.horario = horario;
 	}
 
-	public List<Prato> getPratos() {
+	public Set<Prato> getPratos() {
 		return pratos;
 	}
 
-	public void setPratos(List<Prato> pratos) {
+	public void setPratos(Set<Prato> pratos) {
 		this.pratos = pratos;
+	}
+
+	public Rotina getRotina() {
+		return rotina;
+	}
+
+	public void setRotina(Rotina rotina) {
+		this.rotina = rotina;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(horario, id, pratos, uuid);
+		return Objects.hash(horario, id, pratos, rotina, user, uuid);
 	}
 
 	@Override
@@ -128,8 +108,23 @@ public class Refeicao {
 			return false;
 		Refeicao other = (Refeicao) obj;
 		return Objects.equals(horario, other.horario) && id == other.id && Objects.equals(pratos, other.pratos)
+				&& Objects.equals(rotina, other.rotina) && Objects.equals(user, other.user)
 				&& Objects.equals(uuid, other.uuid);
-	}	
-	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "Refeicao [id=" + id + ", uuid=" + uuid + ", user=" + user + ", horario=" + horario + ", pratos="
+				+ pratos + ", rotina=" + rotina + "]";
+	}
+
+	public Refeicao(UUID uuid, User user, LocalTime horario, Set<Prato> pratos, Rotina rotina) {
+		this.uuid = uuid;
+		this.user = user;
+		this.horario = horario;
+		this.pratos = pratos;
+		this.rotina = rotina;
+	}
+    
+    Refeicao(){}
 }

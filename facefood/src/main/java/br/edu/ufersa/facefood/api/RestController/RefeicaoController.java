@@ -43,6 +43,7 @@ public class RefeicaoController {
 	@Autowired
 	private RefeicaoService service;
 	
+	
 	@GetMapping
 	public List<RefeicaoDTO> listar(){
 		List<RefeicaoDTO> refeicoes = new ArrayList<RefeicaoDTO>();
@@ -55,32 +56,33 @@ public class RefeicaoController {
 	@GetMapping("/uuid/{refeicaoUuid}")
 	public ResponseEntity<RefeicaoDTO> buscar(@PathVariable UUID refeicaoUuid){
 		RefeicaoDTO dto = mapper.map(service.getByUuid(refeicaoUuid), RefeicaoDTO.class);
-		if(dto != null)
-			return new ResponseEntity<>(dto, HttpStatus.OK);
-		else
-			return ResponseEntity.notFound().build();
+		if(dto == null) {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto,HttpStatus.OK);
+		}
 	}
 	
 	@GetMapping("/id/{refeicaoId}")
 	public ResponseEntity<RefeicaoDTO> buscar (@PathVariable long refeicaoId){
 		RefeicaoDTO dto = mapper.map(service.getById(refeicaoId), RefeicaoDTO.class);
-		if(dto != null)
-			return new ResponseEntity<>(dto, HttpStatus.OK);
-		else
-			return ResponseEntity.notFound().build();
+		if(dto == null) {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto,HttpStatus.OK);
+		}
 	}
 	
-		@GetMapping("/horario/{refeicaoHorario}")
-		public ResponseEntity<RefeicaoDTO> buscar(@PathVariable LocalTime horario){
-			RefeicaoDTO dto = mapper.map(service.getByHorario(horario), RefeicaoDTO.class);
-			if(dto != null) {
-				return new ResponseEntity<>(dto, HttpStatus.OK);
-			}else {
-				return ResponseEntity.notFound().build();
-			}
+	@GetMapping("/horario/{refeicaoHorario}")
+	public ResponseEntity<RefeicaoDTO> buscar(@PathVariable LocalTime horario){
+		RefeicaoDTO dto = mapper.map(service.getByHorario(horario), RefeicaoDTO.class);
+		if(dto == null) {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto,HttpStatus.OK);
 		}
+	}
 	
-		
 	@PostMapping
 	public ResponseEntity<RefeicaoDTO> criar (@Valid @RequestBody InsertRefeicaoDTO dto){
 		Refeicao refeicao = service.createRefeicao(mapper.map(dto, Refeicao.class));
@@ -96,16 +98,22 @@ public class RefeicaoController {
 	public ResponseEntity<RefeicaoDTO> alterar(@Valid @RequestBody UpdateRefeicaoDTO dto){
 		Refeicao refeicao = service.updateRefeicao(mapper.map(dto, Refeicao.class));
 		RefeicaoDTO atualizado = mapper.map(refeicao, RefeicaoDTO.class);
-		if(atualizado != null) return new ResponseEntity<>(atualizado, HttpStatus.OK);
-		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		if(atualizado == null) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(atualizado, HttpStatus.OK);
+		}
 	}
 
 	@PatchMapping
 	public ResponseEntity<RefeicaoDTO> alterar(@Valid @RequestBody InsertRefeicaoDTO dto){
 		Refeicao refeicao = service.updateRefeicaoPatch(mapper.map(dto, Refeicao.class));
 		RefeicaoDTO atualizado = mapper.map(refeicao, RefeicaoDTO.class);
-		if(atualizado != null) return new ResponseEntity<>(atualizado, HttpStatus.OK);
-		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		if(atualizado == null) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(atualizado, HttpStatus.OK);
+		}
 	}
 
 	@DeleteMapping("/id/{refeicaoId}")

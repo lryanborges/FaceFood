@@ -50,6 +50,9 @@ public class Prato {
 	@Type(type = "uuid-char")
 	private UUID uuid;
 	
+	 @ManyToMany(mappedBy = "pratos")
+     List<Refeicao> refeicoes;
+	
 	public long getId() {
 		return id;
 	}
