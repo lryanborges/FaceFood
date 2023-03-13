@@ -43,7 +43,7 @@ public class SecurityConfig {
             .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .anyRequest().authenticated().and()
+                .anyRequest().permitAll().and()
             .addFilterBefore(new LoginFilter("/api/login", authenticationManager), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .authenticationManager(authenticationManager)

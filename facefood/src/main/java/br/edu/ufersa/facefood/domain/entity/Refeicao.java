@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood.domain.entity;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -84,8 +85,8 @@ public class Refeicao {
 	public void setPratos(Set<Prato> pratos) {
 		this.pratos = pratos;
 	}
-
-	public Rotina getRotina() {
+    
+    public Rotina getRotina() {
 		return rotina;
 	}
 
@@ -118,13 +119,14 @@ public class Refeicao {
 				+ pratos + ", rotina=" + rotina + "]";
 	}
 
-	public Refeicao(UUID uuid, User user, LocalTime horario, Set<Prato> pratos, Rotina rotina) {
+	public Refeicao(long id, UUID uuid, User user, LocalTime horario, Set<Prato> pratos, Rotina rotina) {
+		this.id = id;
 		this.uuid = uuid;
 		this.user = user;
 		this.horario = horario;
 		this.pratos = pratos;
 		this.rotina = rotina;
 	}
-    
-    Refeicao(){}
+
+	Refeicao(){}
 }

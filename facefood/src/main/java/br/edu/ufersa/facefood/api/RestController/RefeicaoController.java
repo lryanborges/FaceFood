@@ -130,9 +130,10 @@ public class RefeicaoController {
 		}
 	}
 	
-	@DeleteMapping("/horario/{refeicaoHorario}")
-	public ResponseEntity<String> deletar(@PathVariable LocalTime horario) {
-		String result = service.deleteRefeicao(horario);
+	@DeleteMapping("/horario/{horario}")
+	public ResponseEntity<String> deletar(@PathVariable String horario) {
+		LocalTime localTime = LocalTime.parse(horario);
+		String result = service.deleteRefeicao(localTime);
 		if (result.equals("ok")) {
 			return new ResponseEntity<>("refeição deletada no horario " + horario, HttpStatus.OK);
 		} else {
