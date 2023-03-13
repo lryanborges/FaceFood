@@ -21,19 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ufersa.facefood.api.dto.IngredienteDTO;
-import br.edu.ufersa.facefood.api.dto.InsertIngredienteDTO;
 import br.edu.ufersa.facefood.api.dto.InsertRefeicaoDTO;
-import br.edu.ufersa.facefood.api.dto.PratoDTO;
 import br.edu.ufersa.facefood.api.dto.RefeicaoDTO;
-import br.edu.ufersa.facefood.api.dto.UpdateIngredienteDTO;
-import br.edu.ufersa.facefood.api.dto.UpdatePratoDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateRefeicaoDTO;
-import br.edu.ufersa.facefood.domain.entity.Ingrediente;
-import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
 import br.edu.ufersa.facefood.domain.service.RefeicaoService;
-
 
 @RestController
 @RequestMapping("/api/refeicao")
@@ -73,14 +65,19 @@ public class RefeicaoController {
 		}
 	}
 	
-	@GetMapping("/horario/{refeicaoHorario}")
-	public ResponseEntity<RefeicaoDTO> buscar(@PathVariable LocalTime horario){
-		RefeicaoDTO dto = mapper.map(service.getByHorario(horario), RefeicaoDTO.class);
-		if(dto == null) {
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			return new ResponseEntity<>(dto,HttpStatus.OK);
-		}
+	@GetMapping("/horario/{horario}")
+	public ResponseEntity<RefeicaoDTO> buscar(@PathVariable String horario){
+	    LocalTime localTime = LocalTime.parse(horario);
+	    System.out.println("horario: " + localTime);
+
+	    RefeicaoDTO dto = mapper.map(service.getByHorario(localTime), RefeicaoDTO.class);
+	    System.out.println("dto: " + dto);
+
+	    if(dto == null) {
+	        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    } else {
+	        return new ResponseEntity<>(dto, HttpStatus.OK);
+	    }
 	}
 	
 	@PostMapping
