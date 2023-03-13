@@ -17,7 +17,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
@@ -49,6 +48,7 @@ public class Prato {
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
+	private String imgUrl;
 	
 	 @ManyToMany(mappedBy = "pratos")
      List<Refeicao> refeicoes;
@@ -101,6 +101,13 @@ public class Prato {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
