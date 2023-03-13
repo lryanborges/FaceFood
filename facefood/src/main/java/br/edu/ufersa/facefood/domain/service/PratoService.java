@@ -23,9 +23,7 @@ public class PratoService {
 	private IngredienteService ingredienteService;
 	
 	public List<Prato> getAll() {
-		System.out.println("Antes da busca");
 		List<Prato> pratos = pratoRep.findAll();
-		System.out.println("Depois da busca");
 		return pratos;
 	}
 	
@@ -97,6 +95,7 @@ public class PratoService {
 	public Prato updatePratoPatch(Prato prato) {
 		Prato pratoData = pratoRep.findByNome(prato.getNome());
 		prato.setId(pratoData.getId());
+		prato.setUuid(pratoData.getUuid());
 		Set<Ingrediente> hashIngredientes = new HashSet<Ingrediente>();
 		for(Ingrediente ingrediente : prato.getIngredientes()) {
 			ingrediente = ingredienteService.getById(ingrediente.getId());

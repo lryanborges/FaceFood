@@ -87,4 +87,14 @@ public class PublicacaoService {
 		}
 	}
 	
+	public String deletePublicacao(UUID uuid) {
+		Publicacao publicacaoDelete = publicacaoRep.findByUuid(uuid);
+		if(publicacaoDelete == null) {
+			return "publicação não foi encontrada";
+		} else {
+			publicacaoRep.delete(publicacaoDelete);
+			return "ok";
+		}
+	}
+	
 }
