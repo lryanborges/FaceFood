@@ -4,30 +4,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
 
-public class InsertRotinaDTO {
-	@NotEmpty
+public class UpdateRotinaDTO {
+	private Long id;
 	private List<Refeicao> listaRefeicoes = new ArrayList<Refeicao>();
-	@FutureOrPresent(message="A Rotina tem que ser no futuro ou no presente!")
-	private LocalDate data;
 	private UUID uuid;
-	public UUID getUuid() {
-		return uuid;
+	private LocalDate data;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public List<Refeicao> getListaRefeicoes() {
 		return listaRefeicoes;
 	}
 	public void setListaRefeicoes(List<Refeicao> listaRefeicoes) {
 		this.listaRefeicoes = listaRefeicoes;
+	}
+	public UUID getUuid() {
+		return uuid;
+	}
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 	public LocalDate getData() {
 		return data;

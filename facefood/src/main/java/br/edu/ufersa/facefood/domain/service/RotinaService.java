@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 import br.edu.ufersa.facefood.domain.repository.RotinaRepository;
@@ -29,22 +30,15 @@ public class RotinaService {
 	
 	public Rotina createRotina(Rotina rotina) {
 		rotina.setUuid(UUID.randomUUID());
-		rep.save(rotina);
 		for(Refeicao refeicao : rotina.getListaRefeicoes()) {
-			refeicao.setRotina(rotina);
 			refService.createRefeicao(refeicao);
 		}
+		rep.save(rotina);
 		return rotina;
 	}
 	
-	public Rotina updateRotina(Rotina rotina) {
-		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
-		rotina.setId(rotinaData.getId());
-		return rep.save(rotina);
-	}
-	
 	public Rotina updateRotinaPatch(Rotina rotina) {
-		Rotina rotinaData = rep.findByData(rotina.getData());
+		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
 		rotina.setId(rotinaData.getId());
 		rotina.setUuid(rotinaData.getUuid());
 		return rep.save(rotina);
@@ -56,6 +50,13 @@ public class RotinaService {
 		if (rotinaDelete == null) return "Refeição não encontrada";
 		rep.delete(rotinaDelete);
 		return "ok";
+	}
+	public Rotina updateRotina(Rotina rotina) {
+		Rotina rotinaData = rep.findByUuid(rotina.getUuid());
+		System.out.println(rotinaData.getUuid());
+		rotina.setId(rotinaData.getId());
+		Rotina rotinaUpdated = rep.save(rotina);
+		return rotinaUpdated;
 	}
 	
 }

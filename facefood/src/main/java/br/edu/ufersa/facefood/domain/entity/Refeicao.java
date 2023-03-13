@@ -42,10 +42,6 @@ public class Refeicao {
     @JoinTable(name = "tb_refeicoes_pratos", joinColumns = @JoinColumn(name = "refeicoes_id"), inverseJoinColumns = @JoinColumn(name = "pratos_id"))
     private Set<Prato> pratos; 
     
-    @ManyToOne
-    @JoinColumn(name="rotina_id", referencedColumnName = "id")
-    private Rotina rotina;
-
 	public long getId() {
 		return id;
 	}
@@ -85,18 +81,10 @@ public class Refeicao {
 	public void setPratos(Set<Prato> pratos) {
 		this.pratos = pratos;
 	}
-    
-    public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(horario, id, pratos, rotina, user, uuid);
+		return Objects.hash(horario, id, pratos, user, uuid);
 	}
 
 	@Override
@@ -109,14 +97,14 @@ public class Refeicao {
 			return false;
 		Refeicao other = (Refeicao) obj;
 		return Objects.equals(horario, other.horario) && id == other.id && Objects.equals(pratos, other.pratos)
-				&& Objects.equals(rotina, other.rotina) && Objects.equals(user, other.user)
+				&& Objects.equals(user, other.user)
 				&& Objects.equals(uuid, other.uuid);
 	}
 
 	@Override
 	public String toString() {
 		return "Refeicao [id=" + id + ", uuid=" + uuid + ", user=" + user + ", horario=" + horario + ", pratos="
-				+ pratos + ", rotina=" + rotina + "]";
+				+ pratos + ", rotina=" + "]";
 	}
 
 	public Refeicao(long id, UUID uuid, User user, LocalTime horario, Set<Prato> pratos, Rotina rotina) {
@@ -125,7 +113,6 @@ public class Refeicao {
 		this.user = user;
 		this.horario = horario;
 		this.pratos = pratos;
-		this.rotina = rotina;
 	}
 
 	Refeicao(){}

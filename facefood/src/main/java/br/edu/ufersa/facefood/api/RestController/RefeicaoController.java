@@ -35,7 +35,6 @@ public class RefeicaoController {
 	@Autowired
 	private RefeicaoService service;
 	
-	
 	@GetMapping
 	public List<RefeicaoDTO> listar(){
 		List<RefeicaoDTO> refeicoes = new ArrayList<RefeicaoDTO>();
