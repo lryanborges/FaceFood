@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import static java.util.Collections.emptyList;
@@ -35,5 +37,10 @@ public class AuthenticationService {
 				return new UsernamePasswordAuthenticationToken(email, null, emptyList());
 		}
 		return null;
+	}
+	
+	public String getUserEmailFromToken(String token) {
+		Claims claims = Jwts.parser().setSigningKey(SIGNINGKEY).parseClaimsJws(token).getBody();
+		return claims.get("email").toString();
 	}
 }

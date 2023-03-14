@@ -19,6 +19,8 @@ public class PublicacaoService {
 	private PublicacaoRepository publicacaoRep;
 	@Autowired
 	private PratoService pratoService;
+	@Autowired
+	private UserService userService;
 	
 	public List<Publicacao> getAll() {
 		List<Publicacao> publicacoes = publicacaoRep.findAll();
@@ -37,6 +39,7 @@ public class PublicacaoService {
 	
 	public Publicacao createPublicacao(Publicacao publicacao) {
 		publicacao.setUuid(UUID.randomUUID());
+		publicacao.setUser(userService.getById(publicacao.getUser().getId()));
 		Set<Prato> hashPratos = new HashSet<Prato>();
 		hashPratos.add(pratoService.getById(publicacao.getPrato().getId()));
 		hashPratos.add(pratoService.getByUuid(publicacao.getPrato().getUuid()));
