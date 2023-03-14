@@ -51,7 +51,10 @@ public class RefeicaoService {
 	
 	public Refeicao createRefeicao(Refeicao refeicao) {
 		refeicao.setUuid(UUID.randomUUID());
+		System.out.println("antes do setUser");
+		System.out.println(refeicao.getUser());
 		refeicao.setUser(userService.getById(refeicao.getUser().getId()));
+		System.out.println("depoios do setUser");
 		Set<Prato> hashPratos = new HashSet<Prato>();
 		for(Prato prato : refeicao.getPratos()) {
 			prato = pratoService.getById(prato.getId());

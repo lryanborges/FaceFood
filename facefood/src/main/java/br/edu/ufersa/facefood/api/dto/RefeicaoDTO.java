@@ -24,7 +24,6 @@ public class RefeicaoDTO {
     
     private Set<Prato> pratos; 
    
-    private Rotina rotina;
 
 	public long getId() {
 		return id;
@@ -64,13 +63,5 @@ public class RefeicaoDTO {
 
 	public void setPratos(Set<Prato> pratos) {
 		this.pratos = pratos;
-	}
-
-	public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
 	}
 }

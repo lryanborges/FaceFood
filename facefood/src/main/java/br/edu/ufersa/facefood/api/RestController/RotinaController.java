@@ -73,9 +73,9 @@ public class RotinaController {
 	}
 	
 	@DeleteMapping("/{rotinaId}")
-	public ResponseEntity<UUID> deletar(@PathVariable UUID rotinaId) {
+	public ResponseEntity<String> deletar(@PathVariable UUID rotinaId) {
 		String teste = service.deleteRotina(rotinaId);
-		if (teste.equals("ok")) return new ResponseEntity<>(rotinaId, HttpStatus.OK);
+		if (teste.equals("ok")) return new ResponseEntity<>(teste, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	@PutMapping

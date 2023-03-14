@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Rotina {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE,CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="rotina_id")
 	private List<Refeicao> listaRefeicoes = new ArrayList<Refeicao>();
 	

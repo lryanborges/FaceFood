@@ -104,10 +104,10 @@ public class Refeicao {
 	@Override
 	public String toString() {
 		return "Refeicao [id=" + id + ", uuid=" + uuid + ", user=" + user + ", horario=" + horario + ", pratos="
-				+ pratos + ", rotina=" + "]";
+				+ pratos + "]";
 	}
 
-	public Refeicao(long id, UUID uuid, User user, LocalTime horario, Set<Prato> pratos, Rotina rotina) {
+	public Refeicao(long id, UUID uuid, User user, LocalTime horario, Set<Prato> pratos) {
 		this.id = id;
 		this.uuid = uuid;
 		this.user = user;
