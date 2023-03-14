@@ -35,6 +35,7 @@ public class Refeicao {
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
     
+
     @Column(unique = true, nullable = false)
     private LocalTime horario;
     

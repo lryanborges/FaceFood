@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood.api.dto;
 
 import java.time.LocalTime;
+
 import java.util.Set;
 import java.util.UUID;
 
@@ -68,4 +69,5 @@ public class RefeicaoDTO {
 	public void setRotina(Rotina rotina) {
 		this.rotina = rotina;
 	}
+
 }

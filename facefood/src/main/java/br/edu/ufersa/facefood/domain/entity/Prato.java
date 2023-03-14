@@ -92,7 +92,9 @@ public class Prato {
 	public void setTipos(List<String> tipos) {
 		this.tipos = tipos;
 	}
+
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
+
 		this.ingredientes = ingredientes;
 	}
 	public User getUser() {

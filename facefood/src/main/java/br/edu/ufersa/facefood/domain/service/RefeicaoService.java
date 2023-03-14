@@ -42,13 +42,12 @@ public class RefeicaoService {
 		Refeicao refeicao = rep.findByUuid(id);
 		return refeicao;
 	}
-	
+
 	public Refeicao getByHorario(LocalTime horario){
 		Refeicao refeicao = rep.findByHorario(horario);
 		return refeicao;
 	}
-	
-	
+
 	public Refeicao createRefeicao(Refeicao refeicao) {
 		refeicao.setUuid(UUID.randomUUID());
 		refeicao.setUser(userService.getById(refeicao.getUser().getId()));
