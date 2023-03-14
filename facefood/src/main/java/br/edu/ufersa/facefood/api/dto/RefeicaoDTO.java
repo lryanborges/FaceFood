@@ -4,6 +4,10 @@ import java.time.LocalTime;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 import br.edu.ufersa.facefood.domain.entity.User;
@@ -14,6 +18,7 @@ public class RefeicaoDTO {
 	private UUID uuid;
 
 	private User user;
+
 
     private LocalTime horario;
     

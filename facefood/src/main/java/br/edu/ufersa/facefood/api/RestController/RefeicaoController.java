@@ -123,9 +123,9 @@ public class RefeicaoController {
 	public ResponseEntity<UUID> deletar(@PathVariable UUID refeicaoUuid){
 		String result = service.deleteRefeicao(refeicaoUuid);
 		if(result.equals("ok")) {
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(refeicaoUuid,HttpStatus.OK);
 		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(refeicaoUuid,HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -136,7 +136,7 @@ public class RefeicaoController {
 		if (result.equals("ok")) {
 			return new ResponseEntity<>("refeição deletada no horario " + horario, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("o horario não é compativel com nenhuma refeição", HttpStatus.NOT_FOUND);
 		}
 	}
 }

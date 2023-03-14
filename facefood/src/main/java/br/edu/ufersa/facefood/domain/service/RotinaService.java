@@ -17,7 +17,8 @@ public class RotinaService {
 	RotinaRepository rep;
 	@Autowired
 	RefeicaoService refService;
-	
+	@Autowired
+	UserService userService;
 	public List<Rotina> getAll(){
 		List<Rotina> refeicoes = rep.findAll();
 		return refeicoes;
@@ -30,6 +31,7 @@ public class RotinaService {
 	
 	public Rotina createRotina(Rotina rotina) {
 		rotina.setUuid(UUID.randomUUID());
+		rotina.setUser(userService.getByUuid(rotina.getUser().getUuid()));
 		for(Refeicao refeicao : rotina.getListaRefeicoes()) {
 			refService.createRefeicao(refeicao);
 		}
