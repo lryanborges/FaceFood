@@ -25,6 +25,9 @@ public class Publicacao {
 	@JoinColumn(name = "id_prato", referencedColumnName = "id")
 	private Prato prato;
 	private String descricao;
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user; // user = autor
 	@Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
@@ -46,6 +49,12 @@ public class Publicacao {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public UUID getUuid() {
 		return uuid;
