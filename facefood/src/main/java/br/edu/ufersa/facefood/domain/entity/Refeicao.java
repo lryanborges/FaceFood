@@ -31,7 +31,7 @@ public class Refeicao {
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
 	private UUID uuid;
-
+    
 	public Refeicao() {
     }
     
