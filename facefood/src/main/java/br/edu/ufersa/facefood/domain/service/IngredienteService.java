@@ -1,6 +1,7 @@
 package br.edu.ufersa.facefood.domain.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,13 @@ public class IngredienteService {
 	
 	public List<Ingrediente> getAll() {
 		List<Ingrediente> ingredientes = ingredienteRepository.findAll();
+		System.out.println(ingredientes);
 		return ingredientes;
+	}
+	
+	public Ingrediente getByUuid(UUID uuid) {
+		Ingrediente ingrediente = ingredienteRepository.findByUuid(uuid);
+		return ingrediente;
 	}
 	
 	public Ingrediente getById(long id) {
@@ -29,37 +36,33 @@ public class IngredienteService {
 		return ingrediente;
 	}
 	
+	public List<Ingrediente> getByTipo(TipoIngrediente tipo) {
+		return ingredienteRepository.findByTipo(tipo);
+	}
+	
+	
 	public Ingrediente createIngrediente(Ingrediente ingrediente) {
+		ingrediente.setUuid(UUID.randomUUID());
 		ingredienteRepository.save(ingrediente);
 		return ingrediente;
 	}
 	
-	/*
-	 * public User updateUser(User user) {
-		User userData = rep.findByUuid(user.getUuid());
-		user.setId(userData.getId());
-		return rep.save(user);
-	}	
-	 */
-	
-	
 	public Ingrediente updateIngrediente(Ingrediente ingrediente) {
-	    Ingrediente ingredienteData = ingredienteRepository.findById(ingrediente.getId());
+	    Ingrediente ingredienteData = ingredienteRepository.findByUuid(ingrediente.getUuid());
 	    ingrediente.setId(ingredienteData.getId());    
 	    return ingredienteRepository.save(ingrediente);
 	}
-	
-	
+
 	public Ingrediente updateIngredientePatch(Ingrediente ingrediente) {
 		Ingrediente ingredienteData = ingredienteRepository.findByNome(ingrediente.getNome());
 		ingrediente.setId(ingredienteData.getId());
+		ingrediente.setUuid(ingredienteData.getUuid());
 		return ingredienteRepository.save(ingrediente);
 	}
-	
 
-	public String deleteIngrediente(long id) {
-		Ingrediente ingredienteDelete = ingredienteRepository.findById(id);
-		if(ingredienteDelete == null)return "ingrediente não encontrado";
+	public String deleteIngrediente(UUID uuid) {
+		Ingrediente ingredienteDelete = ingredienteRepository.findByUuid(uuid);
+		if(ingredienteDelete == null)return "Ingrediente não encontrado";
 		ingredienteRepository.delete(ingredienteDelete);
 		return "ok";
 	}
@@ -69,11 +72,12 @@ public class IngredienteService {
 		if(ingredienteDelete == null)return "ingrediente não encontrado";
 		ingredienteRepository.delete(ingredienteDelete);
 		return "ok";
-	}
+	}	
 	
-	
-	public List<Ingrediente> getByTipo(TipoIngrediente tipo) {
-		return ingredienteRepository.findByTipo(tipo);
-	}
-	
+	public String deleteIngrediente(long id) {
+		Ingrediente ingredienteDelete = ingredienteRepository.findById(id);
+		if (ingredienteDelete == null) return "ingrediente não encontrado";
+		ingredienteRepository.delete(ingredienteDelete);
+		return "ok";
+	}	
 }

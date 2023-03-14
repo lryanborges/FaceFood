@@ -2,6 +2,7 @@ package br.edu.ufersa.facefood.api.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -54,6 +55,17 @@ public class PublicacaoController {
 		}
 	}
 	
+	@GetMapping("/uuid/{publicacaoUuid}")
+	public ResponseEntity<PublicacaoDTO> buscar(@PathVariable UUID publicacaoUuid) {
+		Publicacao publicacao = service.getByUuid(publicacaoUuid);
+		PublicacaoDTO dto = mapper.map(publicacao, PublicacaoDTO.class);
+		if(dto == null) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		}
+	}
+	
 	@PostMapping
 	public ResponseEntity<PublicacaoDTO> criar(@Valid @RequestBody InsertPublicacaoDTO dto) {
 		Publicacao publicacao = service.createPublicacao(mapper.map(dto, Publicacao.class));
@@ -92,6 +104,16 @@ public class PublicacaoController {
 		String result = service.deletePublicacao(publicacaoId);
 		if(result.equals("ok")) {
 			return new ResponseEntity<>(publicacaoId,HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@DeleteMapping("/uuid/{publicacaoUuid}")
+	public ResponseEntity<UUID> deletar(@PathVariable UUID publicacaoUuid){
+		String result = service.deletePublicacao(publicacaoUuid);
+		if(result.equals("ok")) {
+			return new ResponseEntity<>(publicacaoUuid,HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}

@@ -2,6 +2,7 @@ package br.edu.ufersa.facefood.api.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -42,6 +43,15 @@ public class IngredienteController {
 		}
 		return ingredientes;
 	}
+	
+	@GetMapping("/uuid/{ingredienteUuid}")
+	public ResponseEntity<IngredienteDTO> buscar (@PathVariable UUID ingredienteUuid){
+		IngredienteDTO dto = mapper.map(service.getByUuid(ingredienteUuid), IngredienteDTO.class);
+		if(dto != null)
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		else 
+			return ResponseEntity.notFound().build();
+	}
 
 	@GetMapping("/id/{ingredienteId}")
 	public ResponseEntity<IngredienteDTO> buscar(@PathVariable long ingredienteId) {
@@ -78,7 +88,6 @@ public class IngredienteController {
 	}
 	}
 
-
 	@PostMapping
 	public ResponseEntity<IngredienteDTO> criar(@Valid @RequestBody InsertIngredienteDTO dto) {
 		Ingrediente ingrediente = service.createIngrediente(mapper.map(dto, Ingrediente.class));
@@ -90,7 +99,6 @@ public class IngredienteController {
 		}
 	}
 	
-	// PUT deveria poder trocar o nome também, mas por enquanto não dá porque não temos uma variável de uuid para ingredientes
 	@PutMapping
 	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody UpdateIngredienteDTO dto) {
 	    Ingrediente ingrediente = service.updateIngrediente(mapper.map(dto, Ingrediente.class));
@@ -101,7 +109,6 @@ public class IngredienteController {
 	    	return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
-
 	
 	@PatchMapping
 	public ResponseEntity<IngredienteDTO> alterar(@Valid @RequestBody InsertIngredienteDTO dto) {
@@ -114,12 +121,18 @@ public class IngredienteController {
 	    }
 	}
 	
-	
 	@DeleteMapping("/id/{ingredienteId}")
-	public ResponseEntity<Long> deletar(@PathVariable long ingredienteId) {
-	String result = service.deleteIngrediente(ingredienteId);
+	public ResponseEntity<Long> deletar(@PathVariable long ingredienteId){
+		String teste = service.deleteIngrediente(ingredienteId);
+		if(teste.equals("ok")) return new ResponseEntity<>(ingredienteId, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/uuid/{ingredienteUuid}")
+	public ResponseEntity<UUID> deletar(@PathVariable UUID ingredienteUuid) {
+	String result = service.deleteIngrediente(ingredienteUuid);
 	if (result.equals("ok")) {
-	return new ResponseEntity<>(ingredienteId, HttpStatus.OK);
+	return new ResponseEntity<>(HttpStatus.OK);
 	} else {
 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}

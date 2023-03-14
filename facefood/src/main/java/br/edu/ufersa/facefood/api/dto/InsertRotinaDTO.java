@@ -18,6 +18,7 @@ public class InsertRotinaDTO {
 	@FutureOrPresent(message="A Rotina tem que ser no futuro ou no presente!")
 	private LocalDate data;
 	private UUID uuid;
+
 	@NotNull(message = "Por favor, informe o usuário autor da refeição.")
 	private User user;
 	public UUID getUuid() {
@@ -32,6 +33,7 @@ public class InsertRotinaDTO {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public List<Refeicao> getListaRefeicoes() {
 		return listaRefeicoes;
 	}

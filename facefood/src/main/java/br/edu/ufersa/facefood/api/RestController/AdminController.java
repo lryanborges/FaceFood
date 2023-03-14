@@ -23,29 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.ufersa.facefood.api.dto.InsertUserDTO;
 import br.edu.ufersa.facefood.api.dto.UpdateUserDTO;
 import br.edu.ufersa.facefood.api.dto.UserDTO;
-import br.edu.ufersa.facefood.domain.entity.User;
-import br.edu.ufersa.facefood.domain.service.UserService;
+import br.edu.ufersa.facefood.domain.entity.Admin;
+import br.edu.ufersa.facefood.domain.service.AdminService;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/admin")
+public class AdminController {
 	@Autowired
 	private ModelMapper mapper;
 	@Autowired
-	private UserService service;
+	private AdminService service;
 	
 	@GetMapping
 	public List <UserDTO> listar(){
 		List<UserDTO> users = new ArrayList<UserDTO>();
-		for(User user: service.getAll()) {
-			users.add(mapper.map(user, UserDTO.class));
+		for(Admin admin: service.getAll()) {
+			users.add(mapper.map(admin, UserDTO.class));
 		}
 		return users;
 	}
 	
-	@GetMapping("/uuid/{userUuid}")
-	public ResponseEntity<UserDTO> buscar (@PathVariable UUID userUuid){
-		UserDTO dto = mapper.map(service.getByUuid(userUuid), UserDTO.class);
+	@GetMapping("/uuid/{adminUuid}")
+	public ResponseEntity<UserDTO> buscar (@PathVariable UUID adminUuid){
+		UserDTO dto = mapper.map(service.getByUuid(adminUuid), UserDTO.class);
 		if(dto != null)
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		else 
@@ -63,8 +63,8 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<UserDTO> criar (@Valid @RequestBody InsertUserDTO dto){
-		User user = service.createUser(mapper.map(dto, User.class));
-		UserDTO criado = mapper.map(user, UserDTO.class);
+		Admin admin = service.createAdmin(mapper.map(dto, Admin.class));
+		UserDTO criado = mapper.map(admin, UserDTO.class);
 		if(criado==null) {
 			return new ResponseEntity<> (null, HttpStatus.INTERNAL_SERVER_ERROR);	
 		}else {
@@ -74,30 +74,30 @@ public class UserController {
 	
 	@PutMapping
 	public ResponseEntity<UserDTO> alterar(@Valid @RequestBody UpdateUserDTO dto){
-		User user = service.updateUser(mapper.map(dto, User.class));
-		UserDTO atualizado = mapper.map(user, UserDTO.class);
+		Admin admin = service.updateAdmin(mapper.map(dto, Admin.class));
+		UserDTO atualizado = mapper.map(admin, UserDTO.class);
 		if(atualizado!=null) return new ResponseEntity<>(atualizado, HttpStatus.OK);
 		else return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@PatchMapping
 	public ResponseEntity<UserDTO> alterar(@Valid @RequestBody InsertUserDTO dto){
-		User user = service.updateUserPatch(mapper.map(dto, User.class));
-		UserDTO atualizado = mapper.map(user, UserDTO.class);
+		Admin admin = service.updateAdminPatch(mapper.map(dto, Admin.class));
+		UserDTO atualizado = mapper.map(admin, UserDTO.class);
 		if(atualizado!=null) return new ResponseEntity<>(atualizado, HttpStatus.OK);
 		else return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@DeleteMapping("/id/{userId}")
 	public ResponseEntity<Long> deletar(@PathVariable long userId) {
-		String teste = service.deleteUser(userId);
+		String teste = service.deleteAdmin(userId);
 		if (teste.equals("ok")) return new ResponseEntity<>(userId, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/uuid/{userUuid}")
 	public ResponseEntity<UUID> deletar(@PathVariable UUID userUuid) {
-		String teste = service.deleteUser(userUuid);
+		String teste = service.deleteAdmin(userUuid);
 		if (teste.equals("ok")) return new ResponseEntity<>(userUuid, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}

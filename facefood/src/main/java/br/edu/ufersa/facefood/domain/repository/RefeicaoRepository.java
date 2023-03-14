@@ -12,5 +12,6 @@ import br.edu.ufersa.facefood.domain.entity.Rotina;
 
 public interface RefeicaoRepository  extends JpaRepository<Refeicao,Long> {
 	Refeicao findByUuid(UUID uuid);
+	Refeicao findById(long id);
 	Refeicao findByHorario(LocalTime horario);
 }

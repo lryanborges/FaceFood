@@ -2,6 +2,7 @@ package br.edu.ufersa.facefood.api.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -30,6 +31,7 @@ public class PratoController {
 
 	@Autowired
 	private PratoService service;
+
 	@Autowired
 	private ModelMapper mapper;
 
@@ -45,6 +47,16 @@ public class PratoController {
 	@GetMapping("/id/{pratoId}")
 	public ResponseEntity<PratoDTO> buscar(@PathVariable long pratoId){
 		PratoDTO dto = mapper.map(service.getById(pratoId), PratoDTO.class);
+		if(dto == null) {
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(dto,HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/uuid/{pratoUuid}")
+	public ResponseEntity<PratoDTO> buscar(@PathVariable UUID pratoUuid){
+		PratoDTO dto = mapper.map(service.getByUuid(pratoUuid), PratoDTO.class);
 		if(dto == null) {
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
@@ -104,6 +116,17 @@ public class PratoController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@DeleteMapping("/uuid/{pratoUuid}")
+	public ResponseEntity<UUID> deletar(@PathVariable UUID pratoUuid) {
+		String result = service.deletePrato(pratoUuid);
+		if (result.equals("ok")) {
+			return new ResponseEntity<>(pratoUuid, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	
 	@DeleteMapping("/nome/{pratoNome}")
 	public ResponseEntity<String> deletar(@PathVariable String pratoNome) {

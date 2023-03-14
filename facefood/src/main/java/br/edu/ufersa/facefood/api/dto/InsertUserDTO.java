@@ -11,7 +11,7 @@ public class InsertUserDTO {
 	@NotEmpty(message="Não é permitido um email vazio!!!")
 	@Email(message="Digite um email valido!!!")
 	private String email;
-	@Size(min=5,max=20,message="A senha deve ter entre 5 e 20 caracteres!!!")
+	@Size(min=5,max=200,message="A senha deve ter entre 5 e 200 caracteres!!!")
 	@NotNull
 	private String senha;
 	public String getEmail() {

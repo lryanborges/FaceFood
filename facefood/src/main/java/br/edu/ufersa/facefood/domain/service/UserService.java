@@ -20,9 +20,15 @@ public class UserService {
 		return users;
 	}
 	
-	public User getById(UUID id) {
+	public User getByUuid(UUID uuid) {
 		// Cria um usuário com o email "achou@gmail.com" e o UUID recebido como parâmetro
-		User user = rep.findByUuid(id);
+		User user = rep.findByUuid(uuid);
+		
+		return user;
+	}
+	
+	public User getById(long id) {
+		User user = rep.findById(id);
 		
 		return user;
 	}
@@ -50,6 +56,13 @@ public class UserService {
 	
 	public String deleteUser(UUID uuid) {
 		User userDelete = rep.findByUuid(uuid);
+		if (userDelete == null) return "usuario não encontrado";
+		rep.delete(userDelete);
+		return "ok";
+	}	
+	
+	public String deleteUser(long id) {
+		User userDelete = rep.findById(id);
 		if (userDelete == null) return "usuario não encontrado";
 		rep.delete(userDelete);
 		return "ok";
