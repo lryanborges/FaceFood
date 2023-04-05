@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>Realizar Login</title>
+</head>
+<body class="bg-brancoamarelado">
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
+    <div class="text-3xl font-bold font-poppins">FACEFOOD</div>
+    <div class="flex items-center">
+      <div class="ml-4 flex items-center">
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">Não tenho uma conta</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-2 px-8 py-6">
+    <div class="h-full flex flex-col items-center justify-center">
+      <img src="/img/Account-amico 1.png" alt="Imagem de Login" class="h-auto hover:transform hover:scale-105 transition duration-300 ease-in-out">
+      <p class="mt-4 text-center text-3xl font-bold font-poppins animate-typing">Faça o login e entre para a nossa comunidade</p>
+    </div>
+    <form class="h-full flex flex-col  bg-cinza border-2 border-black rounded-lg px-4 py-2 mt-4">
+      <p class="mt-4 text-center text-3xl font-bold font-poppins">Entrar</p>
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-email-input">Usuário ou Email</label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-email-input" name="user-email" placeholder="Usuário ou Email">
+
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-senha-input">Senha</label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-senha-input" name="user-senha" placeholder="Senha">
+      <p class="mt-4 text-end text-xl font-bold font-poppins">Esqueci minha senha</p>
+      <button class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">Vamos lá!</button>
+    </form>
+  </div>
+
+
+      <footer class="fixed bottom-0 left-0 w-full h-5 bg-red"></footer>
+
+      <style>
+          .animate-typing {
+    animation: typing 2s steps(20) forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    border-right: .09em solid red;
+  }
+  
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+      </style>
+
+</body>
+</html>
