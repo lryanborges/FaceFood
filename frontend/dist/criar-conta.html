@@ -5,37 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="output.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
 </head>
-<body>
-    <header>
-        <a href="./index.html"><img src="/img/logo.svg" alt="FaceFood logo" class="logo"></a>
-        <a href="./criar-conta.html"><button class="botao-naotenhoconta">Já tem uma conta?</button></a>
-</header>
-<main>
-    <div>
-        <h1>Crie uma conta e <br> participe da nossa <br> comunidade </h1>
-      <img class="imagem-animada" src="/img/cadastro.png" alt="Imagem de exemplo">
-      
+<body class="bg-brancoamarelado">
+
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
+    <div class="text-3xl font-bold font-poppins">
+      FACEFOOD
     </div>
-    <form action="#" method="POST">
-      <h2>Cadastro</h2>
-      <p>Nome</p>
-      <input type="text" placeholder="Nome">
-      <p>Email</p>
-      <input type="email" placeholder="Email">
-      <p>Senha</p>
-      <input type="password" placeholder="Senha">
-      <p>Confirmar Senha</p>
-      <input type="password" placeholder="Confirmar senha">
-      <p>Nome de Usuário</p>
-      <input type="text" placeholder="Nome de Usuário">
-      <button type="submit" class="botao-entrar">Vamos lá</button>
+    <div class="flex items-center">
+      <div class="ml-4 flex items-center">
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">
+          <a href="/dist/realizar-login.html">
+            Já tem uma conta?
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>  
+
+  <div class="grid grid-cols-2 px-8 py-6">
+    <div class="h-full flex flex-col items-center justify-center">
+      <p class="mt-4 text-center text-3xl font-bold font-poppins animate-typing">
+        Crie uma conta e  <br> participe da nossa <br> <span style="color:red">comunidade</span>
+      </p>
+      <img src="/img/cadastro.png" alt="Imagem de Cadastro" class="h-auto hover:transform hover:scale-105 transition duration-300 ease-in-out">
+    </div>
+    <form id="form" class="h-full flex flex-col  bg-cinza border-2 border-black rounded-lg px-4 py-2 mt-4">
+      <p class="mt-4 text-center text-3xl font-bold font-poppins">
+        Cadastrar
+      </p>
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-nome-input">
+        Nome
+      </label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-nome-input" name="user-nome" placeholder="Nome">
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-email-input">
+        Email
+      </label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="email" id="user-email-input" name="user-email" placeholder="Email">
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-senha-input">
+      Senha
+    </label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="password" id="user-senha-input" name="user-senha" placeholder="Senha">
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-senhaconfirmar-input">
+        Senha Confirmar
+      </label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="password" id="user-senhaconfirmar-input" name="user-senhaconfirmar" placeholder="Confirmar Senha">
+      <label class="mt-4 text-xl font-bold font-poppins" for="user-usuario-input">
+        Nome de Usuário
+      </label>
+      <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-usuario-input" name="user-usuario" placeholder="Usuario">
+      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4" onclick="salvarUsuario()">Vamos lá!</button>
     </form>
-  </main>
+  </div>
 
-  <footer>
+  <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
 
-  </footer>
+  <style>
+  
+    body {
+    font-family: 'Poppins', sans-serif;
+  }
+    .grid {
+    margin-bottom: 20px;
+  }
+      .animate-typing {
+      animation: typing 2s steps(20) forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+    
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+    </style>
+    <script src="/js/Perfil.js"></script>
 </body>
 </html>
