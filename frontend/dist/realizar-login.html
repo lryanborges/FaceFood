@@ -25,7 +25,7 @@
       <img src="/img/Account-amico 1.png" alt="Imagem de Login" class="h-auto hover:transform hover:scale-105 transition duration-300 ease-in-out">
       <p class="mt-4 text-center text-3xl font-bold font-poppins animate-typing">Faça o login e entre para<br>a nossa <span style="color:red">comunidade</span></p>
     </div>
-    <form class="h-full flex flex-col  bg-cinza border-2 border-black rounded-lg px-4 py-2 mt-4">
+    <form id="form" class="h-full flex flex-col  bg-cinza border-2 border-black rounded-lg px-4 py-2 mt-4">
       <p class="mt-4 text-center text-3xl font-bold font-poppins">Entrar</p>
       <label class="mt-4 text-xl font-bold font-poppins" for="user-email-input">Email</label>
       <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="email" id="user-email-input" name="user-email" placeholder="Email">
@@ -33,7 +33,7 @@
       <label class="mt-4 text-xl font-bold font-poppins" for="user-senha-input">Senha</label>
       <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="password" id="user-senha-input" name="user-senha" placeholder="Senha">
       <p class="mt-4 text-end text-xl font-bold font-poppins">Esqueci minha senha</p>
-      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">Vamos lá!</button>
+      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4" onclick="salvarUsuario()">Vamos lá!</button>
     </form>
   </div>
 
