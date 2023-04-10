@@ -38,9 +38,5 @@ public class AuthenticationService {
 		}
 		return null;
 	}
-	
-	public String getUserEmailFromToken(String token) {
-		Claims claims = Jwts.parser().setSigningKey(SIGNINGKEY).parseClaimsJws(token).getBody();
-		return claims.get("email").toString();
-	}
+
 }
