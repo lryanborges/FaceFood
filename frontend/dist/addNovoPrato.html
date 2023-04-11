@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar novo prato</title>
+  <link rel="stylesheet" href="output.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between px-4 py-3">
+    <div class="text-xl font-bold font-poppins">Menu Principal</div>
+    <div class="flex items-center">
+      <div class="ml-4 flex items-center">
+        <img src="../img/perfil.png" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D"></div>
+        <button class="ml-2">
+          <img src="../img/botao.png" alt="Botão" class="w-10 h-10">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="">
+    <h2 class="font-poppins font-extrabold text-4xl ">Pratos</h2>
+    <div class="flex">
+      <h3 class="font-poppins font-bold text-5xl ">Seus pratos.</h3>
+      <input type="text">
+    </div>
+    <div>
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <h2>Cadastrar pratos.</h2>
+    <form>
+      <div>
+        <label for="nome">Nome do prato:</label>
+        <input type="text" id="nome" name="nome" placeholder="Nome do prato""><br><br>
+        <label for=" preparo">Modo de preparo:</label>
+        <input type="text" id="preparo" name="preparo"><br><br>
+        <label for="imagem">Imagem:</label>
+        <input type="image" id="imagem" name="imagem"><br><br>
+        <label for="infos">Informações nutricionais:</label>
+        <input type="text" id="infos" name="infos" placeholder="Informações nutricionais"><br><br>
+      </div>
+      <div>
+        <div class="flex">
+          <!--<select name="categoria" id="categoria" placeholder="Categoria">
+          <option value="vegana">Vegana</option>
+          <option value="semLactose">Sem lactose</option>
+          <option value="vegetariana">Vegetariana</option>
+          <option value="japonesa">Japonesa</option>
+          <option value="chinesa">Chinesa</option>
+          <option value="Nórdica">Nordica</option>
+          <option value="semGlúten">Sem Glúten</option>
+        </select>
+      -->
+        </div>
+        <div>
+          <label for="tempoPreparo">Tempo de preparo:</label>
+          <input type="text" id="tempoPreparo" name="tempoPreparo" placeholder="Tempo(minutos)"><br><br>
+          <label for="descricao">Descrição:</label>
+          <input type="text" id="descricao" name="descricao" placeholder="Descrição"><br><br>
+        </div>
+        <button>Salvar prato</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
