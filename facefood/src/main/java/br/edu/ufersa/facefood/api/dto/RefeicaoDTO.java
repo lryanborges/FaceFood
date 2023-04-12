@@ -4,6 +4,10 @@ import java.time.LocalTime;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.edu.ufersa.facefood.domain.entity.Prato;
 import br.edu.ufersa.facefood.domain.entity.Rotina;
 import br.edu.ufersa.facefood.domain.entity.User;
@@ -15,11 +19,11 @@ public class RefeicaoDTO {
 
 	private User user;
 
+
     private LocalTime horario;
     
     private Set<Prato> pratos; 
    
-    private Rotina rotina;
 
 	public long getId() {
 		return id;
@@ -59,13 +63,5 @@ public class RefeicaoDTO {
 
 	public void setPratos(Set<Prato> pratos) {
 		this.pratos = pratos;
-	}
-
-	public Rotina getRotina() {
-		return rotina;
-	}
-
-	public void setRotina(Rotina rotina) {
-		this.rotina = rotina;
 	}
 }

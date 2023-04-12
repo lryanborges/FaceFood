@@ -28,8 +28,8 @@ public class UserService {
 	}
 	
 	public User getById(long id) {
+		System.out.println("Entrei aqui");
 		User user = rep.findById(id);
-		
 		return user;
 	}
 	

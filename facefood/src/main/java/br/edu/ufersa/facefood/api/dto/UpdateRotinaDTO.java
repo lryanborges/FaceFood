@@ -4,14 +4,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import br.edu.ufersa.facefood.domain.entity.Refeicao;
+import br.edu.ufersa.facefood.domain.entity.User;
+
 
 public class UpdateRotinaDTO {
 	private Long id;
 	private List<Refeicao> listaRefeicoes = new ArrayList<Refeicao>();
 	private UUID uuid;
 	private LocalDate data;
-	
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	private User user;
+
 	public Long getId() {
 		return id;
 	}

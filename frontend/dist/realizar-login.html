@@ -14,7 +14,11 @@
     <div class="text-3xl font-bold font-poppins">FACEFOOD</div>
     <div class="flex items-center">
       <div class="ml-4 flex items-center">
-        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">Não tenho uma conta</div>
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">
+          <a href="/dist/criar-conta.html">
+            Não tenho uma conta
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -32,15 +36,47 @@
   
       <label class="mt-4 text-xl font-bold font-poppins" for="user-senha-input">Senha</label>
       <input class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="password" id="user-senha-input" name="user-senha" placeholder="Senha">
-      <p class="mt-4 text-end text-xl font-bold font-poppins">Esqueci minha senha</p>
-      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4" onclick="salvarUsuario()">Vamos lá!</button>
+      <p class="mt-4 text-end text-xl font-bold font-poppins" onclick="abrirPopup()">Esqueci minha senha</p>
+      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4" onclick="realizarLogin()">Vamos lá!</button>
     </form>
+  </div>
+
+  <div id="popup" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-900 bg-opacity-50">
+    <div class="relative w-full max-w-md p-8 mx-auto mt-12 bg-white rounded-lg">
+      <div class="absolute top-0 right-0 p-2">
+        <button class="text-gray-700 rounded-md hover:text-gray-600" onclick="fecharPopup()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <form onsubmit="enviarFormulario(); return false;">
+        <label class="block font-bold font-poppins mb-2" for="email">Email</label>
+        <input class="w-full border-2 border-gray-500 rounded-lg p-2 mb-4" type="email" id="email" name="email" placeholder="Seu email" required>
+        <button onclick="abrirPopup2()" class="bg-red font-poppins font-medium text-white text-sm border-2 border-gray-800 rounded-lg px-4 py-2" type="submit">Recuperar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="popup2" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-900 bg-opacity-50">
+    <div class="relative w-full max-w-md p-8 mx-auto mt-12 bg-white rounded-lg">
+      <div class="absolute top-0 right-0 p-2">
+        <button class="text-gray-700 rounded-md hover:text-gray-600" onclick="fecharPopup2()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <form onsubmit="enviarFormulario2(); return false;">
+        <p class="block font-bold font-poppins mb-2" >Sucesso! Um link de redefinição de senha foi enviado ao seu e-mail.</p>
+        <button class="bg-red font-poppins font-medium text-white text-sm border-2 border-gray-800 rounded-lg px-4 py-2" type="submit">Ok</button>
+      </form>
+    </div>
   </div>
 
       <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
 
 <style>
-  
   body {
   font-family: 'Poppins', sans-serif;
 }
@@ -62,8 +98,8 @@
       width: 100%;
     }
   }
-      </style>
+</style>
 
-<script src="/js/script.js"></script>
+<script src="/js/Perfil.js"></script>
 </body>
 </html>
