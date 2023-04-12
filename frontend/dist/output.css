@@ -562,6 +562,10 @@ video {
   grid-column: span 2 / span 2;
 }
 
+.min-w-ajuste {
+  min-width: 453.7px;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -796,6 +800,14 @@ video {
   gap: 0.5rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -899,6 +911,10 @@ video {
   padding-top: 2rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -929,9 +945,18 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.py-8 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .text-center {
