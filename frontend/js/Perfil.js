@@ -32,7 +32,8 @@ function realizarLogin() {
     if (user && user.password === password) {
       // Login bem-sucedido
       alert(`Bem-vindo(a), ${user.usuario}!`);
-      windows().location.href = "/dist/dashboard.html";
+      window.location.href = "../dist/dashboard.html";
+
       // Realize as ações necessárias para permitir o login na aplicação
     } else {
       // Login mal-sucedido
@@ -40,9 +41,23 @@ function realizarLogin() {
     }
 }
 
+function salvarUsuario(){
+  const nome = document.getElementById("user-nome-input").value;
+  const email = document.getElementById("user-email-input").value;
+  const senha = document.getElementById("user-senha-input").value;
+  const confirmarsenha = document.getElementById("user-senhaconfirmar-input").value;
+  const usuario = document.getElementById("user-usuario-input").value;
+  if(senha !== confirmarsenha){
+    alert("Senha diferente!");
+  }else{
+    window.location.href = "/dist/dashboard.html";
+  }
+}
+
 function abrirPopup() {
     document.getElementById("popup").classList.remove("hidden");
   }
+
   
   function fecharPopup() {
     document.getElementById("popup").classList.add("hidden");

@@ -9,24 +9,29 @@
     <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
     <title>Ingredientes</title>
 </head>
-<body>
-    <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between px-4 py-3">
-        <div class="text-xl font-bold font-poppins">Menu Principal</div>
-        <div class="flex items-center">
-          <button class="md:hidden">
-            <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div class="ml-4 flex items-center">
-            <img src="/img/perfil.png" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
-            <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D">João Sales</div>
-            <button class="ml-2">
-              <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
-            </button>
+<body class="bg-brancoamarelado">
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
+    <div class="text-xl font-bold font-poppins"><a href="../dist/dashboard.html">Menu Principal</a></div>
+    <div class="flex items-center">
+      <button class="md:hidden">
+        <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div class="ml-4 flex items-center">
+          <img src="../img/teste-perfil.jpg" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
+          <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
+           <a href="../dist/detalhar-perfil.html">João Sales</a>
           </div>
-        </div>
-      </header>
+      </div>
+        <button class="ml-4">
+          <a href="../dist/realizar-login.html">
+            <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
+          </a>
+        </button>
+      </div>
+    </div>
+  </header>
 
       
 
@@ -45,7 +50,7 @@
       </div>
 
 
-      <table class="table-auto w-full">
+      <table class="table-auto w-full mb-10">
         <thead>
           <tr>
             <th class="px-4 py-2">Nome</th>
@@ -63,11 +68,15 @@
           </template>
         </tbody>
       </table>
-   
 
-    <!-- Botão de adicionar novo ingrediente -->
-<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" onclick="openPopup()">Adicionar Novo Ingrediente</button>
+      <a href="../dist/detalhar-perfil.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+        <- Voltar
+      </a>
+      <a onclick="openPopup()" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+        + Adicionar Ingrediente
+      </a>
 
+      <footer class="bottom-0 left-0 w-full h-5 mt-10 bg-red"></footer>
 <!-- Pop-up de adicionar novo ingrediente -->
 <div id="popup" class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50 hidden">
   <div class="w-full max-w-md mx-auto mt-20">
@@ -107,12 +116,12 @@
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="calorias" type="number" placeholder="Digite a quantidade de calorias">
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="adicionarIngrediente()">
-          Adicionar
+        <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="closePopup()">
+          + Adicionar
         </button>
       </div>
 
-    <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
+   
     <script src="../js/ingredientes.js"></script>
 </body>
 </html>

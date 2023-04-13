@@ -5,59 +5,192 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <title>João Sales</title>
 </head>
-<body>
-    <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between px-4 py-3">
-        <div class="text-xl font-bold font-poppins">Menu Principal</div>
-        <div class="flex items-center">
-          <button class="md:hidden">
-            <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div class="ml-4 flex items-center">
-            <img src="/img/perfil.png" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
-            <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D">João Sales</div>
-            <button class="ml-2">
-              <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
-            </button>
+<body class="bg-brancoamarelado">
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
+    <div class="text-xl font-bold font-poppins"><a href="../dist/dashboard.html">Menu Principal</a></div>
+    <div class="flex items-center">
+      <button class="md:hidden">
+        <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div class="ml-4 flex items-center">
+          <img src="../img/teste-perfil.jpg" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
+          <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
+           <a href="../dist/detalhar-perfil.html">João Sales</a>
           </div>
-        </div>
-      </header>
+      </div>
+        <button class="ml-4">
+          <a href="../dist/realizar-login.html">
+            <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
+          </a>
+        </button>
+      </div>
+    </div>
+  </header>
 
-      <div class="text-3xl font-bold font-poppins ml-4">Detalhar perfil</div>
+      <div class="text-3xl font-bold font-poppins ml-4 mt-4">Detalhar perfil</div>
 
-      <main class="grid grid-cols-1 lg:grid-cols-2 gap-2 bg-cinza h-screen w-11/12 mx-auto rounded-lg">
-        <div class="lg:min-h-screen lg:flex lg:items-center p-8 sm:p-12">
-          <p class="font-bold">Qual é o seu objetivo:</p> 
-          <div class="flex mt-2">
-            <label class="inline-flex items-center mr-4">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" name="emagrecer" value="emagrecer">
-              <span class="ml-2 text-gray-700">Emagrecer</span>
-            </label>
-            <label class="inline-flex items-center mr-4">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" name="ganhar-peso" value="ganhar-peso">
-              <span class="ml-2 text-gray-700">Ganhar peso</span>
-            </label>
-            <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" name="manter-peso" value="manter-peso">
-              <span class="ml-2 text-gray-700">Manter peso</span>
-            </label>
-          </div>
+      <div class="max-w-lg mx-auto">
+        <div class="flex justify-center">
+          <img src="../img/teste-perfil.jpg" alt="Foto de perfil" class="w-32 h-32 rounded-full border-2 border-gray-400">
         </div>
-        <div class="ladodireito flex flex-col items-center justify-center">
-            <img src="https://via.placeholder.com/150" alt="Imagem de perfil" class="rounded-full border-2 border-gray-700 p-1" style="width: 150px; height: 150px;">
-            <div class="flex items-center">
-              <h3 class="font-bold font-poppins text-2xl mt-4">João Sales</h3>
-              <p class="text-gray-700 font-poppins ml-2">@JoãoSales123</p>
+        <div class="mt-6">
+          <h2 class="text-3xl font-bold text-gray-800">João Sales</h2>
+          <p class="text-gray-600">@Jovit</p>
+        </div>
+        <div class="mt-6 border-t border-gray-300 pt-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-gray-700 font-semibold">Altura:</p>
+              <p class="text-gray-600">1,75 m</p>
+            </div>
+            <div>
+              <p class="text-gray-700 font-semibold">Sexo:</p>
+              <p class="text-gray-600">Masculino</p>
+            </div>
+            <div>
+              <p class="text-gray-700 font-semibold">Peso:</p>
+              <p class="text-gray-600">73 kg</p>
+            </div>
+            <div>
+              <p class="text-gray-700 font-semibold">Data Nascimento:</p>
+              <p class="text-gray-600">14/04/03 (19 anos)</p>
+            </div>
+            <div>
+              <p class="text-gray-700 font-semibold">Objetivo:</p>
+              <p class="text-gray-600">Ganhar peso</p>
+            </div>
+            <div>
+              <p class="text-gray-700 font-semibold">Preferência de dieta:</p>
+              <p class="text-gray-600">Hipercalorica</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-gray-700 font-semibold">Preferência de alimentos:</p>
+              <p class="text-gray-600">Vegetais, proteínas magras, grãos integrais, frutas</p>
             </div>
           </div>
-         
         </div>
-      </main>
+      </div>
 
-      <footer class="fixed bottom-0 left-0 w-full h-5 bg-red"></footer>
+      <div class="flex justify-center mt-8 mb-8">
+        <a onclick="abrirPopup()" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+          Editar Perfil
+        </a>
+        <a href="../dist/ingredientes.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+          Ingredientes
+        </a>
+        <a href="../dist/pratos.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+          Pratos
+        </a>
+        <!--
+        <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+          Publicações
+        </a>
+        <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+          Refeições
+        </a>
+        <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+          Rotina
+        </a> -->
+      </div>
 
+      <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
+
+       <!-- Pop-up de adicionar novo ingrediente -->
+<div id="popup" class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50 hidden">
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-white rounded shadow-lg p-4">
+      <div class="grid grid-cols-2 gap-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="nome">
+          Nome Completo:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite o seu nome completo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="nome">
+          Usuario:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite o seu nome completo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="tipo">
+          Objetivo:
+        </label>
+        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
+          <option value="Emagrecer">Emagrecer</option>
+          <option value="Ganhar peso">Ganhar peso</option>
+          <option value="Manter peso">Manter peso</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Peso atual:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Meta peso:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Altura:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Foto de perfil:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="file" placeholder="Carregar Imagem">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Data nascimento:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="number" placeholder="Digite o tempo de preparo">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="tipo">
+          Suas preferencias de dieta:
+        </label>
+        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
+          <option value="Emagrecer">Emagrecer</option>
+          <option value="Ganhar peso">Ganhar peso</option>
+          <option value="Manter peso">Manter peso</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="tipo">
+          Suas preferencias de alimentos:
+        </label>
+        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
+          <option value="Emagrecer">Emagrecer</option>
+          <option value="Ganhar peso">Ganhar peso</option>
+          <option value="Manter peso">Manter peso</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Número de refeições:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="number" placeholder="Digite o tempo de preparo">
+      </div>
+      <div class="mb-4 flex items-center justify-between">
+        <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="fecharPopup()">
+          Editar
+        </button>
+      </div>
+     
+      </div>
+
+      <script src="../js/Perfil.js"></script>
 </body>
 </html>

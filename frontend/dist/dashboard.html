@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <title>Realizar Login</title>
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="../img/fasdfood.png" type="image/x-icon">
 </head>
-<header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between px-4 py-3">
-    <div class="text-xl font-bold font-poppins">Menu Principal</div>
+
+<body class="bg-brancoamarelado">
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
+    <div class="text-xl font-bold font-poppins"><a href="../dist/dashboard.html">Menu Principal</a></div>
     <div class="flex items-center">
       <button class="md:hidden">
         <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
@@ -17,58 +20,202 @@
         </svg>
       </button>
       <div class="ml-4 flex items-center">
-        <img src="/img/perfil.png" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
-        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D"></div>
-        <button class="ml-2">
-          <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
+          <img src="../img/teste-perfil.jpg" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
+          <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
+           <a href="../dist/detalhar-perfil.html">João Sales</a>
+          </div>
+      </div>
+        <button class="ml-4">
+          <a href="../dist/realizar-login.html">
+            <img src="/img/botao.png" alt="Botão" class="w-10 h-10">
+          </a>
         </button>
       </div>
     </div>
   </header>
-
-  <div class="w-1440 h-430 bg-opacity-40 bg-gray-300">
-    <div class="flex h-full">
-      <div class="w-1/2 flex flex-col justify-center px-12">
-        <h1 class="text-3xl font-bold text-gray-900">Alimente-se de forma balanceada e saudável.</h1>
-        <h2 class="text-xl font-bold text-gray-700 mt-6">Monte já sua rotina</h2>
-        <button class="bg-red-500 text-white font-bold px-8 py-3 rounded mt-6">Planejar</button>
+  
+    <div class="bg-gray-300 bg-opacity-40 flex">
+      <div class="w-1/2 flex flex-col justify-center items-center">
+        <h1 class="text-4xl font-bold text-center">Alimente-se de forma balanceada e saudável.</h1>
+        <p class="mt-4 mb-8">Monte já sua rotina</p>
+        <a href="../dist/rotina.html" class="bg-red-500 text-white px-4 py-2 rounded bg-red">Planejar</a>
       </div>
-      <div class="w-1/2 h-full bg-cover bg-center">
-        <img src="/img/Image post-bro.svg" alt="Imagem de Cadastro" class="h-auto hover:transform hover:scale-105 transition duration-300 ease-in-out">
+      <div class="flex-1 mr-1">
+        <img src="../img/Eating healthy food-bro 3.png" alt="Imagem ilustrativa">
       </div>
     </div>
-  </div>
-
-
-
-      <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
-
-<style>
   
-  body {
-  font-family: 'Poppins', sans-serif;
-}
+    <div class="mt-4 grid grid-cols-8 gap-4 bg-white">
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/reifeçõesfood.png" alt="Imagem de refeições">
+        <h2 class="mt-4 text-center font-bold">Refeições</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/healtyfood.png" alt="Imagem de comida saudável">
+        <h2 class="mt-4 text-center font-bold">Comida saudável</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/veganfood.png" alt="Imagem de comida vegana">
+        <h2 class="mt-4 text-center font-bold">Vegana</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/japanesefood.png" alt="Comida asiática">
+        <h2 class="mt-4 text-center font-bold">Asiática</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/massasfood.png" alt="massas">
+        <h2 class="mt-4 text-center font-bold">Massas</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img//fasdfood.png" alt="Fastfood">
+        <h2 class="mt-4 text-center font-bold">Fastfood</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/sucos.png" alt="Sucos e Vitaminas">
+        <h2 class="mt-4 text-center font-bold">Sucos e Vitaminas</h2>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/food.png" alt="Outros">
+        <h2 class="mt-4 text-center font-bold">Outros</h2>
+      </div>
+    </div>
+  
+    <div class="bg-green-300 bg-opacity-40 rounded-lg border-transparent p-4 mx-auto my-4 max-w-lg flex justify-between items-center">
+      <div>
+        <h2 class="text-xl font-bold">Refeições do dia</h2>
+        <p class="text-sm">quarta-feira, 01/02/2023</p>
+      </div>
+      <button class="bg-red rounded-full p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M12.05 6.273L9.727 8.596l3.678 3.678 2.323-2.323a.5.5 0 0 0 0-.707l-2.322-2.322a.5.5 0 0 0-.707 0zM8.82 9.508l-2.322-2.322a1.5 1.5 0 0 1 2.121-2.12l2.322 2.322a1.5 1.5 0 0 1-2.12 2.12z"/>
+          <path d="M2.5 16.5h15a1 1 0 0 0 1-1v-11a1 1 0 0 0-1-1h-5.5v-1a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1H2.5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1z"/>
+        </svg>
+      </button>
+    </div>
+  
+    <section class="flex items-center justify-between">
+      <div class="text-3xl font-bold font-poppins ml-4 mt-4">Seus Pratos</div>
+      <div class="relative ml-4 mr-5">
+        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos">
+        <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 15.5l5.5 5.5"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9.5a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+  
+    <div class="mt-4 grid grid-cols-8 gap-4 bg-white justify-items-center">
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de refeições">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de comida saudável">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de comida vegana">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Comida asiática">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+    </div>
+    <a href="../dist/pratos.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+      Visualizar Seus Pratos
+    </a>
+    <section class="flex items-center justify-between">
+      <div class="text-3xl font-bold font-poppins ml-4 mt-4">Pratos Populares</div>
+      <div class="relative ml-4 mr-5">
+        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos">
+        <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 15.5l5.5 5.5"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9.5a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+  
+    <div class="mt-4 grid grid-cols-8 gap-4 bg-white justify-items-center">
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de refeições">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de comida saudável">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Imagem de comida vegana">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+      <div class="bg-gray-300 p-4 flex flex-col items-center justify-center">
+        <img src="../img/comida1.png" alt="Comida asiática">
+        <h2 class="mt-4 text-center font-bold">Frango com batata e ovos</h2>
+        <p class="mt-4 text-center">Feito por: João Sales</p>
+      </div>
+    </div>
+
+    <a href="../dist/visualizarPrato.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+      Visualizar Pratos Populares
+    </a>
+  
+    <footer class="bottom-0 left-0 w-full h-5 bg-red mt-10"></footer>
+
+  
+  <style>
+  
   .grid {
-  margin-bottom: 20px;
-}
-    .animate-typing {
-    animation: typing 2s steps(20) forwards;
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    border-right: .09em solid red;
+    border: 2px solid rgb(255, 255, 255); /* adiciona borda */
+    padding: 10px; /* aumenta o espaçamento interno */
   }
   
-  @keyframes typing {
-    0% {
-      width: 0;
-    }
-    100% {
-      width: 100%;
-    }
+  .grid > div {
+    border-radius: 10px;
+    width: 120px; /* diminui o tamanho dos elementos */
+    margin: 0 5px; /* adiciona espaçamento entre os elementos */
   }
-      </style>
-
-<script src="/js/Perfil.js"></script>
+  
+  .grid > div:first-child,
+  .grid > div:last-child {
+    margin: 0; /* remove o espaçamento das pontas */
+  }
+    
+    body {
+    font-family: 'Poppins', sans-serif;
+  }
+    .grid {
+    margin-bottom: 20px;
+  }
+      .animate-typing {
+      animation: typing 2s steps(20) forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      border-right: .09em solid red;
+    }
+    
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+  </style>
+  
+  <script src="/js/Perfil.js"></script>
 </body>
 </html>
