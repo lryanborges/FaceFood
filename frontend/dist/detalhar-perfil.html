@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
     <title>João Sales</title>
 </head>
 <body class="bg-brancoamarelado">
@@ -86,16 +87,15 @@
         <a href="../dist/pratos.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
           Pratos
         </a>
-        <!--
         <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
           Publicações
         </a>
-        <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+        <a href="../dist/refeicoes.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
           Refeições
         </a>
         <a href="" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
           Rotina
-        </a> -->
+        </a> 
       </div>
 
       <footer class="bottom-0 left-0 w-full h-5 bg-red"></footer>
@@ -109,13 +109,68 @@
         <label class="block text-gray-700 font-bold mb-2" for="nome">
           Nome Completo:
         </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite o seu nome completo">
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Nome Completo">
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="nome">
+        <label class="block text-gray-700 font-bold mb-2" for="usuario">
           Usuario:
         </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite o seu nome completo">
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" placeholder="Usuario">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="objetivo">
+          Prefêrencia de alimentos:
+        </label>
+        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
+          
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+          Peso atual:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="pesoatual" type="number" placeholder="Peso atual">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="metapeso">
+          Meta peso:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="metapeso" type="number" placeholder="Meta peso">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="altura">
+          Altura:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="altura" type="number" placeholder="Altura">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="fotoperfil">
+          Foto de perfil:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fotoperfil" type="file">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="datanascimento">
+          Data nascimento:
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="datanascimento" type="date" placeholder="Data nascimento">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="tipo">
+          Preferências de dieta:
+        </label>
+        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preferenciasdedieta">
+          <option value="sempreferencia">Sem Preferências</option>
+          <option value="lowcarb">Low Carb</option>
+          <option value="reeducacaoalimentar">Reeducação Alimentar</option>
+          <option value="hipercalorica">Hipercalórica</option>
+          <option value="hipertrófica">Hipertrófica</option>
+          <option value="nordica">Nórdica</option>
+          <option value="vegana">Vegana</option>
+          <option value="vegetariana">Vegetariana</option>
+          <option value="semgluten">Sem Glúten</option>
+          <option value="semlactose">Sem Lactose</option>
+        </select>
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 font-bold mb-2" for="tipo">
@@ -128,64 +183,17 @@
         </select>
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Peso atual:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Meta peso:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Altura:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="preparo" type="text" placeholder="Digite o modo de preparo">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Foto de perfil:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="file" placeholder="Carregar Imagem">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Data nascimento:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="number" placeholder="Digite o tempo de preparo">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="tipo">
-          Suas preferencias de dieta:
-        </label>
-        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
-          <option value="Emagrecer">Emagrecer</option>
-          <option value="Ganhar peso">Ganhar peso</option>
-          <option value="Manter peso">Manter peso</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="tipo">
-          Suas preferencias de alimentos:
-        </label>
-        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
-          <option value="Emagrecer">Emagrecer</option>
-          <option value="Ganhar peso">Ganhar peso</option>
-          <option value="Manter peso">Manter peso</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
+        <label class="block text-gray-700 font-bold mb-2" for="numeroderefeicoes">
           Número de refeições:
         </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagem" type="number" placeholder="Digite o tempo de preparo">
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="numeroderefeicoes" type="number" placeholder="Numero de Refeições">
       </div>
       <div class="mb-4 flex items-center justify-between">
         <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="fecharPopup()">
           Editar
+        </button>
+        <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="fecharPopup()">
+          <- Voltar
         </button>
       </div>
      
