@@ -267,6 +267,14 @@ Correct the cursor style of increment and decrement buttons in Safari.
   height: auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
 /*
 1. Correct the odd appearance in Chrome and Safari.
 2. Correct the outline style in Safari.
@@ -542,12 +550,33 @@ video {
   bottom: 0px;
 }
 
+.top-middle {
+  top: 0px;
+  right: 45%;
+}
+
+.right {
+  right: -0.15rem;
+}
+
+.bottom {
+  bottom: -0.45rem;
+}
+
 .left-0 {
   left: 0px;
 }
 
+.r-4 {
+  right: 11.5rem;
+}
+
 .right-0 {
   right: 0px;
+}
+
+.t-2 {
+  top: 5.2rem;
 }
 
 .top-0 {
@@ -583,6 +612,16 @@ video {
   margin-right: 4rem;
 }
 
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -606,6 +645,14 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mb--28 {
+  margin-bottom: -7rem;
+}
+
+.mb--32 {
+  margin-bottom: -8rem;
 }
 
 .-mb-28 {
@@ -636,6 +683,14 @@ video {
   margin-bottom: 2rem;
 }
 
+.ml--4 {
+  margin-left: -4px;
+}
+
+.ml--3 {
+  margin-left: -3px;
+}
+
 .-ml-4 {
   margin-left: -1rem;
 }
@@ -662,6 +717,14 @@ video {
 
 .ml-40 {
   margin-left: 10rem;
+}
+
+.ml-84 {
+  margin-left: 21rem;
+}
+
+.ml-200 {
+  margin-left: 49.3rem;
 }
 
 .ml-5 {
@@ -732,6 +795,26 @@ video {
   margin-right: 7rem;
 }
 
+.mt--20 {
+  margin-top: -5rem;
+}
+
+.mt--24 {
+  margin-top: -6rem;
+}
+
+.mt--16 {
+  margin-top: -4rem;
+}
+
+.mt--2 {
+  margin-top: -0.5rem;
+}
+
+.mt--4 {
+  margin-top: -1rem;
+}
+
 .-mt-16 {
   margin-top: -4rem;
 }
@@ -752,8 +835,16 @@ video {
   margin-top: 3rem;
 }
 
+.mt-13 {
+  margin-top: 3.25rem;
+}
+
 .mt-16 {
   margin-top: 4rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .mt-2 {
@@ -762,6 +853,10 @@ video {
 
 .mt-20 {
   margin-top: 5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-3 {
@@ -816,6 +911,10 @@ video {
   display: none;
 }
 
+.h-0v5 {
+  height: 0.125rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -836,6 +935,10 @@ video {
   height: 1.5rem;
 }
 
+.h-30 {
+  height: 7.5rem;
+}
+
 .h-72 {
   height: 18rem;
 }
@@ -852,6 +955,16 @@ video {
   height: 100vh;
 }
 
+.scroll-6 {
+  max-height: 28rem;
+  overflow-y: auto;
+}
+
+.scroll-7 {
+  max-height: 28rem;
+  overflow-y: auto;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -860,12 +973,32 @@ video {
   width: 20rem;
 }
 
+.w-84 {
+  width: 21rem;
+}
+
 .w-10 {
   width: 2.5rem;
 }
 
+.w-16 {
+  width: 4rem;
+}
+
+.w-20 {
+  width: 5rem;
+}
+
+.w-30 {
+  width: 7.5rem;
+}
+
 .w-32 {
   width: 8rem;
+}
+
+.w-48 {
+  width: 12rem;
 }
 
 .w-5 {
@@ -886,6 +1019,10 @@ video {
 
 .w-auto {
   width: auto;
+}
+
+.w-semifull {
+  width: 90%;
 }
 
 .w-full {
@@ -920,6 +1057,15 @@ video {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .grid-cols-2 {
@@ -963,6 +1109,10 @@ video {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-50p {
+  gap: 50%;
 }
 
 .h-146px {
@@ -1053,6 +1203,10 @@ video {
   border-color: transparent;
 }
 
+.bg-FFB1C2 {
+  background-color: #FFB1C2;
+}
+
 .bg-F7FEE5 {
   background-color: #f7fee5;
 }
@@ -1085,8 +1239,20 @@ video {
   color: #b7004b;
 }
 
+.c-FF0038 {
+  color: #FF0038;
+}
+
 .c-C68484 {
   color: #c68484;
+}
+
+.c-001701 {
+  color: #001701;
+}
+
+.bg-F0F0F0 {
+  background-color: #F0F0F0;
 }
 
 .bg-facefoodgreen {
@@ -1261,6 +1427,21 @@ video {
   line-height: 1.25rem;
 }
 
+.text-0v5xl {
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+}
+
+.text-1v3xl {
+  font-size: 1.15rem;
+  line-height: 1.4rem;
+}
+
+.text-1v5xl {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -1269,6 +1450,17 @@ video {
 .text-2xl {
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
+}
+
+.textatt-2xl {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  letter-spacing: 1.25px;
+}
+
+.textatt-5xl {
+  font-size: 2.75rem;
+  line-height: 3rem;
 }
 
 .font-bold {
