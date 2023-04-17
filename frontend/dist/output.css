@@ -880,6 +880,10 @@ video {
   width: 16rem;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .w-96 {
   width: 24rem;
 }
@@ -1301,6 +1305,10 @@ video {
 
 .text-cinzaTexto {
   color: #7c7878;
+}
+
+.text-cinza {
+  color: #3d3d3d;
 }
 
 .text-gray-600 {
