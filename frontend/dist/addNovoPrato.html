@@ -10,66 +10,129 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between px-4 py-3">
-    <div class="text-xl font-bold font-poppins">Menu Principal</div>
+<body class="flex flex-col w-full h-full">
+  <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between py-3 mr-8 px-3 ml-4">
+    <div class="text-xl font-bold font-poppins text-cinzaTexto">Menu Principal</div>
     <div class="flex items-center">
-      <div class="ml-4 flex items-center">
+      <div class="flex items-center">
         <img src="../img/perfil.png" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
-        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D"></div>
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D">Joao sales</div>
         <button class="ml-2">
           <img src="../img/botao.png" alt="Botão" class="w-10 h-10">
         </button>
       </div>
     </div>
   </header>
+  <h1 class="font-extrabold ml-16 text-2xl">Pratos</h1>
 
-  <div class="">
-    <h2 class="font-poppins font-extrabold text-4xl ">Pratos</h2>
-    <div class="flex">
-      <h3 class="font-poppins font-bold text-5xl ">Seus pratos.</h3>
-      <input type="text">
-    </div>
-    <div>
+  <div class="flex justify-between mt-4">
+    <h2 class="ml-16 text-cinzaTexto font-bold text-3xl">Seus pratos</h2>
+    <div class="flex border-2 border-facefoodred rounded-full pl-2 mr-28">
+      <input class="w-64" type="search" placeholder="Pesquisar">
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 15.5l5.5 5.5" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9.5a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z" />
+        </svg>
+      </button>
     </div>
   </div>
 
-  <div class="flex-col">
-    <h2>Cadastrar pratos.</h2>
-    <form>
+  <div>
+    <div class="flex justify-center gap-8 mx-16 my-12">
       <div>
-        <label for="nome">Nome do prato:</label>
-        <input type="text" id="nome" name="nome" placeholder="Nome do prato""><br><br>
-        <label for=" preparo">Modo de preparo:</label>
-        <input type="text" id="preparo" name="preparo" placeholder="Modo de preparo"><br><br>
-        <label for="imagem">Imagem:</label>
-        <input type="image" id="imagem" name="imagem"><br><br>
-        <label for="infos">Informações nutricionais:</label>
-        <input type="text" id="infos" name="infos" placeholder="Informações nutricionais"><br><br>
+        <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos." width="240px">
+        <div class="mt-4">
+          <h5 class="font-bold text-cinzaTexto text-1v3xl ml-1">Frango com batatas e ovos</h5>
+          <p class="float-right font-light text-cinzaTexto text-0v5xl">por JoãoSales123</p>
+        </div>
       </div>
       <div>
-        <div class="flex">
-          <!--<select name="categoria" id="categoria" placeholder="Categoria">
-          <option value="vegana">Vegana</option>
-          <option value="semLactose">Sem lactose</option>
-          <option value="vegetariana">Vegetariana</option>
-          <option value="japonesa">Japonesa</option>
-          <option value="chinesa">Chinesa</option>
-          <option value="Nórdica">Nordica</option>
-          <option value="semGlúten">Sem Glúten</option>
-        </select>
-      -->
+        <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos." width="240px">
+        <div class="mt-4">
+          <h5 class="font-bold text-cinzaTexto text-1v3xl ml-1">Frango com batatas e ovos</h5>
+          <p class="float-right font-light text-cinzaTexto text-0v5xl">por JoãoSales123</p>
+        </div>
+      </div>
+      <div>
+        <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos." width="240px">
+        <div class="mt-4">
+          <h5 class="font-bold text-cinzaTexto text-1v3xl ml-1">Frango com batatas e ovos</h5>
+          <p class="float-right font-light text-cinzaTexto text-0v5xl">por JoãoSales123</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="font-bold text-3xl ml-16">Cadastrar pratos</h2>
+  <form class="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6">
+    <div class="flex justify-between">
+      <div class="flex-1 flex gap-6">
+        <label class="w-32" for="nome">Nome do prato </label>
+        <input class="bg-input border-solid border border-facefoodred rounded w-325px" type="text" placeholder="Nome do prato" required>
+      </div>
+      <div class="flex justify-between flex-1">
+        <div>
+          <label for="tipo-de-comida">Tipo</label>
+          <select class="bg-input" id="tipo-de-comida" name="tipo-de-comida" required>
+            <option value="vegetariana">Vegetariana</option>
+            <option value="vegana">Vegana</option>
+            <option value="sem-gluten">Sem glúten</option>
+            <option value="sem-lactose">Sem lactose</option>
+            <option value="chinesa">Chinesa</option>
+            <option value="japonesa">Japonesa</option>
+            <option value="nordica">Nórdica</option>
+          </select>
         </div>
         <div>
-          <label for="tempoPreparo">Tempo de preparo:</label>
-          <input type="text" id="tempoPreparo" name="tempoPreparo" placeholder="Tempo(minutos)"><br><br>
-          <label for="descricao">Descrição:</label>
-          <input type="text" id="descricao" name="descricao" placeholder="Descrição"><br><br>
+          <label for="ingredientes">Ingredientes</label>
+          <select class="bg-input" id="ingredientes" name="ingredientes" required>
+            <option value="ovos">Ovos</option>
+            <option value="carne">Carne</option>
+            <option value="leite">Leite</option>
+            <option value="peixe">Peixe</option>
+            <option value="massas">Massas</option>
+            <option value="legumes">Legumes</option>
+            <option value="frango">Frango</option>
+            <option value="queijo">Queijo</option>
+            <option value="verduras">Verduras</option>
+          </select>
         </div>
-        <button>Salvar prato</button>
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div>
+      <div class="flex gap-6">
+        <label class="w-32" for="modo-de-preparo">Modo de preparo</label>
+        <textarea class="bg-input border border-solid border-facefoodred rounded" name="modo-de-preparo" id="modo-de-preparo" placeholder="Modo de preparo" cols="22" rows="6"></textarea>
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="flex flex-1 gap-6">
+        <span class="w-32" for="imagem">Imagem</span>
+        <label class="bg-input border border-solid border-facefoodred rounded w-325px h-146px cursor-pointer" for="imagem"></label>
+        <input name="imagem" id="imagem" type="file" hidden>
+      </div>
+      <div class="flex-1">
+        <label for="tempo-de-preparo">Tempo de preparo</label>
+        <input class="ml-8 bg-input border border-solid border-facefoodred rounded" type="number" min="1" max="600" placeholder="Tempo de preparo(Minutos)">
+      </div>
+    </div>
+
+
+    <div>
+    </div>
+
+  </form>
+
+  <footer class="bg-red h-8"></footer>
+
+  <style>
+    body {
+      font-family: "Poppins";
+    }
+  </style>
 </body>
 
 </html>
