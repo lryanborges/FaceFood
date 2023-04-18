@@ -699,6 +699,10 @@ video {
   margin-left: 0.25rem;
 }
 
+.ml-12 {
+  margin-left: 3rem;
+}
+
 .ml-16 {
   margin-left: 4rem;
 }
@@ -843,16 +847,20 @@ video {
   margin-top: 4rem;
 }
 
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
 
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
 }
 
 .mt-2 {
@@ -931,6 +939,18 @@ video {
   height: 8rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
+.h-84 {
+  height: 21rem;
+}
+
+.h-128 {
+  height: 32rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -953,6 +973,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-full-screen {
+  height: 146.4%;
 }
 
 .h-screen {
@@ -1017,8 +1041,24 @@ video {
   width: 16rem;
 }
 
+.w-92 {
+  width: 22.55rem;
+}
+
 .w-96 {
   width: 24rem;
+}
+
+.w-104 {
+  width: 26rem;
+}
+
+.w-160 {
+  width: 40rem;
+}
+
+.w-192 {
+  width: 48rem;
 }
 
 .w-auto {
@@ -1199,6 +1239,10 @@ video {
   border-color: #ff0038;
 }
 
+.border-3D3D3D {
+  border-color: #3D3D3D;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -1207,6 +1251,10 @@ video {
   border-color: transparent;
 }
 
+.bg-FFFFFF {
+  background-color: #FFFFFF;
+}
+ 
 .bg-FFB1C2 {
   background-color: #FFB1C2;
 }
@@ -1217,6 +1265,14 @@ video {
 
 .bg-DDE3CD {
   background-color: #dde3cd;
+}
+
+.bg-3D3D3D {
+  background-color: #3D3D3D;
+}
+
+.c-F1F9E4 {
+  color: #F1F9E4;
 }
 
 .c-2F2F2F {
@@ -1268,7 +1324,7 @@ video {
 }
 
 .bg-brancoamarelado {
-  background-color: FFFCF9;
+  background-color: #FFFCF9;
 }
 
 .bg-cinza {
@@ -1278,6 +1334,11 @@ video {
 
 .bg-input {
   background-color: #f1f9e4;
+}
+
+.bg-add-edit {
+  --tw-bg-opacity: 0.4;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 .bg-gray-300 {
@@ -1403,6 +1464,10 @@ video {
   padding-top: 1.5rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1429,6 +1494,11 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-0v3xl {
+  font-size: 0.48rem;
+  line-height: 0.8rem;
 }
 
 .text-0v5xl {
