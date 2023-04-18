@@ -840,6 +840,14 @@ video {
   height: 18rem;
 }
 
+.h-36 {
+  height: 9rem;
+}
+
+.h-48 {
+  height: 13.5rem;
+}
+
 .h-auto {
   height: auto;
 }
@@ -959,6 +967,14 @@ video {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-20 {
+  gap: 5rem;
+}
+
+.gap-18 {
+  gap: 4.5rem;
 }
 
 .gap-4 {
