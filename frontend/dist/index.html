@@ -26,18 +26,18 @@
     <header class="flex wrap justify-between items-center mt-3">
         <a href="index.html"><img class="mt-3 ml-6" src="../img/logo.svg" alt="FaceFood"></a>
         <div class="flex gap-2 wrap mr-16">
-            <input class="border-2 border-facefoodred rounded p-1 w-84 bg-F7FEE5" type="text"
-                placeholder="  Email ou Usuário">
-            <input class="relative border-2 border-facefoodred rounded p-1 w-64 bg-F7FEE5" type="password"
-                placeholder=" Senha">
+            <input required class="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-84" type="text"
+                placeholder="  Email ou Usuário" id="user-email-input">
+            <input required class="bg-brancoamarelado relative border-2 border-facefoodred rounded p-1 w-64" type="password"
+                placeholder=" Senha" id="user-senha-input">
             <a href="dashboard.html"><input
                     class="border rounded p-2 px-8 bg-facefoodred c-F7FEE5 cursor-pointer font-semibold" type="button"
-                    value="Entrar"></a>
-            <a class="absolute r-4 t-2 c-380D05 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
+                    value="Entrar" onclick="loginFast()"></a>
+            <a class="absolute r-4 t-2 c-001701 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
         </div>
     </header>
 
-    <main class="main bg-F7FEE5 mt-20 px-8 p-4 m-32">
+    <main class="bg-brancoamarelado main mt-20 px-8 p-4 m-32">
         <div class="flex mt-8">
             <div class="flex">
                 <img src="../img/menu.svg">
@@ -45,7 +45,7 @@
             </div>
             <form>
                 <div class="flex right">
-                    <input class="bg-F7FEE5 border-2 border-facefoodred rounded p-1 w-96 ml-84" type="text"
+                    <input class="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-96 ml-82" type="text"
                         placeholder="  Pesquise aqui!">
                     <button type="submit" class="bg-facefoodred p-1 px-4 rounded ml--4">
                         <svg width="28" height="28" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,35 +84,47 @@
                     <p class="mt-1 c-2F2F2F font-light text-1v5xl">refeições</p>
                 </button>
             </a>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="mt--2 block" src="../img/healtyfood.png" width="64px">
-                <p class="c-2F2F2F font-light text-1v5xl">comida<br>saudável</p>
-            </button>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="block" src="../img/veganfood.png" width="64px">
-                <p class="mt-1 c-2F2F2F font-light text-1v5xl">vegana</p>
-            </button>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="block" src="../img/asianfood.svg" width="64px">
-                <p class="mt-1 c-2F2F2F font-light text-1v5xl">asiática</p>
-            </button>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="block" src="../img/massasfood.png" width="64px">
-                <p class="c-2F2F2F font-light text-1v5xl">massas</p>
-            </button>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="block" src="../img/fasdfood.png" width="64px">
-                <p class="mt-1 c-2F2F2F font-light text-1v5xl">fastfood</p>
-            </button>
-            <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
-                <img class="mt--2 block" src="../img/sucos.png" width="64px">
-                <p class="c-2F2F2F font-light text-1v5xl">sucos e<br>vitaminas</p>
-            </button>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="mt--2 block" src="../img/healtyfood.png" width="64px">
+                    <p class="c-2F2F2F font-light text-1v5xl">comida<br>saudável</p>
+                </button>
+            </a>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="block" src="../img/veganfood.png" width="64px">
+                    <p class="mt-1 c-2F2F2F font-light text-1v5xl">vegana</p>
+                </button>
+            </a>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="block" src="../img/asianfood.svg" width="64px">
+                    <p class="mt-1 c-2F2F2F font-light text-1v5xl">asiática</p>
+                </button>
+            </a>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="block" src="../img/massasfood.png" width="64px">
+                    <p class="c-2F2F2F font-light text-1v5xl">massas</p>
+                </button>
+            </a>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="block" src="../img/fasdfood.png" width="64px">
+                    <p class="mt-1 c-2F2F2F font-light text-1v5xl">fastfood</p>
+                </button>
+            </a>
+            <a href="pesquisas.html">
+                <button class="bg-DDE3CD p-4 mt-4 rounded flex flex-col items-center w-30 h-30">
+                    <img class="mt--2 block" src="../img/sucos.png" width="64px">
+                    <p class="c-2F2F2F font-light text-1v5xl">sucos e<br>vitaminas</p>
+                </button>
+            </a>
         </section>
 
         <div>
             <img class="mb--32" src="../img/top-post-2.svg">
-            <div class="mt-4 grid-2 bg-facefoodgreen px-8 rounded">
+            <div class="mt-4 grid-2 grid-2 bg-facefoodgreen px-8 rounded">
                 <div>
                     <img class="mt--24 ml-6" src="../img/Image post-bro.svg" width="80%"
                         alt="Imagem de mulher compartilhando uma receita">
@@ -133,20 +145,20 @@
             <div class="flex justify-between mx-16 my-12">
                 <div>
                     <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos."
-                        width="240px">
-                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1">Frango com batatas e ovos</h5>
+                        width="260px">
+                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1 mt-1">Frango com batatas e ovos</h5>
                     <p class="float-right font-light c-3D3D3D text-0v5xl">por JoãoSales123</p>
                 </div>
                 <div>
                     <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos."
-                        width="240px">
-                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1">Frango com batatas e ovos</h5>
+                        width="260px">
+                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1 mt-1">Frango com batatas e ovos</h5>
                     <p class="float-right font-light c-3D3D3D text-0v5xl">por JoãoSales123</p>
                 </div>
                 <div>
                     <img class="rounded" src="../img/comida1.png" alt="Foto de frango com batatas e ovos."
-                        width="240px">
-                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1">Frango com batatas e ovos</h5>
+                        width="260px">
+                    <h5 class="font-bold c-3D3D3D text-1v3xl ml-1 mt-1">Frango com batatas e ovos</h5>
                     <p class="float-right font-light c-3D3D3D text-0v5xl">por JoãoSales123</p>
                 </div>
             </div>
@@ -163,6 +175,8 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
+
+    <script src="../js/index.js"></script> 
 
 </BODY>
 

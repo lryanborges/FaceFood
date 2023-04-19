@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="output.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
-    <title>Ingredientes</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="output.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
+  <title>Ingredientes</title>
 </head>
+
 <body class="bg-brancoamarelado">
   <header class="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
     <div class="text-xl font-bold font-poppins"><a href="../dist/dashboard.html">Menu Principal</a></div>
     <div class="flex items-center">
       <button class="md:hidden">
         <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
-          <path fill-rule="evenodd" d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z" clip-rule="evenodd" />
+          <path fill-rule="evenodd"
+            d="M3 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm14 5H3a1 1 0 110-2h14a1 1 0 110 2z"
+            clip-rule="evenodd" />
         </svg>
       </button>
       <div class="ml-4 flex items-center">
-          <img src="../img/teste-perfil.jpg" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
-          <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
-           <a href="../dist/detalhar-perfil.html">João Sales</a>
-          </div>
+        <img src="../img/teste-perfil.jpg" alt="Imagem de perfil" class="w-10 h-10 rounded-full">
+        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
+          <a href="../dist/detalhar-perfil.html">João Sales</a>
+        </div>
       </div>
-        <button class="ml-4">
-          <a href="../dist/realizar-login.html">
-            <img src="../img/botao.png" alt="Botão" class="w-10 h-10">
-          </a>
-        </button>
-        
-      </div>
+      <button class="ml-4">
+        <a href="../dist/realizar-login.html">
+          <img src="../img/botao.png" alt="Botão" class="w-10 h-10">
+        </a>
+      </button>
+
+    </div>
     </div>
   </header>
 
-  <h1 class="text-4xl font-extrabold">Ingredientes</h1>
   <div class="flex items-center mb-4">
-    <h2 class="text-3xl font-bold text-3D3D3D mr-4">Ingredientes cadastrados no sistema.</h2>
+    <div class="ml-8 mt-8">
+      <h1 class="text-3xl font-bold c-3D3D3D">Ingredientes</h1>
+      <h2 class="text-3xl font-light c-FF0038 ml-16">Cadastrados</h2>
+    </div>
     <div class="relative ml-auto mr-7">
-      <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar ingrediente" id="pesquisa-ingrediente">
-      <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 15.5l5.5 5.5"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9.5a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z"/>
-        </svg>
+      <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar ingrediente"
+        id="pesquisa-ingrediente">
+      <button type="submit" class="absolute right-0 top-0 mt-2v5 mr-4">
+        <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M35.5014 35.5014L26.4066 26.4066M26.4066 26.4066C28.8681 23.9451 30.251 20.6066 30.251 
+          17.1255C30.251 13.6444 28.8681 10.3059 26.4066 7.84437C23.9451 5.38286 20.6066 4 17.1255 4C13.6444 4 
+          10.3059 5.38286 7.84437 7.84437C5.38286 10.3059 4 13.6444 4 17.1255C4 20.6066 5.38286 23.9451 7.84437 
+          26.4066C10.3059 28.8681 13.6444 30.251 17.1255 30.251C20.6066 30.251 23.9451 28.8681 26.4066 26.4066Z" 
+          stroke="#FF0038" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg> 
       </button>
     </div>
   </div>
 
   <div class="mt-5 mb-5 flex justify-center items-center">
-    <a href="../dist/detalhar-perfil.html" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
-      <- Voltar
-    </a>
-    <a onclick="openPopup()" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
-      + Adicionar Ingrediente
-    </a>
-  
+    <a href="../dist/detalhar-perfil.html"
+      class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+      <- Voltar </a>
+        <a onclick="openPopup()" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+          + Adicionar Ingrediente
+        </a>
+
   </div>
-  
+
   <table class="table-auto w-full mx-auto max-w-screen-xl mb-10">
     <thead>
       <tr>
@@ -74,49 +84,64 @@
           <td class="border px-6 py-2"></td>
           <td class="border px-6 py-2"></td>
           <td class="border px-6 py-2">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 btn-editar">Editar</button>
+            <button
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 btn-editar">Editar</button>
             <button class="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded btn-excluir">Excluir</button>
           </td>
         </tr>
       </template>
     </tbody>
-</table>
+  </table>
 
-      <footer class="bottom-0 left-0 w-full h-5 mt-10 bg-red"></footer>
-<!-- Pop-up de adicionar novo ingrediente -->
-<div id="popup" class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50 hidden">
-  <div class="w-full max-w-md mx-auto mt-20">
-    <div class="bg-white rounded shadow-lg p-4">
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="nome">
-          Nome:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite o nome do ingrediente">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="tipo">
-          Tipo:
-        </label>
-        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
-          ${TipoIngrediente.map(tipo => `<option value="${tipo}">${tipo}</option>`).join('')}
-        </select>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="calorias">
-          Calorias:
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="calorias" type="number" placeholder="Digite a quantidade de calorias">
-      </div>
-      <div class="flex items-center justify-between">
-        <button id="btnAdicionar" class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="closePopup()">
-          + Adicionar
-        </button>
-        <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="closePopup()">
-          <- Voltar
-        </button>
-      </div>
+  <footer class="bottom-0 left-0 w-full h-5 mt-10 bg-red"></footer>
+  <!-- Pop-up de adicionar novo ingrediente -->
+  <div id="popup" class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50 hidden">
+    <div class="w-full max-w-md mx-auto mt-20">
+      <div class="bg-white rounded shadow-lg p-4">
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="nome">
+            Nome:
+          </label>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="nome" type="text" placeholder="Digite o nome do ingrediente">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="tipo">
+            Tipo:
+          </label>
+          <select
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="tipo">
+            ${TipoIngrediente.map(tipo => `<option value="${tipo}">${tipo}</option>`).join('')}
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="calorias">
+            Calorias:
+          </label>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="calorias" type="number" placeholder="Digite a quantidade de calorias">
+        </div>
+        <div class="flex items-center justify-between">
+          <button id="btnAdicionar"
+            class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onclick="closePopup()">
+            + Adicionar
+          </button>
+          <button class="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onclick="closePopup()">
+            <- Voltar </button>
+        </div>
 
-   
-    <script src="../js/ingredientes.js"></script>
+        <style>
+          body {
+            font-family: 'Poppins', sans-serif;
+          }
+        </style>
+
+        <script src="../js/ingredientes.js"></script>
 </body>
+
 </html>
