@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="output.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/img/fasdfood.png" type="image/x-icon">
+    <script type="text/javascript" src="/js/Perfil.js"></script>
 </head>
 <body class="bg-brancoamarelado">
 
@@ -15,7 +16,7 @@
     <a href="index.html"><img src="../img/logo.svg" alt="FaceFood" width="80%"></a>
     <div class="flex items-center">
       <div class="ml-4 flex items-center">
-        <div class="ml-2 font-poppins font-medium text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">
+        <div class="ml-2 font-poppins font-bold text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4">
           <a href="realizar-login.html">
             Já tem uma conta?
           </a>
@@ -54,8 +55,8 @@
       <label class="mt-4 text-xl font-bold font-poppins" for="user-usuario-input">
         Nome de Usuário
       </label>
-      <input required class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-usuario-input" name="user-usuario" placeholder="Usuario">
-      <button id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-sm text-3D3D3D rounded-lg px-4 py-2 mt-4" onclick="salvarUsuario()">Vamos lá!</button>
+      <input required class="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2" type="text" id="user-usuario-input" name="user-usuario" placeholder="Usuario" pattern="^[^\s]+$" title="Não são permitidos espaços neste campo">      
+      <button type="submit" name="botao" id="login-btn" class="bg-red ml-2 font-poppins font-medium text-white text-2xl text-3D3D3D rounded-lg px-4 py-2 mt-4" onclick="salvarUsuario()"><a href="./dashboard.html">Vamos lá!</a></button>
     </form>
   </div>
 
@@ -85,6 +86,5 @@
       }
     }
     </style>
-    <script src="/js/Perfil.js"></script>
 </body>
 </html>
