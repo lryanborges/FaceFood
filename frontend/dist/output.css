@@ -267,14 +267,6 @@ Correct the cursor style of increment and decrement buttons in Safari.
   height: auto;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-::-webkit-scrollbar-thumb {
-  display: none;
-}
-
 /*
 1. Correct the odd appearance in Chrome and Safari.
 2. Correct the outline style in Safari.
@@ -555,6 +547,11 @@ video {
   right: 45%;
 }
 
+.middle {
+  top: 40%;
+  right: 28%;
+}
+
 .right {
   right: -0.15rem;
 }
@@ -711,6 +708,10 @@ video {
   margin-left: 0.5rem;
 }
 
+.ml-20 {
+  margin-left: 5rem;
+}
+
 .ml-32 {
   margin-left: 8rem;
 }
@@ -721,6 +722,10 @@ video {
 
 .ml-40 {
   margin-left: 10rem;
+}
+
+.ml-82 {
+  margin-left: 20.5rem;
 }
 
 .ml-84 {
@@ -809,6 +814,10 @@ video {
 
 .mt--16 {
   margin-top: -4rem;
+}
+
+.mt--8 {
+  margin-top: -2rem;
 }
 
 .mt--2 {
@@ -1336,7 +1345,7 @@ video {
 }
 
 .bg-facefoodgreen {
-  background-color: #d4fcb5;
+  background-color: #BCF9CF;
 }
 
 .bg-facefoodred {
