@@ -1,12 +1,32 @@
-import './style.css';
 import Footer from '../../components/Footer';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import './style.css';
+import api from '../../services/api'
+
 //Class Components
-class Login extends Component{
+function Login(){
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   
-  render(){
+  const navigate = useNavigate();
+
+  async function handleLogin(e){
+    e.preventDefault();
+    const usu = {email, senha};
+  api.post("/api/user/login",usu).then((response) => {
+    if(response.data){
+      navigate('/perfil');
+    }else{
+      alert("Login ou senha inválidos")
+    }
+  }).catch(error =>{
+    alert("Login ou senha inválidos")
+  })
+  
+}
+  
     return(
       <div>
       <header className="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
@@ -30,7 +50,7 @@ class Login extends Component{
       </div>
 
     
-      <form
+      <form onSubmit={handleLogin}
         className="h-full flex flex-col  bg-cinza border-2 border-black rounded-lg px-4 py-2 mt-4"
       >
         <p className="mt-4 text-center text-3xl font-bold font-poppins">
@@ -46,6 +66,8 @@ class Login extends Component{
           className="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2"
           type="email"
           placeholder="Email"
+          value={email}
+          onChange={e=>setEmail(e.target.value)}
         />
 
         <label
@@ -57,7 +79,10 @@ class Login extends Component{
         <input
           className="border-2 border-gray-500 rounded-lg p-2 col-span-2 mt-2"
           type="password"
+          value={senha}
+          onChange = {e=>setSenha(e.target.value)}
           placeholder="Senha"
+
         />
         <p
           className="mt-4 text-end text-xl font-bold font-poppins underline"
@@ -66,7 +91,7 @@ class Login extends Component{
           Esqueci minha senha
         </p>
         <Link
-          to="/perfil/jovitif"
+          type='submit'
           className="inline-block px-4 py-2 mt-20 text-sm font-medium leading-5 text-white bg-red-600 border border-transparent rounded-lg hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 text-center"
         >
           Vamos lá!
@@ -78,6 +103,6 @@ class Login extends Component{
       </div>
   );
   }
-}
+
 
 export default Login;

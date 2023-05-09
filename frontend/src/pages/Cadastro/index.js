@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import "./style.css";
+import api from '../../services/api';
 
 function Cadastro(){
   const [name, setName] = useState('');
@@ -9,7 +10,6 @@ function Cadastro(){
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
-
   const navigate = useNavigate();
 
   async function handleRegister(e) {
@@ -26,23 +26,17 @@ function Cadastro(){
       password,
       username,
     };
-/*          Gadelha ainda vai explicar sobre
+
     try {
-      const { data, error } = await supabase
-        .from('tb_users')
-        .insert(newUser);
+      const response = await api.post('/user/register', newUser);
 
-      if (error) {
-        throw error;
-      }
-
-      if (data) {
-        navigate('/entrada');
+      if (response.data) {
+        navigate('/perfil');
       }
     } catch (error) {
       alert('Ocorreu um erro ao cadastrar o usuário');
       console.error(error);
-    }*/
+    }
   }
 
 

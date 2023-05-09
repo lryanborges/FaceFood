@@ -12,7 +12,7 @@ export default function Router(){
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Login/>} />
-                <Route path='/perfil/:id' element={<Perfil/>} />
+                <Route path='/perfil' element={<Perfil/>} />
                 <Route path='/cadastro' element={<Cadastro/>}/>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
