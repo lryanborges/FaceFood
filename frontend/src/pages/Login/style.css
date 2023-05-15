@@ -7,6 +7,14 @@
       overflow: hidden;
       display: inline-block;
     }
+
+    .bg-facefoodred {
+      background-color: #ff0038;
+    }    
+
+    .c-facefoodred {
+      color: #ff0038;
+    }
     
     @keyframes typing {
       0% {
