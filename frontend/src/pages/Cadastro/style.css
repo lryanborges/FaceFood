@@ -1,0 +1,18 @@
+    .grid {
+    margin-bottom: 20px;
+  }
+      .animate-typing {
+      animation: typing 2s steps(20) forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+    
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
