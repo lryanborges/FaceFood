@@ -1211,10 +1211,6 @@ video {
   overflow: auto;
 }
 
-.rounded-50p {
-  border-radius: 0.125rem;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }

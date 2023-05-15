@@ -45,7 +45,7 @@ function Login(){
         <img src={require("../../assets/Account-amico 1.png")} alt="Imagem de Login" width="67%" className="h-auto hover:transform hover:scale-105 transition duration-300 ease-in-out" />
         <p className="mt-4 text-center text-3xl font-bold font-poppins animate-typing">
           Faça o login e entre para<br />a nossa{" "}
-          <span style={{ color: "red" }}>comunidade</span>
+          <span style={{ color: "#ff0038" }}>comunidade</span>
         </p>
       </div>
 
@@ -92,7 +92,7 @@ function Login(){
         </p>
         <Link
           type='submit'
-          className="inline-block px-4 py-2 mt-20 text-sm font-medium leading-5 text-white bg-red-600 border border-transparent rounded-lg hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 text-center"
+          className="inline-block px-4 py-2 mt-20 text-sm font-medium leading-5 text-white bg-facefoodred border border-transparent rounded-lg hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 text-center"
         >
           Vamos lá!
         </Link>
