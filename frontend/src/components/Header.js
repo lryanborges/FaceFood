@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
+import logoSvg from "../assets/logo.svg";
 
 function Header() {
   const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ function Header() {
   return (
     <header className="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
       <a href="dashboard.html">
-        <img src={require("../assets/logo.png")} alt="FaceFood" width="60%" />
+        <img src={logoSvg} alt="FaceFood" width="60%" />
       </a>
       <div className="flex items-center">
         <button className="md:hidden">
