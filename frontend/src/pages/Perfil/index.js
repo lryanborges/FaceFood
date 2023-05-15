@@ -1,10 +1,22 @@
 import './style.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Perfil() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div>
       <Header />
@@ -56,6 +68,27 @@ function Perfil() {
 
   <div class="bg-facefoodgreen w-semifull rounded h-0v5 mx-16 mt-16"></div>
   
+  <div class="flex justify-center mt-8 mb-8">
+    <a onclick="abrirPopup()"
+      class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4 cursor-pointer">
+      Editar Perfil
+    </a>
+    <Link to="/ingredientes" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+      Ingredientes
+    </Link>
+    <Link to="/pratos" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+      Pratos
+    </Link>
+    <Link to="/publicacoes" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+      Publicações
+    </Link>
+    <Link to="/refeicoes" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+      Refeições
+    </Link>
+    <Link to="/planejamento" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+      Rotina
+    </Link>
+  </div>
             <Footer/>
         </div>
     );

@@ -24,9 +24,9 @@ function Header() {
 
   return (
     <header className="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
-      <a href="dashboard.html">
+      <Link to='/dashboard'>
         <img src={logoSvg} alt="FaceFood" width="60%" />
-      </a>
+      </Link>
       <div className="flex items-center">
         <button className="md:hidden">
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
@@ -38,13 +38,14 @@ function Header() {
           </svg>
         </button>
         <div className="ml-4 flex items-center">
-          <img src={profilePicture} alt="Imagem de perfil" className="w-10 h-10 rounded-full" />
+          <Link to="/perfil"><img src={profilePicture} alt="Imagem de perfil" className="w-10 h-10 rounded-full" /></Link>
+          
           <div className="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
             <a href="../dist/detalhar-perfil.html">{username}</a>
           </div>
         </div>
         <button className="ml-4">
-          <Link to="/perfil">
+          <Link to="/">
             <img src={require("../assets/botao.png")} alt="Botão" className="w-10 h-10" />
           </Link>
         </button>
