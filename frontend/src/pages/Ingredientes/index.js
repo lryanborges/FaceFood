@@ -7,16 +7,39 @@ import api from '../../services/api';
 
 function Ingredientes(){
 
-    const TipoIngrediente = ["Tipo 1", "Tipo 2", "Tipo 3"]; // Exemplo de array de tipos de ingredientes
+    const TipoIngrediente = [
+        "Carnes",
+        "Peixes",
+        "Frutos do Mar",
+        "Vegetais",
+        "Grãos",
+        "Cereais",
+        "Frutas",
+        "Laticínios",
+        "Temperos",
+        "Ervas",
+        "Óleos e Gorduras",
+        "Nozes e Sementes",
+        "Massas",
+        "Doces e Sobremesas",
+        "Bebidas"
+      ];
 
-  const closePopup = () => {
-    // Função para fechar o pop-up
-  };
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openPopup = () => {
+      setIsOpen(true);
+    };
+  
+    const closePopup = () => {
+      setIsOpen(false);
+    };
+
 
   const handleAdicionar = () => {
     // Função para lidar com o evento de adicionar
   };
-  
+
     return(
         <div>
              <Header/>
@@ -53,17 +76,7 @@ function Ingredientes(){
   </div>
 </div>
 
-<div className="mt-5 mb-5 flex justify-center items-center">
-        <a
-          href="../dist/detalhar-perfil.html"
-          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
-        >
-           Voltar
-        </a>
-        <a className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
-          + Adicionar Ingrediente
-        </a>
-      </div>
+        
 
       <table className="table-auto w-full mx-auto max-w-screen-xl mb-10">
   <thead>
@@ -91,67 +104,74 @@ function Ingredientes(){
   </tbody>
 </table>
 
+    <div className="mt-5 mb-5 flex justify-center items-center">
+        <a href="../dist/detalhar-perfil.html" className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"> Voltar</a>
+        <a className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5" onClick={openPopup}> + Adicionar Ingrediente </a>
+      </div>
+
 
         <Footer/>
 
-        <div id="popup" className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50 hidden">
-      <div className="w-full max-w-md mx-auto mt-20">
-        <div className="bg-white rounded shadow-lg p-4">
-          <div className="mb-4">
-            <label htmlFor="nome" className="block text-gray-700 font-bold mb-2">
-              Nome:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="nome"
-              type="text"
-              placeholder="Digite o nome do ingrediente"
-            />
+        {isOpen && (
+        <div id="popup" className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50">
+          <div className="w-full max-w-md mx-auto mt-20">
+            <div className="bg-white rounded shadow-lg p-4">
+              <div className="mb-4">
+                <label htmlFor="nome" className="block text-gray-700 font-bold mb-2">
+                  Nome:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="nome"
+                  type="text"
+                  placeholder="Digite o nome do ingrediente"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="tipo" className="block text-gray-700 font-bold mb-2">
+                  Tipo:
+                </label>
+                <select
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="tipo"
+                >
+                  {TipoIngrediente.map((tipo) => (
+                    <option key={tipo} value={tipo}>
+                      {tipo}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="calorias" className="block text-gray-700 font-bold mb-2">
+                  Calorias:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="calorias"
+                  type="number"
+                  placeholder="Digite a quantidade de calorias"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  id="btnAdicionar"
+                  className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  onClick={handleAdicionar}
+                >
+                  + Adicionar
+                </button>
+                <button
+                  className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  onClick={closePopup}
+                >
+                  Voltar
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="tipo" className="block text-gray-700 font-bold mb-2">
-              Tipo:
-            </label>
-            <select
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="tipo"
-            >
-              {TipoIngrediente.map((tipo) => (
-                <option key={tipo} value={tipo}>
-                  {tipo}
-                </option>
-              ))}
-            </select>
           </div>
-          <div className="mb-4">
-            <label htmlFor="calorias" className="block text-gray-700 font-bold mb-2">
-              Calorias:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="calorias"
-              type="number"
-              placeholder="Digite a quantidade de calorias"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              id="btnAdicionar"
-              className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              onClick={handleAdicionar}
-            >
-              + Adicionar
-            </button>
-            <button
-              className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              onClick={closePopup}
-            >
-              Voltar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
 
         </div>
     );
