@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import Refeicao from '../../components/Refeicao'
 import AddRefeicao from '../../components/AddRefeicao';
+import EditRefeicao from '../../components/EditRefeicao';
+import RemoveRefeicao from '../../components/RemoveRefeicao';
 import Header from "../../components/Header"
 import Footer from '../../components/Footer';
 import divisoriaSvg from "../../assets/divisória.svg"
@@ -10,6 +12,35 @@ import editSvg from "../../assets/edit.svg"
 import trashSvg from "../../assets/trash.svg"
 
 const Planejamento = () => {
+
+    const [addOpen, setAddOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+
+    const addOpenModal = () => {
+        setAddOpen(true);
+    };
+
+    const addCloseModal = () => {
+        setAddOpen(false);
+    };
+
+    const editOpenModal = () => {
+        setEditOpen(true);
+    }
+
+    const editCloseModal = () => {
+        setEditOpen(false);
+    }
+
+    const deleteOpenModal = () => {
+        setDeleteOpen(true);
+    }
+
+    const deleteCloseModal = () => {
+        setDeleteOpen(false);
+    }
+
     return (
         <div className='bg-brancoamarelado'>
             <Header />
@@ -20,13 +51,13 @@ const Planejamento = () => {
                 <div class="bg-F0F0F0 p-4 mt-8">
                     <div class="ml-8 mt-4 flex gap-50p">
                         <div class="flex gap-2">
-                            <button class="bg-facefoodred p-4 rounded-full" onClick="openAddRefeicao()">
+                            <button class="bg-facefoodred p-4 rounded-full" onClick={addOpenModal}>
                                 <img src={plusSvg} />
                             </button>
-                            <button class="bg-facefoodred p-4 rounded-full" onclick="openEditRefeicao()">
+                            <button class="bg-facefoodred p-4 rounded-full" onClick={editOpenModal}>
                                 <img src={editSvg} />
                             </button>
-                            <button class="bg-facefoodred p-4 rounded-full" onclick="openDeleteRefeicao()">
+                            <button class="bg-facefoodred p-4 rounded-full" onClick={deleteOpenModal}>
                                 <img src={trashSvg} />
                             </button>
                         </div>
@@ -76,25 +107,14 @@ const Planejamento = () => {
                 </div>
             </main>
 
-            <section class="edit bg-add-edit w-full h-full-screen fixed top-0 z-50 hidden">
-            <AddRefeicao/>
-            </section>
 
-            <section class="delete bg-add-edit w-full h-full fixed top-0 z-50 hidden">
-                <div class="absolute middle">
-                    <div class="bg-brancoamarelado flex w-160 p-8 items-center justify-center rounded">
-                        <h2 class="c-001701 textatt-2xl font-bold">Confirmar exclusão?</h2>
-                        <div class="ml-16">
-                            <button class="bg-brancoamarelado c-3D3D3D border-2 border-3D3D3D p-1 px-8 rounded"
-                                onclick="closeDelete()">Sim</button>
-                            <button class="bg-3D3D3D c-F1F9E4 border-2 border-3D3D3D p-1 px-8 rounded"
-                                onclick="closeDelete()">Não</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <AddRefeicao isOpen={addOpen} onClose={addCloseModal} />
 
-            <Footer/>
+            <EditRefeicao isOpen={editOpen} onClose={editCloseModal} />
+
+            <RemoveRefeicao isOpen={deleteOpen} onClose={deleteCloseModal}/>
+
+            <Footer />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import "./style.css";
 import api from '../../services/api';
+import logoSvg from "../../assets/logo.svg"
 
 function Cadastro() {
   const [name, setName] = useState('');
@@ -43,10 +44,10 @@ function Cadastro() {
   return (
     <div>
       <header className="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
-        <a href="index.html"><img src={require("../../assets/logo.png")} alt="FaceFood" width="80%" /></a>
+        <Link to ="../dashboard"><img src={logoSvg} alt="FaceFood" width="80%" /></Link>
         <div className="flex items-center">
           <div className="ml-4 flex items-center">
-            <Link to="/" className="ml-2 font-poppins font-bold text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4 hover:bg-gray-800 hover:text-white">
+            <Link to="../login" className="ml-2 font-poppins font-bold text-sm text-3D3D3D border-2 border-gray-800 rounded-lg px-4 py-2 mt-4 hover:bg-gray-800 hover:text-white">
               Já tem uma conta ?
             </Link>
           </div>

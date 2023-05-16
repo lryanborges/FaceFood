@@ -2,6 +2,8 @@ import React from 'react';
 import './style.css';
 import Footer from "../../components/Footer";
 import Opcoes from "../../components/Opcoes"
+import { Link } from 'react-router-dom';
+import Cadastro from '../Cadastro';
 
 import menuSvg from '../../assets/menu.svg';
 import mulherComendoSvg from "../../assets/Eating healthy food-pana-red.svg";
@@ -58,9 +60,9 @@ export default function Dashboard() {
                         <h1 class="textatt-5xl font-bold c-3D3D3D"><span class="c-B7004B">Planeje</span> a sua rotina alimentar
                             saudável</h1>
                         <p class="mt-2 ml-1 c-C68484 font-light text-1v5xl">Participe da nossa comunidade!</p>
-                        <a href="criar-conta.html"><button
+                        <Link to="../cadastro"><button
                             class="textatt-2xl mt-6 ml-40 bg-facefoodred rounded p-6 px-12 c-F7FEE5 font-bold"
-                            type="submit">Começar!</button></a>
+                            type="submit">Começar!</button></Link>
                     </div>
                     <div>
                         <img class="relative mb--28 z-10 ml-16" src={mulherComendoSvg} width="80%"
@@ -84,9 +86,9 @@ export default function Dashboard() {
                             <h1 class="textatt-5xl font-bold c-3D3D3D"><span class="c-B7004B">Veja</span> e <span
                                 class="c-B7004B">compartilhe</span> pratos mega variados</h1>
                             <p class="mt-2 ml-1 c-C68484 font-light text-1v5xl">Participe da nossa comunidade!</p>
-                            <a href="criar-conta.html"><button
+                            <Link to="../cadastro"><button
                                 class="textatt-2xl mt-6 ml-32 bg-facefoodred rounded p-6 px-12 c-F7FEE5 font-bold"
-                                type="submit">Conheça!</button></a>
+                                type="submit">Conheça!</button></Link>
                         </div>
                     </div>
                 </div>
