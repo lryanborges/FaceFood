@@ -18,16 +18,16 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard/>} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/ingredientes" element={<Ingredientes />} />
         <Route path="/homepage" element={<Homepage />} />
-        <Route path="/EditarPrato" element={<EditarPrato />} />
+        <Route path="/EditarPrato/:pratoId" element={<EditarPrato />} />
         <Route path="/cadastrarPrato" element={<CadastrarPrato />} />
-        <Route path="/visualizarPrato" element={<VisualizarPrato />} />
+        <Route path="/visualizarPrato/:pratoId" element={<VisualizarPrato />} />
         <Route path="/planejamento" element={<Planejamento />} />
         <Route path="/pratos" element={<Pratos />} />
         <Route path="/pesquisas" element={<Pesquisas />} />

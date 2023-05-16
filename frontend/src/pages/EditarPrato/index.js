@@ -5,8 +5,30 @@ import React from "react";
 import Pesquisa from "../../components/Pesquisa";
 import PratoSemBG from "../../components/PratoSemBG";
 import "./style.css";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import api from "../../services/api";
 
 function EditarPrato() {
+  const [prato, setPrato] = useState({});
+  const { pratoId } = useParams();
+
+  useEffect(() => {
+    async function loadData() {
+      api
+        .get(`/api/prato/id/${pratoId}`)
+        .then((response) => {
+          // Handle response
+          setPrato(response.data);
+        })
+        .catch((err) => {
+          // Handle errors
+          console.error(err);
+        });
+    }
+    loadData();
+  }, [pratoId]);
+
   const tipos = [
     { value: "vegana", label: "Vegana" },
     { value: "sem-lactose", label: "Sem Lactose" },
@@ -52,7 +74,7 @@ function EditarPrato() {
         </div>
       </div>
 
-      <h2 className="font-bold text-cinza text-3xl ml-16">Cadastrar pratos</h2>
+      <h2 className="font-bold text-cinza text-3xl ml-16">Editar prato</h2>
       <form className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6">
         <div className="flex justify-between">
           <div className="flex-1 flex gap-6">
@@ -63,6 +85,7 @@ function EditarPrato() {
               className="bg-input border-solid border border-facefoodred rounded w-325px"
               type="text"
               placeholder="Nome do prato"
+              value={prato.nome}
               name="nome-prato"
               id="nome-prato"
               required
@@ -102,6 +125,7 @@ function EditarPrato() {
               placeholder="Modo de preparo"
               cols="22"
               rows="6"
+              value={""}
               required
             ></textarea>
           </div>
@@ -130,6 +154,7 @@ function EditarPrato() {
               placeholder="Tempo de preparo(Minutos)"
               name="tempo-de-preparo"
               id="tempo-de-preparo"
+              value={""}
               required
             />
           </div>
@@ -147,6 +172,7 @@ function EditarPrato() {
               placeholder="Informações nutricionais"
               cols="22"
               rows="6"
+              value={prato.calorias}
               required
             ></textarea>
           </div>
@@ -161,6 +187,7 @@ function EditarPrato() {
               placeholder="Descrição"
               cols="22"
               rows="6"
+              value={prato.descricao}
               required
             ></textarea>
           </div>
