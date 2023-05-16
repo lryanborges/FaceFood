@@ -1,29 +1,83 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import "./style.css";
 import api from '../../services/api';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Ingredientes(){
+function Ingredientes() {
+  const [ingredientes, setIngredientes] = useState([]);
+  const [pesquisa, setPesquisa] = useState('');
 
-    const TipoIngrediente = [
-        "Carnes",
-        "Peixes",
-        "Frutos do Mar",
-        "Vegetais",
-        "Grãos",
-        "Cereais",
-        "Frutas",
-        "Laticínios",
-        "Temperos",
-        "Ervas",
-        "Óleos e Gorduras",
-        "Nozes e Sementes",
-        "Massas",
-        "Doces e Sobremesas",
-        "Bebidas"
-      ];
+  useEffect(() => {
+    fetchIngredientes();
+  }, []);
+
+  const fetchIngredientes = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/ingrediente/');
+      console.log(response.data);
+      setIngredientes(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePesquisaChange = (event) => {
+    setPesquisa(event.target.value);
+  };
+
+  const filteredIngredientes = ingredientes.filter(
+    (ingrediente) =>
+      ingrediente.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+      ingrediente.tipo.toLowerCase().includes(pesquisa.toLowerCase())
+  );
+
+
+  const handleAdicionar = async () => {
+    try {
+      const nome = document.getElementById('nome').value;
+      const tipo = document.getElementById('tipo').value;
+      const calorias = document.getElementById('calorias').value;
+      console.log(nome, tipo, calorias); // Verifique se os valores estão sendo obtidos corretamente
+
+      const novoIngrediente = {
+        nome: nome,
+        tipo: tipo,
+        calorias: calorias,
+      };
+  
+      const response = await axios.post(
+        'http://localhost:8080/api/ingrediente/',
+        novoIngrediente
+      );
+  
+      // Atualiza a lista de ingredientes após adicionar o novo ingrediente
+      fetchIngredientes();
+      closePopup();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const TipoIngrediente = [
+    "Carnes",
+    "Peixes",
+    "Frutos_do_Mar",
+    "Vegetais",
+    "Grãos",
+    "Cereais",
+    "Frutas",
+    "Laticínios",
+    "Temperos",
+    "Ervas",
+    "Óleos_e_Gorduras",
+    "Nozes_e_Sementes",
+    "Massas",
+    "Doces_e_Sobremesas",
+    "Bebidas"
+  ].map((tipo) => tipo.toUpperCase());
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -36,10 +90,6 @@ function Ingredientes(){
     };
 
 
-  const handleAdicionar = () => {
-    // Função para lidar com o evento de adicionar
-  };
-
     return(
         <div>
              <Header/>
@@ -50,12 +100,13 @@ function Ingredientes(){
     <h2 className="text-3xl font-light c-FF0038 ml-16">Cadastrados</h2>
   </div>
   <div className="relative ml-auto mr-7">
-    <input
-      type="text"
-      className="border-2 border-red rounded-full py-2 px-4 w-64"
-      placeholder="Pesquisar ingrediente"
-      id="pesquisa-ingrediente"
-    />
+  <input
+          type="text"
+          className="border-2 border-red rounded-full py-2 px-4 w-64"
+          placeholder="Pesquisar ingrediente"
+          value={pesquisa}
+          onChange={handlePesquisaChange}
+        />
     <button type="submit" className="absolute right-0 top-0 mt-2v5 mr-4">
       <svg
         width="25"
@@ -78,29 +129,31 @@ function Ingredientes(){
 
         
 
-      <table className="table-auto w-full mx-auto max-w-screen-xl mb-10">
+<table className="table-auto w-full mx-auto max-w-screen-xl mb-10">
   <thead>
     <tr>
       <th className="px-6 py-2">Nome</th>
       <th className="px-6 py-2">Tipo</th>
       <th className="px-6 py-2">Calorias</th>
-      <th className="px-6 py-2">Ações</th>
+      <th className="px-6 py-2"></th>
     </tr>
   </thead>
-  <tbody id="tabela-ingredientes">
-    <tr>
-      <td className="border px-6 py-2"></td>
-      <td className="border px-6 py-2"></td>
-      <td className="border px-6 py-2"></td>
-      <td className="border px-6 py-2">
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 btn-editar">
-          Editar
-        </button>
-        <button className="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded btn-excluir">
-          Excluir
-        </button>
-      </td>
-    </tr>
+  <tbody id="tb_ingredientes">
+    {filteredIngredientes.map((ingrediente, index) => (
+      <tr key={ingrediente.id} className={index === 0 ? "bg-yellow-200" : ""}>
+        <td>{ingrediente.nome}</td>
+        <td>{ingrediente.tipo}</td>
+        <td>{ingrediente.calorias}</td>
+        <td className="border px-6 py-2">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 btn-editar">
+            Editar
+          </button>
+          <button className="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded btn-excluir">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    ))}
   </tbody>
 </table>
 
