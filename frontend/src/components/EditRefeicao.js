@@ -5,7 +5,7 @@ import pinoSvg from "../assets/pino.svg";
 import dobraSvg from "../assets/dobra.svg";
 import { Link } from "react-router-dom";
 
-const AddRefeicao = ({isOpen, onClose}) => {
+const EditRefeicao = ({isOpen, onClose}) => {
     if(!isOpen){
         return null;
     }
@@ -18,7 +18,7 @@ const AddRefeicao = ({isOpen, onClose}) => {
                         <img class="items-center absolute top-middle" src={pinoSvg} width="6%" />
                         <div class="grid-2">
                             <div>
-                                <h2 class="altAdd mt-4 c-001701 textatt-2xl font-bold">Adicionar refeição.</h2>
+                                <h2 class="altEdit mt-4 c-001701 textatt-2xl font-bold">Editar refeição.</h2>
                                 <div class="flex mt-8">
                                     <input class="rounded p-1 w-92" type="text" placeholder="  Pesquise aqui!" />
                                     <button type="submit" class="bg-facefoodred p-1 px-4 rounded ml--4">
@@ -59,7 +59,7 @@ const AddRefeicao = ({isOpen, onClose}) => {
                                 </div>
                             </div>
                             <div class="ml-8 mt-12">
-                                <h3 class="titleAdd c-001701 text-1v3xl font-bold">Selecione sua refeição preferida</h3>
+                                <h3 class="titleEdit c-001701 text-1v3xl font-bold">Frango com batatas e ovos</h3>
                                 <img class="rounded my-4" src={require("../assets/comida1.png")} width="260rem" />
                                 <Link to="../pratos">
                                     <p class="c-001701 underline float-right">abrir detalhes do prato</p>
@@ -78,4 +78,4 @@ const AddRefeicao = ({isOpen, onClose}) => {
     )
 }
 
-export default AddRefeicao;
+export default EditRefeicao;

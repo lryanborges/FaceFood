@@ -1003,6 +1003,7 @@ video {
 .scroll-6 {
   max-height: 28rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .scroll-7 {

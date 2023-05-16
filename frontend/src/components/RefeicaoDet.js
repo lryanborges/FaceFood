@@ -17,7 +17,7 @@ const RefeicaoDet = () => {
                     <p class="bg-facefoodgreen px-3 rounded-full">saudável</p>
                 </div>
             </div>
-            <img class="ml-2 mt-2 rounded" src="../img/comida1.png" width="120rem" />
+            <img class="ml-2 mt-2 rounded" src={require("../assets/comida1.png")} width="120rem" />
         </div>
     )
 }

@@ -88,7 +88,7 @@ const Homepage = () => {
                     </div>
                 </section>
 
-                <div class="mt-4 grid grid-cols-8 gap-4 justify-items-center">
+                <div class="mt-4 grid grid-cols-8 gap-4">
                     <Prato />
                     <Prato />
                     <Prato />
