@@ -15,7 +15,7 @@ const Homepage = () => {
                 <div class="w-1/2 flex flex-col justify-center items-center">
                     <h1 class="text-4xl font-bold text-center">Alimente-se de forma<br /><span class="c-B7004B">balanceada</span> e saudável.</h1>
                     <p class="c-C68484 font-light text-1v5xl mt-4 mb-8 ">Monte já sua rotina</p>
-                    <a href="../dist/planejamento.html" class="bg-red-500 text-white px-4 py-2 rounded bg-red">Planejar</a>
+                    <a href="planejamento" class="bg-red-500 text-white px-4 py-2 rounded bg-red">Planejar</a>
                 </div>
                 <div class="flex-1 mr-1">
                     <img src={require("../../assets/Eating healthy food-bro 3.png")} alt="Imagem ilustrativa" />
@@ -31,7 +31,7 @@ const Homepage = () => {
                     <h2 class="text-xl font-bold">Refeições do dia</h2>
                     <p class="text-sm">quarta-feira, 01/02/2023</p>
                 </div>
-                <a href="planejamento.html">
+                <a href="planejamento">
                     <button class="bg-red rounded-full p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M12.05 6.273L9.727 8.596l3.678 3.678 2.323-2.323a.5.5 0 0 0 0-.707l-2.322-2.322a.5.5 0 0 0-.707 0zM8.82 9.508l-2.322-2.322a1.5 1.5 0 0 1 2.121-2.12l2.322 2.322a1.5 1.5 0 0 1-2.12 2.12z" />
@@ -64,7 +64,7 @@ const Homepage = () => {
                     <Prato />
                     <Prato />
                 </div>
-                <a href="../dist/pratos.html" class="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <a href="/pratos" class="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                     Visualizar Seus Pratos
                 </a>
             </div>
