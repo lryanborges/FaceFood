@@ -6,7 +6,7 @@ import Pesquisa from "../../components/Pesquisa";
 import PratoSemBG from "../../components/PratoSemBG";
 import "./style.css";
 
-function CadastrarPrato() {
+function EditarPrato() {
   const tipos = [
     { value: "vegana", label: "Vegana" },
     { value: "sem-lactose", label: "Sem Lactose" },
@@ -178,4 +178,4 @@ function CadastrarPrato() {
     </div>
   );
 }
-export default CadastrarPrato;
+export default EditarPrato;

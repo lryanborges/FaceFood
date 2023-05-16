@@ -1,16 +1,17 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import React from "react";
 import "./style.css";
 
 function VisualizarPrato() {
   return (
     <div className="flex flex-col w-full h-full font-poppins">
       <Header />
-      <h1 className="text-3xl text-[#50d71e] font-bold font-poppins mt-8 px-4 ml-8 mb-4">
+      <h1 className="text-3xl text-cinza font-bold font-poppins mt-8 px-4 ml-8 mb-4">
         Visualizar prato
       </h1>
 
-      <div className="bg-[#EDEDED] flex-1 m-8 flex flex-col px-8 py-8 gap-6">
+      <div className="bg-cinza flex-1 m-8 flex flex-col px-8 py-8 gap-6">
         <div className="flex">
           <div className="flex-1 flex flex-col self-center">
             <div className="flex justify-between mb-4">
@@ -33,7 +34,10 @@ function VisualizarPrato() {
             </p>
           </div>
           <div className="flex flex-col">
-            <img src="../../assets/comida1.png" class="h-48 w-auto" />
+            <img
+              src={require("../../assets/comida1.png")}
+              class="h-48 w-auto"
+            />
             <span className="font-poppins text-xl font-medium mt-2">
               Frango com batatas e ovos
             </span>
