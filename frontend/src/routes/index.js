@@ -9,6 +9,9 @@ import Cadastro from '../pages/Cadastro'
 import Dashboard from '../pages/Dashboard'
 import Homepage from '../pages/Homepage'
 import Ingredientes from '../pages/Ingredientes'
+import Planejamento from '../pages/Planejamento'
+import Pratos from '../pages/Pratos'
+import Pesquisas from '../pages/Pesquisas'
 
 export default function Router(){
     return(
@@ -21,6 +24,9 @@ export default function Router(){
                 <Route path='/ingredientes' element={<Ingredientes/>}/>
                 <Route path='/homepage' element={<Homepage/>}/>
                 <Route path="*" element={<NotFound/>} />
+                <Route path="/planejamento" element={<Planejamento/>}/>
+                <Route path="/pratos" element={<Pratos/>}/>
+                <Route path="/pesquisas" element={<Pesquisas/>}/>
             </Routes>
         </BrowserRouter>
     )
