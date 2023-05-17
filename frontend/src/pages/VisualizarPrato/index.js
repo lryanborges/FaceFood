@@ -1,9 +1,30 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import React from "react";
+import { useParams } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import api from "../../services/api";
 import "./style.css";
 
 function VisualizarPrato() {
+  const [prato, setPrato] = useState({});
+  const { pratoId } = useParams();
+  useEffect(() => {
+    async function loadData() {
+      api
+        .get(`/api/prato/id/${pratoId}`)
+        .then((response) => {
+          // Handle response
+          setPrato(response.data);
+        })
+        .catch((err) => {
+          // Handle errors
+          console.error(err);
+        });
+    }
+    loadData();
+  }, [pratoId]);
   return (
     <div className="flex flex-col w-full h-full font-poppins">
       <Header />
@@ -15,44 +36,40 @@ function VisualizarPrato() {
         <div className="flex">
           <div className="flex-1 flex flex-col self-center">
             <div className="flex justify-between mb-4">
-              <p className="font-bold text-2xl">Descrição: </p>
-              <p className="mr-8 font-bold text-2xl">
-                Categoria:
+              <div className="flex flex-col flex-1">
+                <p className="font-bold text-2xl mb-4">Descrição: </p>
+                <p className="text-cinzaTexto font-medium text-xl">
+                  {prato.descricao}
+                </p>
+              </div>
+              <div className="flex flex-col flex-1">
+                <p className="mr-8 font-bold text-2xl mb-4">Categoria: </p>
                 <span className="text-cinzaTexto text-xl font-medium">
-                  {" "}
-                  Não selecionado!
+                  {prato.tipos}
                 </span>
-              </p>
+              </div>
             </div>
-            <p className="text-cinzaTexto font-medium text-xl">
-              Um frango supimpa é um frango incrivelmente delicioso e saboroso.
-              Ele é preparado com ingredientes de alta qualidade e tem uma
-              textura suave e macia. O sabor é equilibrado e pode incluir
-              especiarias, ervas e outros temperos para um gosto ainda mais
-              incrível. É uma ótima opção para uma refeição satisfatória e
-              saudável.
-            </p>
           </div>
           <div className="flex flex-col">
             <img
+              className="h-48 w-auto"
               src={require("../../assets/comida1.png")}
-              class="h-48 w-auto"
+              alt=""
             />
             <span className="font-poppins text-xl font-medium mt-2">
-              Frango com batatas e ovos
+              {prato.nome}
             </span>
           </div>
         </div>
 
-        <div className="flex gap-18">
-          <div className="flex flex-col">
+        <div className="flex">
+          <div className="flex flex-col grow-1">
             <h2 className="font-bold text-2xl mb-4">Lista de ingredientes: </h2>
             <p className="text-cinzaTexto font-medium font-poppins text-xl">
-              Frango, tomate, cebola, alho, pimenta-do-reino, sal gordura de
-              porco e açafrão
+              {}
             </p>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col grow-1">
             <h2 className="font-bold text-2xl mb-4 min-w-ajuste">
               Tempo de preparo:{" "}
             </h2>
@@ -67,10 +84,7 @@ function VisualizarPrato() {
             Modo de preparo:{" "}
           </h2>
           <p className="font-poppins font-medium text-xl text-cinzaTexto">
-            Primeiro corte os tomates em brunoise, pique a cebola e pile os
-            dentes de alho, Depois, basta colocar o frango cortado em uma
-            vasilha e colocar todos os ingrediente juntos, Coloque uma panela de
-            pressão ou se preferir, uma panela normal no fogo ...
+            Aqui é o modo de preparo
           </p>
         </div>
 
@@ -79,7 +93,7 @@ function VisualizarPrato() {
             Informações nutricionais:{" "}
           </h2>
           <p className="font-poppins font-medium text-xl text-cinzaTexto">
-            Nenhuma informação nutricional foi adicionanda ao prato
+            {"calorias :" + prato.calorias}
           </p>
         </div>
       </div>

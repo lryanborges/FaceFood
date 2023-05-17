@@ -44,9 +44,9 @@ export default function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ingredientes" element={<PrivateRoute><Ingredientes /></PrivateRoute>} />
           <Route path="/homepage" element={<PrivateRoute><Homepage /></PrivateRoute>} />
-          <Route path="/EditarPrato" element={<PrivateRoute><EditarPrato /></PrivateRoute>} />
+          <Route path="/EditarPrato/:pratoId" element={<PrivateRoute><EditarPrato /></PrivateRoute>} />
           <Route path="/cadastrarPrato" element={<PrivateRoute><CadastrarPrato /></PrivateRoute>} />
-          <Route path="/visualizarPrato" element={<PrivateRoute><VisualizarPrato /></PrivateRoute>} />
+          <Route path="/visualizarPrato/:pratoId" element={<PrivateRoute><VisualizarPrato /></PrivateRoute>} />
           <Route path="/planejamento" element={<PrivateRoute><Planejamento /></PrivateRoute>} />
           <Route path="/pratos" element={<PrivateRoute><Pratos /></PrivateRoute>} />
           <Route path="/pesquisas" element={<PrivateRoute><Pesquisas /></PrivateRoute>} />
