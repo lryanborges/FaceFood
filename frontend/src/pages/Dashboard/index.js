@@ -24,6 +24,16 @@ export default function Dashboard() {
     const login = async (e) => {
         e.preventDefault();
 
+        if (!email || !senha) {
+            alert("Insina o e-mail e a senha.");
+            return;
+          }
+      
+          if (!email.includes("@")) {
+            alert("E-mail inválido.");
+            return;
+          }
+
         handleLogin({email, senha});
     }
 
@@ -31,7 +41,7 @@ export default function Dashboard() {
         <div class="bg-facefoodgreen">
             <header class="flex wrap justify-between items-center">
                 <a href="index.html"><img class="mt-3 ml-6" src={logoSvg} alt="FaceFood" width="80%" /></a>
-                <div class="flex gap-2 wrap mr-16 mt-4">
+                <form className="flex gap-2 wrap mr-16 mt-4">
                     <input className="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-84" type="text"
                         placeholder="  Email ou Usuário" id="email" name="email" 
                         onChange={e => setEmail(e.target.value)}
@@ -43,8 +53,8 @@ export default function Dashboard() {
                     <button
                         className="border rounded p-2 px-8 bg-facefoodred c-F7FEE5 cursor-pointer font-semibold" type="button"
                         value="Entrar" onClick={login}>Entrar</button>
-                    <a class="absolute r-4 t-2 c-001701 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
-                </div>
+                    <a className="absolute r-4 t-2 c-001701 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
+                </form>
             </header>
 
             <main class="bg-brancoamarelado main mt-20 px-8 p-4 m-32">

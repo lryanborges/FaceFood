@@ -21,17 +21,12 @@ function Login() {
     e.preventDefault();
 
     if (!email || !senha) {
-      alert("Campus obrigatórios");
+      alert("Insina o e-mail e a senha.");
       return;
     }
 
     if (!email.includes("@")) {
-      alert("E-mail inválido");
-      return;
-    }
-
-    if (senha.length < 6) {
-      alert("Senha deve ter no miníno 6 caracteres");
+      alert("E-mail inválido.");
       return;
     }
 
