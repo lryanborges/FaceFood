@@ -1,16 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import "./style.css";
-import { api } from '../../services/api';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from "../../services/api";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Ingredientes() {
   const [ingredientes, setIngredientes] = useState([]);
-  const [pesquisa, setPesquisa] = useState('');
-  const { token } = localStorage.getItem('token');
-
+  const [pesquisa, setPesquisa] = useState("");
+  const { token } = localStorage.getItem("token");
 
   useEffect(() => {
     fetchIngredientes();
@@ -30,18 +29,26 @@ function Ingredientes() {
     setPesquisa(event.target.value);
   };
 
+  const handleExcluir = async (id) => {
+    try {
+      await api.delete(`/api/ingrediente/id/${id}`);
+      fetchIngredientes();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const filteredIngredientes = ingredientes.filter(
     (ingrediente) =>
       ingrediente.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
       ingrediente.tipo.toLowerCase().includes(pesquisa.toLowerCase())
   );
 
-
   const handleAdicionar = async () => {
     try {
-      const nome = document.getElementById('nome').value;
-      const tipo = document.getElementById('tipo').value;
-      const calorias = document.getElementById('calorias').value;
+      const nome = document.getElementById("nome").value;
+      const tipo = document.getElementById("tipo").value;
+      const calorias = document.getElementById("calorias").value;
       console.log(nome, tipo, calorias); // Verifique se os valores estão sendo obtidos corretamente
 
       const novoIngrediente = {
@@ -75,7 +82,7 @@ function Ingredientes() {
     "Nozes_e_Sementes",
     "Massas",
     "Doces_e_Sobremesas",
-    "Bebidas"
+    "Bebidas",
   ].map((tipo) => tipo.toUpperCase());
 
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +94,6 @@ function Ingredientes() {
   const closePopup = () => {
     setIsOpen(false);
   };
-
 
   return (
     <div>
@@ -126,8 +132,6 @@ function Ingredientes() {
         </div>
       </div>
 
-
-
       <table className="table-auto mx-32 w-80p mb-10">
         <thead>
           <tr>
@@ -139,7 +143,10 @@ function Ingredientes() {
         </thead>
         <tbody id="tb_ingredientes">
           {filteredIngredientes.map((ingrediente, index) => (
-            <tr key={ingrediente.id} className={index === 0 ? "bg-yellow-200" : ""}>
+            <tr
+              key={ingrediente.id}
+              className={index === 0 ? "bg-yellow-200" : ""}
+            >
               <td className="border">{ingrediente.nome}</td>
               <td className="border">{ingrediente.tipo}</td>
               <td className="border">{ingrediente.calorias}</td>
@@ -147,7 +154,10 @@ function Ingredientes() {
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 btn-editar">
                   Editar
                 </button>
-                <button className="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded btn-excluir">
+                <button
+                  className="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded btn-excluir"
+                  onClick={() => handleExcluir(ingrediente.id)}
+                >
                   Excluir
                 </button>
               </td>
@@ -157,19 +167,36 @@ function Ingredientes() {
       </table>
 
       <div className="mt-5 mb-5 flex justify-center items-center">
-        <a href="../dist/detalhar-perfil.html" className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"> Voltar</a>
-        <a className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5" onClick={openPopup}> + Adicionar Ingrediente </a>
+        <a
+          href="../dist/detalhar-perfil.html"
+          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
+        >
+          {" "}
+          Voltar
+        </a>
+        <a
+          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
+          onClick={openPopup}
+        >
+          {" "}
+          + Adicionar Ingrediente{" "}
+        </a>
       </div>
-
 
       <Footer />
 
       {isOpen && (
-        <div id="popup" className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50">
+        <div
+          id="popup"
+          className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50"
+        >
           <div className="w-full max-w-md mx-auto mt-20">
             <div className="bg-white rounded shadow-lg p-4">
               <div className="mb-4">
-                <label htmlFor="nome" className="block text-gray-700 font-bold mb-2">
+                <label
+                  htmlFor="nome"
+                  className="block text-gray-700 font-bold mb-2"
+                >
                   Nome:
                 </label>
                 <input
@@ -180,7 +207,10 @@ function Ingredientes() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="tipo" className="block text-gray-700 font-bold mb-2">
+                <label
+                  htmlFor="tipo"
+                  className="block text-gray-700 font-bold mb-2"
+                >
                   Tipo:
                 </label>
                 <select
@@ -195,7 +225,10 @@ function Ingredientes() {
                 </select>
               </div>
               <div className="mb-4">
-                <label htmlFor="calorias" className="block text-gray-700 font-bold mb-2">
+                <label
+                  htmlFor="calorias"
+                  className="block text-gray-700 font-bold mb-2"
+                >
                   Calorias:
                 </label>
                 <input
@@ -224,7 +257,6 @@ function Ingredientes() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
