@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {api} from "../services/api"
+import { api } from "../services/api"
 
 
 export function useAuth() {
@@ -22,27 +22,29 @@ export function useAuth() {
         setLoading(false);
     }, []);
 
-    async function handleLogin({email, senha}) {
+    async function handleLogin({ email, senha }) {
 
         const login = {
-            email:email,
-            senha:senha,
+            email: email,
+            senha: senha,
         }
 
-        const { headers } = await api.post("/api/login", login);
+        try {
+            const { headers } = await api.post("/api/login", login);
 
-        const authorization = headers.authorization;
 
-        const [, token] = authorization.split(" ");
+            const authorization = headers.authorization;
 
-        if(!token){
-            alert("E-mail ou senha incorretos.");
+            const [, token] = authorization.split(" ");
+
+            localStorage.setItem('token', JSON.stringify(token));
+            api.defaults.headers.Authorization = `Bearer ${token}`;
+            setAuthenticated(true);
+            navigate("/homepage");
+            
+        } catch (error) {
+            alert(`${error}.\nCredenciais não coincidem com um usuário do sistema`);
         }
-
-        localStorage.setItem('token', JSON.stringify(token));
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setAuthenticated(true);
-        navigate("/homepage");
     }
 
     async function handleLogout() {
