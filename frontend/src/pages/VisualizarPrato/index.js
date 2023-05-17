@@ -9,13 +9,21 @@ import "./style.css";
 
 function VisualizarPrato() {
   const [prato, setPrato] = useState({});
+  const [ingredientes, setIngredientes] = useState([]);
   const { pratoId } = useParams();
+  const [tipos, setTipos] = useState();
   useEffect(() => {
     async function loadData() {
       api
         .get(`/api/prato/id/${pratoId}`)
         .then((response) => {
           // Handle response
+          setIngredientes(
+            response.data.ingredientes.map((ingredi) => {
+              return ingredi.nome;
+            })
+          );
+          setTipos(response.data.tipos.join(","));
           setPrato(response.data);
         })
         .catch((err) => {
@@ -25,6 +33,7 @@ function VisualizarPrato() {
     }
     loadData();
   }, [pratoId]);
+  console.log(ingredientes);
   return (
     <div className="flex flex-col w-full h-full font-poppins">
       <Header />
@@ -45,7 +54,7 @@ function VisualizarPrato() {
               <div className="flex flex-col flex-1">
                 <p className="mr-8 font-bold text-2xl mb-4">Categoria: </p>
                 <span className="text-cinzaTexto text-xl font-medium">
-                  {prato.tipos}
+                  {tipos}
                 </span>
               </div>
             </div>
@@ -66,7 +75,7 @@ function VisualizarPrato() {
           <div className="flex flex-col grow-1">
             <h2 className="font-bold text-2xl mb-4">Lista de ingredientes: </h2>
             <p className="text-cinzaTexto font-medium font-poppins text-xl">
-              {}
+              {ingredientes.join(",")}
             </p>
           </div>
           <div className="flex flex-col grow-1">

@@ -5,56 +5,78 @@ import React from "react";
 import Pesquisa from "../../components/Pesquisa";
 import PratoSemBG from "../../components/PratoSemBG";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 
 function EditarPrato() {
-  const [prato, setPrato] = useState({});
+  const [nome, setNome] = useState();
+  const [descricao, setDescricao] = useState();
+  const [calorias, setCalorias] = useState();
+  const [tipos, setTipos] = useState([]);
+  const [ingredientes, setIngredientes] = useState([]);
+  const [modo, setModo] = useState();
+  const [tempo, setTempo] = useState();
   const { pratoId } = useParams();
-
+  const navigate = useNavigate();
+  const tipo = [];
+  const ingrediente = [];
   useEffect(() => {
     async function loadData() {
       api
         .get(`/api/prato/id/${pratoId}`)
         .then((response) => {
           // Handle response
-          setPrato(response.data);
+          setNome(response.data.nome);
+          setDescricao(response.data.descricao);
+          setCalorias(response.data.calorias);
+          setTipos(response.data.tipos);
+          setIngredientes(response.data.ingredientes);
+          setTempo(12);
+          setModo("sim meu irmao");
         })
         .catch((err) => {
           // Handle errors
           console.error(err);
         });
+
+      /*api.get(`/api/prato`).then((response) => {
+        response.data.tipos.map((tipo) => {
+          return tipo.push({
+            label: `${tipo}`,
+            value: `${tipo}`,
+          });
+        });
+        response.data.ingredientes.map((ingrediente) => {
+          return ingrediente.push({
+            label: `${ingrediente.nome}`,
+            value: `${ingrediente.nome}`,
+          });
+        });
+      });*/
     }
     loadData();
   }, [pratoId]);
 
-  const tipos = [
-    { value: "vegana", label: "Vegana" },
-    { value: "sem-lactose", label: "Sem Lactose" },
-    { value: "vegetariana", label: "Vegetariana" },
-    { value: "japonesa", label: "Japonesa" },
-    { value: "chinesa", label: "Chinesa" },
-    { value: "nordica", label: "Nórdica" },
-    { value: "sem-gluten", label: "Sem Glúten" },
-  ];
-  const ingredientes = [
-    { value: "Peixes", label: "Peixes" },
-    { value: "Carnes", label: "Carnes" },
-    { value: "Frutos do Mar", label: "Frutos do Mar" },
-    { value: "Vegetais", label: "Vegetais" },
-    { value: "Grãos", label: "Grãos" },
-    { value: "Cereais", label: "Cereais" },
-    { value: "Frutas", label: "Frutas" },
-    { value: "Laticínios", label: "Laticínios" },
-    { value: "Temperos", label: "Temperos" },
-    { value: "Ervas", label: "Ervas" },
-    { value: "Óleos e Gorduras", label: "Óleos e Gorduras" },
-    { value: "Nozes e Sementes", label: "Nozes e Sementes" },
-    { value: "Massas", label: "Massas" },
-    { value: "Doces e Sobremesas", label: "Doces e Sobremesas" },
-    { value: "Bebidas", label: "Bebidas" },
-  ];
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const prato = { nome, descricao, calorias, tipos, ingredientes };
+
+    api
+      .post("/api/prato", prato)
+      .then((response) => {
+        if (response.data) {
+          navigate("/");
+        } else {
+          alert("Dados errados");
+        }
+      })
+      .catch((error) => {
+        alert("Dados errados transmissao");
+      });
+  }
+
   return (
     <div className="flex flex-col w-full h-full">
       <Header />
@@ -75,7 +97,10 @@ function EditarPrato() {
       </div>
 
       <h2 className="font-bold text-cinza text-3xl ml-16">Editar prato</h2>
-      <form className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6">
+      <form
+        className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6"
+        onSubmit={handleSubmit}
+      >
         <div className="flex justify-between">
           <div className="flex-1 flex gap-6">
             <label className="w-32" for="nome">
@@ -85,9 +110,10 @@ function EditarPrato() {
               className="bg-input border-solid border border-facefoodred rounded w-325px"
               type="text"
               placeholder="Nome do prato"
-              value={prato.nome}
+              value={nome}
               name="nome-prato"
               id="nome-prato"
+              onChange={(e) => setNome(e.target.value)}
               required
             />
           </div>
@@ -97,7 +123,7 @@ function EditarPrato() {
               <Select
                 name="tipo-de-comida"
                 id="tipo-de-comida"
-                options={tipos}
+                options={tipo}
                 isMulti
               />
             </div>
@@ -106,7 +132,7 @@ function EditarPrato() {
               <Select
                 id="ingredientes"
                 name="ingredientes"
-                options={ingredientes}
+                options={ingrediente}
                 isMulti
               />
             </div>
@@ -125,7 +151,8 @@ function EditarPrato() {
               placeholder="Modo de preparo"
               cols="22"
               rows="6"
-              value={""}
+              value={modo}
+              onChange={(e) => setModo(e.target.value)}
               required
             ></textarea>
           </div>
@@ -133,17 +160,17 @@ function EditarPrato() {
 
         <div className="flex">
           <div className="flex flex-1 gap-6">
-            <span className="w-32" for="imagem">
+            <span className="w-32" htmlFor="imagem">
               Imagem
             </span>
             <label
               className="bg-input border border-solid border-facefoodred rounded w-325px h-146px cursor-pointer"
               for="imagem"
             ></label>
-            <input name="imagem" id="imagem" type="file" hidden required />
+            <input name="imagem" id="imagem" type="file" hidden />
           </div>
           <div className="flex-1">
-            <label className="w-32 inline-block" for="tempo-de-preparo">
+            <label className="w-32 inline-block" htmlFor="tempo-de-preparo">
               Tempo de preparo
             </label>
             <input
@@ -154,7 +181,8 @@ function EditarPrato() {
               placeholder="Tempo de preparo(Minutos)"
               name="tempo-de-preparo"
               id="tempo-de-preparo"
-              value={""}
+              value={tempo}
+              onChange={(e) => setTempo(e.target.value)}
               required
             />
           </div>
@@ -162,7 +190,7 @@ function EditarPrato() {
 
         <div className="flex">
           <div className="flex flex-1 gap-6">
-            <label className="w-32" for="nutri-info">
+            <label className="w-32" htmlFor="nutri-info">
               Informações nutricionais
             </label>
             <textarea
@@ -172,12 +200,13 @@ function EditarPrato() {
               placeholder="Informações nutricionais"
               cols="22"
               rows="6"
-              value={prato.calorias}
+              value={calorias}
+              onChange={(e) => setCalorias(e.target.value)}
               required
             ></textarea>
           </div>
           <div className="flex-1 flex">
-            <label className="w-32" for="descricao">
+            <label className="w-32" htmlFor="descricao">
               Descrição
             </label>
             <textarea
@@ -187,7 +216,8 @@ function EditarPrato() {
               placeholder="Descrição"
               cols="22"
               rows="6"
-              value={prato.descricao}
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
               required
             ></textarea>
           </div>
@@ -195,7 +225,7 @@ function EditarPrato() {
 
         <button
           className="bg-facefoodred w-32 p-2 rounded self-center text-white"
-          onclick="salvarPrato()"
+          type="submit"
         >
           Salvar prato
         </button>
