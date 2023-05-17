@@ -6,15 +6,14 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Perfil() {
-
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPopup = () => {
-    setIsOpen(true);
+    setIsPopupOpen(true);
   };
 
   const closePopup = () => {
-    setIsOpen(false);
+    setIsPopupOpen(false);
   };
 
   return (
@@ -69,7 +68,7 @@ function Perfil() {
   <div class="bg-facefoodgreen w-semifull rounded h-0v5 mx-16 mt-16"></div>
   
   <div class="flex justify-center mt-8 mb-8">
-    <a onclick="abrirPopup()"
+    <a onClick={openPopup}
       class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4 cursor-pointer">
       Editar Perfil
     </a>
@@ -90,6 +89,69 @@ function Perfil() {
     </Link>
   </div>
             <Footer/>
+            {isPopupOpen && (
+  <div id="popup" className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50">
+    <div className="w-full max-w-md mx-auto">
+      <div className="bg-white rounded shadow-lg p-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="nome">
+              Altura:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="altura"
+              type="number"
+              placeholder="Altura"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="peso">
+              Peso:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="peso"
+              type="number"
+              placeholder="peso"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="objetivo">
+              Prefêrencia de alimentos:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="tipo"
+            >
+              {/* Corrigir aqui com a chave key */}
+              <option value="1" key="1">
+                Opção 1
+              </option>
+              <option value="2" key="2">
+                Opção 2
+              </option>
+              <option value="3" key="3">
+                Opção 3
+              </option>
+            </select>
+          </div>
+          {/* Resto dos elementos do formulário */}
+          <div className="mb-4 flex items-center justify-between">
+            <button className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={closePopup}>
+              Editar
+            </button>
+            <button className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={closePopup}>
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+         
+
         </div>
     );
 }
