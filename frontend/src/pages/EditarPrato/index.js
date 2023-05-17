@@ -8,7 +8,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../services/api";
+import { api } from "../../services/api";
 
 function EditarPrato() {
   const [nome, setNome] = useState();

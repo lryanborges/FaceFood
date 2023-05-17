@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import logoSvg from "../assets/logo.svg";
+import { Context } from '../context/AuthContext';
 
 function Header() {
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
+
+  const {handleLogout} = useContext(Context);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -21,6 +24,8 @@ function Header() {
 
     fetchUserData();
   }, []);
+
+
 
   return (
     <header className="bg-FFF9F4 text-3D3D3D flex items-center justify-between shadow px-8 py-6">
@@ -44,9 +49,9 @@ function Header() {
             <a href="../dist/detalhar-perfil.html">{username}</a>
           </div>
         </div>
-        <button className="ml-4">
+        <button className="ml-4" onClick={handleLogout}>
 
-          <Link to="/dashboard">
+          <Link to="">
             <img src={require("../assets/botao.png")} alt="Botão" className="w-10 h-10" />
           </Link>
         </button>
