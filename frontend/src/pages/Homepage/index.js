@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import Opcoes from '../../components/Opcoes'
 import Header from '../../components/Header'
 import Prato from '../../components/Prato'
 import Footer from '../../components/Footer'
+import axios from 'axios'
 
 const Homepage = () => {
+
     return (
         <div class="bg-brancoamarelado">
 

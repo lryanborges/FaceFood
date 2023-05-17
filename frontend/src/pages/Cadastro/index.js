@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import "./style.css";
-import api from '../../services/api';
+import {api} from '../../services/api';
 import logoSvg from "../../assets/logo.svg"
 
 function Cadastro() {

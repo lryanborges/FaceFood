@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './style.css';
 import Footer from "../../components/Footer";
 import Opcoes from "../../components/Opcoes"
@@ -11,22 +11,38 @@ import mulherPostandoSvg from "../../assets/Image post-bro.svg";
 import topSvg from "../../assets/top-post-2.svg";
 import bottomSvg from "../../assets/bottom-post-1.svg";
 import logoSvg from "../../assets/logo.svg"
+import { Context } from '../../context/AuthContext';
 
 
 export default function Dashboard() {
+
+    const[email, setEmail] = useState("");
+    const[senha, setSenha] = useState("");
+
+    const {handleLogin} = useContext(Context);
+
+    const login = async (e) => {
+        e.preventDefault();
+
+        handleLogin({email, senha});
+    }
 
     return (
         <div class="bg-facefoodgreen">
             <header class="flex wrap justify-between items-center">
                 <a href="index.html"><img class="mt-3 ml-6" src={logoSvg} alt="FaceFood" width="80%" /></a>
                 <div class="flex gap-2 wrap mr-16 mt-4">
-                    <input class="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-84" type="text"
-                        placeholder="  Email ou Usuário" id="user-email-input" name="user-email-input" required />
-                    <input class="bg-brancoamarelado relative border-2 border-facefoodred rounded p-1 w-64" type="password"
-                        placeholder=" Senha" id="user-senha-input" name="user-senha-input" required />
-                    <a href="/homepage"><input
-                        class="border rounded p-2 px-8 bg-facefoodred c-F7FEE5 cursor-pointer font-semibold" type="button"
-                        value="Entrar" onclick="loginFast()" /></a>
+                    <input className="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-84" type="text"
+                        placeholder="  Email ou Usuário" id="email" name="email" 
+                        onChange={e => setEmail(e.target.value)}
+                        required />
+                    <input className="bg-brancoamarelado relative border-2 border-facefoodred rounded p-1 w-64" type="password"
+                        placeholder=" Senha" id="senha" name="senha" 
+                        onChange={e => setSenha(e.target.value)}
+                        required />
+                    <button
+                        className="border rounded p-2 px-8 bg-facefoodred c-F7FEE5 cursor-pointer font-semibold" type="button"
+                        value="Entrar" onClick={login}>Entrar</button>
                     <a class="absolute r-4 t-2 c-001701 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
                 </div>
             </header>

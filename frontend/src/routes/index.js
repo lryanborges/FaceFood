@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Login from "../pages/Login";
 import Perfil from "../pages/Perfil";
@@ -13,26 +13,46 @@ import EditarPrato from "../pages/EditarPrato";
 import Planejamento from "../pages/Planejamento";
 import Pratos from "../pages/Pratos";
 import Pesquisas from "../pages/Pesquisas";
+import { useContext } from "react";
+import { AuthProvider, Context } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+const PrivateRoute = ({ children }) => {
+  const {loading, authenticated} = useContext(Context);
+  const navigate = useNavigate();
+
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
+
+  if (!authenticated) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children;
+}
 
 export default function Router() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/ingredientes" element={<Ingredientes />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="/EditarPrato" element={<EditarPrato />} />
-        <Route path="/cadastrarPrato" element={<CadastrarPrato />} />
-        <Route path="/visualizarPrato" element={<VisualizarPrato />} />
-        <Route path="/planejamento" element={<Planejamento />} />
-        <Route path="/pratos" element={<Pratos />} />
-        <Route path="/pesquisas" element={<Pesquisas />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/ingredientes" element={<PrivateRoute><Ingredientes /></PrivateRoute>} />
+          <Route path="/homepage" element={<PrivateRoute><Homepage /></PrivateRoute>} />
+          <Route path="/EditarPrato" element={<PrivateRoute><EditarPrato /></PrivateRoute>} />
+          <Route path="/cadastrarPrato" element={<PrivateRoute><CadastrarPrato /></PrivateRoute>} />
+          <Route path="/visualizarPrato" element={<PrivateRoute><VisualizarPrato /></PrivateRoute>} />
+          <Route path="/planejamento" element={<PrivateRoute><Planejamento /></PrivateRoute>} />
+          <Route path="/pratos" element={<PrivateRoute><Pratos /></PrivateRoute>} />
+          <Route path="/pesquisas" element={<PrivateRoute><Pesquisas /></PrivateRoute>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
