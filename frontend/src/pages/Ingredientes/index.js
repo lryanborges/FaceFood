@@ -95,6 +95,16 @@ function Ingredientes() {
     setIsOpen(false);
   };
 
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const openPopup2 = () => {
+    setIsOpen2(true);
+  };
+
+  const closePopup2 = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div>
       <Header />
@@ -132,6 +142,18 @@ function Ingredientes() {
         </div>
       </div>
 
+      <div className="mt-5 mb-5 flex justify-center items-center">
+        <Link
+          to='/perfil'
+          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
+        >
+          Voltar
+        </Link>
+        <a className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5" onClick={openPopup}>
+          + Adicionar Ingrediente
+        </a>
+      </div>
+
       <table className="table-auto mx-32 w-80p mb-10">
         <thead>
           <tr>
@@ -165,23 +187,6 @@ function Ingredientes() {
           ))}
         </tbody>
       </table>
-
-      <div className="mt-5 mb-5 flex justify-center items-center">
-        <a
-          href="../dist/detalhar-perfil.html"
-          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
-        >
-          {" "}
-          Voltar
-        </a>
-        <a
-          className="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5"
-          onClick={openPopup}
-        >
-          {" "}
-          + Adicionar Ingrediente{" "}
-        </a>
-      </div>
 
       <Footer />
 

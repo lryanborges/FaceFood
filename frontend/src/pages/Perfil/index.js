@@ -1,11 +1,29 @@
 import './style.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import {api} from '../../services/api';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Perfil() {
+  const [ingredientes, setIngredientes] = useState([]);
+  const [pesquisa, setPesquisa] = useState("");
+  const { token } = localStorage.getItem("token");
+  
+  useEffect(() => {
+    fetchIngredientes();
+  }, []);
+  
+  const fetchIngredientes = async () => {
+    try {
+      const response = await api.get("/api/ingrediente");
+      setIngredientes(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPopup = () => {
@@ -15,6 +33,21 @@ function Perfil() {
   const closePopup = () => {
     setIsPopupOpen(false);
   };
+
+const [ingredientesSelecionados, setIngredientesSelecionados] = useState([]);
+
+// ...
+
+const handleIngredientesSelecionados = (event) => {
+  const options = event.target.options;
+  const selecionados = [];
+  for (let i = 0; i < options.length; i++) {
+    if (options[i].selected) {
+      selecionados.push(options[i].value);
+    }
+  }
+  setIngredientesSelecionados(selecionados);
+};
 
   return (
     <div>
@@ -89,8 +122,8 @@ function Perfil() {
     </Link>
   </div>
             <Footer/>
-            {isPopupOpen && (
-  <div id="popup" className="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-50">
+{isPopupOpen && (
+  <div id="popup" className="fixed inset-0 flex items-center justify-center">
     <div className="w-full max-w-md mx-auto">
       <div className="bg-white rounded shadow-lg p-4">
         <div className="grid grid-cols-2 gap-4">
@@ -106,6 +139,26 @@ function Perfil() {
             />
           </div>
           <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="objetivo">
+              Sexo:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="sexo"
+            >
+              {/* Corrigir aqui com a chave key */}
+              <option value="Masculino" key="Masculino">
+                Masculino
+              </option>
+              <option value="Feminino" key="Feminino">
+                Feminino
+              </option>
+              <option value="Outro" key="Outro">
+                Outro
+              </option>
+            </select>
+          </div>
+          <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="peso">
               Peso:
             </label>
@@ -117,25 +170,92 @@ function Perfil() {
             />
           </div>
           <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="peso">
+              Data de Nascimento:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="nascimento"
+              type="date"
+              placeholder="data de nascimento"
+            />
+          </div>
+          <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="objetivo">
-              Prefêrencia de alimentos:
+              Objetivo:
             </label>
             <select
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="tipo"
+              id="objetivo"
             >
               {/* Corrigir aqui com a chave key */}
-              <option value="1" key="1">
-                Opção 1
+              <option value="Ganhar_Peso" key="Ganhar_Peso">
+                Ganhar Peso
               </option>
-              <option value="2" key="2">
-                Opção 2
+              <option value="Perder_Peso" key="Perder_Peso">
+                Perder Peso
               </option>
-              <option value="3" key="3">
-                Opção 3
+              <option value="Manter_Peso" key="Manter_Peso">
+                Manter Peso
               </option>
             </select>
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="preferenciadieta">
+              Preferência de Dieta:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="preferenciadieta"
+            >
+              {/* Corrigir aqui com a chave key */}
+              <option value="Sem_preferências" key="Sem_preferências">
+              Sem preferências
+              </option>
+              <option value="Vegana" key="Vegana">
+              Vegana
+              </option>
+              <option value="Sem_Lactose" key="Sem Lactose">
+              Sem Lactose
+              </option>
+              <option value="Vegetariana" key="Vegetariana">
+              Vegetariana
+              </option>
+              <option value="Japonesa" key="Japonesa">
+              Japonesa
+              </option>
+              <option value="Chinesa" key="Chinesa">
+              Chinesa
+              </option>
+              <option value="Nordica" key="Nordica">
+              Nórdica
+              </option>
+              <option value="Sem_Glúten" key="Sem_Glúten">
+              Sem Glúten
+              </option>
+              <option value="Reeducação_alimentar" key="Reeducação_alimentar">
+              Reeducação alimentar
+              </option>
+            </select>
+          </div>
+          <div className="mb-4">
+  <label className="block text-gray-700 font-bold mb-2" htmlFor="preferenciaalimentos">
+    Preferência de Alimentos:
+  </label>
+  <select
+  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  id="preferenciaalimentos"
+  multiple={true}
+  value={ingredientesSelecionados}
+  onChange={handleIngredientesSelecionados}
+>
+  {ingredientes.map((ingrediente) => (
+    <option value={ingrediente.id} key={ingrediente.id}>
+      {ingrediente.nome}
+    </option>
+  ))}
+</select>
+</div>
           {/* Resto dos elementos do formulário */}
           <div className="mb-4 flex items-center justify-between">
             <button className="bg-red text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={closePopup}>
