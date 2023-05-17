@@ -73,6 +73,7 @@ public class PratoService {
 	 */
 	public Prato updatePrato(Prato prato) {
 		Prato pratoData = pratoRep.findByUuid(prato.getUuid());
+		System.out.println(pratoData.toString());
 		prato.setId(pratoData.getId());
 		Set<Ingrediente> hashIngredientes = new HashSet<Ingrediente>();
 		for(Ingrediente ingrediente : prato.getIngredientes()) {

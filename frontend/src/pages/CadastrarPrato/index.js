@@ -2,11 +2,36 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Select from "react-select";
 import React from "react";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Pesquisa from "../../components/Pesquisa";
 import PratoSemBG from "../../components/PratoSemBG";
 import "./style.css";
 
 function CadastrarPrato() {
+  const [prato, setPrato] = useState({
+    nome: "",
+    calorias: 0,
+    descricao: "",
+    tipos: [],
+    ingredientes: [],
+    imgUrl: "",
+  });
+  const navigate = useNavigate();
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setPrato((prevPrato) => ({ ...prevPrato, [name]: value }));
+  };
+  const handleSelectChangeTipos = (selectedOption) => {
+    setPrato((prevPrato) => ({
+      ...prevPrato,
+      tipos: selectedOption,
+    }));
+  };
+  const handleSelectChangeIngredientes = (selectedOption) => {
+    setPrato((prevPrato) => ({ ...prevPrato, ingredientes: selectedOption }));
+  };
   const tipos = [
     { value: "vegana", label: "Vegana" },
     { value: "sem-lactose", label: "Sem Lactose" },
@@ -33,6 +58,23 @@ function CadastrarPrato() {
     { value: "Doces e Sobremesas", label: "Doces e Sobremesas" },
     { value: "Bebidas", label: "Bebidas" },
   ];
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(prato);
+    api
+      .post("/api/prato", prato)
+      .then((response) => {
+        if (response.data) {
+          navigate(`/`);
+        } else {
+          alert("Dados errados");
+        }
+      })
+      .catch((error) => {
+        alert("Dados errados transmissao");
+      });
+  }
   return (
     <div className="flex flex-col w-full h-full">
       <Header />
@@ -53,7 +95,10 @@ function CadastrarPrato() {
       </div>
 
       <h2 className="font-bold text-cinza text-3xl ml-16">Cadastrar pratos</h2>
-      <form className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6">
+      <form
+        className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6"
+        onSubmit={handleSubmit}
+      >
         <div className="flex justify-between">
           <div className="flex-1 flex gap-6">
             <label className="w-32" for="nome">
@@ -63,17 +108,21 @@ function CadastrarPrato() {
               className="bg-input border-solid border border-facefoodred rounded w-325px"
               type="text"
               placeholder="Nome do prato"
-              name="nome-prato"
-              id="nome-prato"
+              name="nome"
+              id="nome"
+              value={prato.nome}
+              onChange={handleInputChange}
               required
             />
           </div>
           <div className="flex justify-between flex-1">
             <div>
-              <label htmlFor="tipo-de-comida">Tipos</label>
+              <label htmlFor="tipos">Tipos</label>
               <Select
-                name="tipo-de-comida"
-                id="tipo-de-comida"
+                name="tipos"
+                id="tipos"
+                value={prato.tipos}
+                onChange={handleSelectChangeTipos}
                 options={tipos}
                 isMulti
               />
@@ -83,6 +132,8 @@ function CadastrarPrato() {
               <Select
                 id="ingredientes"
                 name="ingredientes"
+                value={prato.ingredientes}
+                onChange={handleSelectChangeIngredientes}
                 options={ingredientes}
                 isMulti
               />
@@ -137,13 +188,15 @@ function CadastrarPrato() {
 
         <div className="flex">
           <div className="flex flex-1 gap-6">
-            <label className="w-32" for="nutri-info">
+            <label className="w-32" for="calorias">
               Informações nutricionais
             </label>
             <textarea
               className="bg-input border border-solid border-facefoodred rounded"
-              name="nutri-info"
-              id="nutri-info"
+              name="calorias"
+              id="calorias"
+              value={prato.calorias}
+              onChange={handleInputChange}
               placeholder="Informações nutricionais"
               cols="22"
               rows="6"
@@ -158,6 +211,8 @@ function CadastrarPrato() {
               className=" ml-8 bg-input border border-solid border-facefoodred rounded"
               name="descricao"
               id="descricao"
+              value={prato.descricao}
+              onChange={handleInputChange}
               placeholder="Descrição"
               cols="22"
               rows="6"
@@ -168,7 +223,7 @@ function CadastrarPrato() {
 
         <button
           className="bg-facefoodred w-32 p-2 rounded self-center text-white"
-          onclick="salvarPrato()"
+          type="submit"
         >
           Salvar prato
         </button>

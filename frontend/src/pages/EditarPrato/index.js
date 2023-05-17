@@ -18,6 +18,9 @@ function EditarPrato() {
   const [ingredientes, setIngredientes] = useState([]);
   const [modo, setModo] = useState();
   const [tempo, setTempo] = useState();
+  const [imgUrl, setImgUrl] = useState();
+  const [user, setUser] = useState({});
+  const [uuid, setUuid] = useState();
   const { pratoId } = useParams();
   const navigate = useNavigate();
   const tipo = [];
@@ -35,6 +38,9 @@ function EditarPrato() {
           setIngredientes(response.data.ingredientes);
           setTempo(12);
           setModo("sim meu irmao");
+          setUser(response.data.user);
+          setImgUrl("simmmmmmmm");
+          setUuid(response.data.uuid);
         })
         .catch((err) => {
           // Handle errors
@@ -61,13 +67,22 @@ function EditarPrato() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const prato = { nome, descricao, calorias, tipos, ingredientes };
-
+    const prato = {
+      nome,
+      descricao,
+      calorias,
+      tipos,
+      ingredientes,
+      user,
+      imgUrl,
+      uuid,
+    };
+    console.log(prato);
     api
-      .post("/api/prato", prato)
+      .put("/api/prato", prato)
       .then((response) => {
         if (response.data) {
-          navigate("/");
+          navigate(`/`);
         } else {
           alert("Dados errados");
         }
