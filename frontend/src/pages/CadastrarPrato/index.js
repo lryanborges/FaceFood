@@ -90,7 +90,7 @@ function CadastrarPrato() {
         .post("/api/prato", obj)
         .then((response) => {
           if (response.data) {
-            navigate(`/`);
+            navigate(`/pratos`);
           } else {
             alert("Dados errados");
           }

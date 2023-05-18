@@ -21,6 +21,7 @@ const Planejamento = () => {
     const [data, setData] = useState();
     const [idUser, setIdUser] = useState();
     const [isSelected, setIsSelected] = useState(false);
+    const [idSelected, setIdSelected] = useState();
 
     useEffect(() => {
         fetchRefeicoes();
@@ -74,6 +75,10 @@ const Planejamento = () => {
         })
     }
 
+    const handleIdSelected = async (value) => {
+        setIdSelected(value)
+    }
+
     return (
         <div className='bg-brancoamarelado'>
             <Header />
@@ -95,7 +100,9 @@ const Planejamento = () => {
                             </button>
                         </div>
                         <form class="h-10 rounded flex gap-2">
-                            <input class="p-2 ml-16" type="date" />
+                            <input class="p-2 ml-16" type="date"
+                                onChange={handleChangeData}
+                            />
                             <button class="bg-facefoodred px-4 py-2 text-white rounded-50p ml-4"
                                 onClick={createRotina}
                             >adicionar rotina</button>
@@ -103,36 +110,21 @@ const Planejamento = () => {
                     </div>
 
                     <div class="flex justify-center mt-12">
-                    <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
-                            <input class="p-2 ml-2" type="date" 
-                            onChange={handleChangeData}
-                            />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <p class="ml-20">seg.</p>
                             {filteredRefeicoes.map((refeicao, index) => (
-                                <div>
-                                    {refeicao.pratos.map((prato, index) => (
-                                        <Refeicao id={prato.id} pratos={prato.nome} horario={refeicao.horario}/>
-                                    ))}
+                                <div key={index} onClick={() => handleIdSelected(refeicao.id)}>
+                                    <div>
+                                        {refeicao.pratos.map((prato, index) => (
+                                            <Refeicao key={prato.id} id={prato.id} pratos={prato.nome} horario={refeicao.horario} />
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
                         <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
-                            <input class="p-2 ml-2" type="date" 
-                            onChange={handleChangeData}
-                            />
-                            {filteredRefeicoes.map((refeicao, index) => (
-                                <div>
-                                    {refeicao.pratos.map((prato, index) => (
-                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                        <img class="mx-4" src={divisoriaSvg} />
-                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
-                            <input class="p-2 ml-2" type="date" 
-                            onChange={handleChangeData}
-                            />
+                            <p class="ml-20">ter.</p>
                             {filteredRefeicoes.map((refeicao, index) => (
                                 <div>
                                     {refeicao.pratos.map((prato, index) => (
@@ -143,9 +135,7 @@ const Planejamento = () => {
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
                         <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
-                            <input class="p-2 ml-2" type="date" 
-                            onChange={handleChangeData}
-                            />
+                            <p class="ml-20">qua.</p>
                             {filteredRefeicoes.map((refeicao, index) => (
                                 <div>
                                     {refeicao.pratos.map((prato, index) => (
@@ -156,9 +146,18 @@ const Planejamento = () => {
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
                         <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
-                            <input class="p-2 ml-2" type="date" 
-                            onChange={handleChangeData}
-                            />
+                            <p class="ml-20">qui.</p>
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                        <img class="mx-4" src={divisoriaSvg} />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <p class="ml-20">sex.</p>
                             {filteredRefeicoes.map((refeicao, index) => (
                                 <div>
                                     {refeicao.pratos.map((prato, index) => (
@@ -172,11 +171,11 @@ const Planejamento = () => {
             </main>
 
 
-            <AddRefeicao isOpen={addOpen} onClose={addCloseModal} />
+            <AddRefeicao fetchRefeicoes={fetchRefeicoes} isOpen={addOpen} onClose={addCloseModal} />
 
             <EditRefeicao isOpen={editOpen} onClose={editCloseModal} />
 
-            <RemoveRefeicao isOpen={deleteOpen} onClose={deleteCloseModal} />
+            <RemoveRefeicao id={idSelected} fetchRefeicoes={fetchRefeicoes} isOpen={deleteOpen} onClose={deleteCloseModal} />
 
             <Footer />
         </div>
