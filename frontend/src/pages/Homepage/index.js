@@ -48,7 +48,7 @@ const Homepage = () => {
       <section className="flex items-center justify-between">
         <div className="text-3xl font-bold font-poppins ml-4 mt-4">Publicações</div>
         <div className="relative ml-4 mr-5">
-          <input type="text" className="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" />
+          <input type="text" className="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar publicação" />
           <button type="submit" className="absolute right-0 top-0 mt-2.5 mr-4">
             <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               {/* Código do ícone de pesquisa */}

@@ -16,6 +16,7 @@ import Pesquisas from "../pages/Pesquisas";
 import { useContext } from "react";
 import { AuthProvider, Context } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import MinhasPublicacoes from "../pages/MinhasPublicacao";
 
 const PrivateRoute = ({ children }) => {
   const {loading, authenticated} = useContext(Context);
@@ -44,6 +45,7 @@ export default function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ingredientes" element={<PrivateRoute><Ingredientes /></PrivateRoute>} />
           <Route path="/homepage" element={<PrivateRoute><Homepage /></PrivateRoute>} />
+          <Route path="/publicacoes" element={<PrivateRoute><MinhasPublicacoes /></PrivateRoute>} />
           <Route path="/EditarPrato/:pratoId" element={<PrivateRoute><EditarPrato /></PrivateRoute>} />
           <Route path="/cadastrarPrato" element={<PrivateRoute><CadastrarPrato /></PrivateRoute>} />
           <Route path="/visualizarPrato/:pratoId" element={<PrivateRoute><VisualizarPrato /></PrivateRoute>} />
