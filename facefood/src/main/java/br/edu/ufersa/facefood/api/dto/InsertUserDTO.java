@@ -14,6 +14,23 @@ public class InsertUserDTO {
 	@Size(min=5,max=200,message="A senha deve ter entre 5 e 200 caracteres!!!")
 	@NotNull
 	private String senha;
+	
+	private float altura;
+	
+	private float peso;
+	
+	public float getAltura() {
+		return altura;
+	}
+	public void setAltura(float altura) {
+		this.altura = altura;
+	}
+	public float getPeso() {
+		return peso;
+	}
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
 	public String getEmail() {
 		return email;
 	}
