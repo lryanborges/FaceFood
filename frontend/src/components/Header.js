@@ -7,13 +7,14 @@ import { Context } from '../context/AuthContext';
 function Header() {
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-
+  
   const {handleLogout} = useContext(Context);
 
   useEffect(() => {
     const fetchUserData = async () => {
 
       setUsername(localStorage.getItem('username'));
+      setProfilePicture(localStorage.getItem('foto'));
 
       /*try {
         const response = await fetch('/api/user'); 

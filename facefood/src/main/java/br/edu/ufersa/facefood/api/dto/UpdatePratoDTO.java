@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import br.edu.ufersa.facefood.domain.entity.Ingrediente;
@@ -25,9 +27,30 @@ public class UpdatePratoDTO {
 	@NotNull(message = "Você precisa informar o autor do prato(user).")
 	private User user;
 	private UUID uuid;
-	@NotNull(message = "Por favor, insira o URL da imagem.")
+	@NotEmpty(message = "Por favor, insira o URL da imagem.")
 	private String imgUrl;
-	
+	@NotEmpty(message = "Por favor, insira o modo de preparo.")
+	private String modoDePreparo;
+	@Positive(message = "O tempo deve ser positivo!")
+	private int tempoDePreparo;
+	public String getModoDePreparo() {
+		return modoDePreparo;
+	}
+	public void setModoDePreparo(String modoDePreparo) {
+		this.modoDePreparo = modoDePreparo;
+	}
+	public int getTempoDePreparo() {
+		return tempoDePreparo;
+	}
+	public void setTempoDePreparo(int tempoDePreparo) {
+		this.tempoDePreparo = tempoDePreparo;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 	public String getNome() {
 		return nome;
 	}

@@ -3,6 +3,7 @@ import './style.css';
 import Opcoes from '../../components/Opcoes'
 import Header from '../../components/Header'
 import Prato from '../../components/Prato'
+import Publicacao from '../../components/Publicacao'
 import Footer from '../../components/Footer'
 import { api } from '../../services/api';
 
@@ -77,6 +78,30 @@ const Homepage = () => {
                     </button>
                 </a>
             </div>
+
+            <div className="mx-16 mt-8">
+      <section className="flex items-center justify-between">
+        <div className="text-3xl font-bold font-poppins ml-4 mt-4">Publicações</div>
+        <div className="relative ml-4 mr-5">
+          <input type="text" className="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar publicação" />
+          <button type="submit" className="absolute right-0 top-0 mt-2.5 mr-4">
+            <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Código do ícone de pesquisa */}
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <div className="mt-4 grid grid-cols-1 gap-4">
+        <Publicacao />
+        <Publicacao />
+        <Publicacao />
+      </div>
+
+      <a href="/publicacoes" className="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">
+        Visualizar Suas Publicações
+      </a>
+    </div>
 
             <div class="mx-16 mt-8">
                 <section class="flex items-center justify-between">

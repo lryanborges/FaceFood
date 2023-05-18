@@ -49,8 +49,21 @@ public class Prato {
 	@Type(type = "uuid-char")
 	private UUID uuid;
 	private String imgUrl;
-	
-	 @ManyToMany(mappedBy = "pratos")
+	private int tempoDePreparo;
+	private String modoDePreparo;
+	 public int getTempoDePreparo() {
+		return tempoDePreparo;
+	}
+	public void setTempoDePreparo(int tempoDePreparo) {
+		this.tempoDePreparo = tempoDePreparo;
+	}
+	public String getModoDePreparo() {
+		return modoDePreparo;
+	}
+	public void setModoDePreparo(String modoDePreparo) {
+		this.modoDePreparo = modoDePreparo;
+	}
+	@ManyToMany(mappedBy = "pratos")
      List<Refeicao> refeicoes;
 	
 	public long getId() {

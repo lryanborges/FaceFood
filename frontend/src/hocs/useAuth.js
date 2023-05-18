@@ -46,7 +46,28 @@ export function useAuth() {
 
             const response = await api.get(`/api/user/email/${email}`);
             const id = response.data.id;
+            const objetivo = response.data.objetivo;
+            const preferenciaalimento = response.data.preferenciaalimento;
+            const preferenciadieta = response.data.preferenciadieta;
+            const peso = response.data.peso;
+            const altura = response.data.altura;
+            const sexo = response.data.sexo;
+            const datanascimentoBD = response.data.datanascimento;
+            const foto = response.data.foto;
+
+            const data = new Date(datanascimentoBD);
+
+            const options = {day:'2-digit',month: '2-digit',year:'numeric'};
+            const datanascimento = data.toLocaleDateString('pr-BR', options)
             localStorage.setItem('id', id);
+            localStorage.setItem('peso',peso);
+            localStorage.setItem('altura',altura);
+            localStorage.setItem('sexo',sexo);
+            localStorage.setItem('datanascimento',datanascimento);
+            localStorage.setItem('preferenciaalimento',preferenciaalimento);
+            localStorage.setItem('preferenciadieta',preferenciadieta);
+            localStorage.setItem('objetivo',objetivo);
+            localStorage.setItem('foto',foto);
             
         } catch (error) {
             alert(`${error}.\nCredenciais não coincidem com um usuário do sistema`);
