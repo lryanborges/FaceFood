@@ -57,14 +57,15 @@ public class RefeicaoService {
 			prato = pratoService.getById(prato.getId());
 			hashPratos.add(prato);
 		}
-		for(Prato prato : refeicao.getPratos()) {
+		/* essa parte é pra aceitar chaves de registro de prato como uuid e nome tmb, mas tirei pq tava dando erro com o front
+		 * for(Prato prato : refeicao.getPratos()) {
 			prato = pratoService.getByUuid(prato.getUuid());
 			hashPratos.add(prato);
 		}
 		for(Prato prato : refeicao.getPratos()) {
 			prato = pratoService.getByNome(prato.getNome());
 			hashPratos.add(prato);
-		}
+		}*/
 		refeicao.setPratos(hashPratos);
 		Refeicao saved = rep.save(refeicao);
 		return saved;

@@ -10,6 +10,8 @@ import { api } from '../../services/api';
 const Homepage = () => {
 
     const [pratos, setPratos] = useState([]);
+    const [pesquisa, setPesquisa] = useState("");
+    const [pesquisa2, setPesquisa2] = useState("");
 
     useEffect(() => {
         fetchPratos();
@@ -21,10 +23,25 @@ const Homepage = () => {
         setPratos(response.data);
     };
 
+    const handleChangePesquisa = (e) => {
+        setPesquisa(e.target.value)
+    }
+
+    const handleChangePesquisa2 = (e) => {
+        setPesquisa2(e.target.value)
+    }
+
     const filteredPratos = pratos.filter(
         (prato) =>
-            prato.nome.toLowerCase() ||
-            prato.desc.toLowerCase()
+            (prato.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+            prato.descricao.toLowerCase().includes(pesquisa.toLowerCase())) &&
+            prato.user.id == localStorage.getItem('id')
+    );
+
+    const filteredPratos2 = pratos.filter(
+        (prato) =>
+            prato.nome.toLowerCase().includes(pesquisa2.toLowerCase()) ||
+            prato.descricao.toLowerCase().includes(pesquisa2.toLowerCase())
     );
 
     return (
@@ -90,7 +107,9 @@ const Homepage = () => {
                 <section class="flex items-center justify-between">
                     <div class="text-3xl font-bold font-poppins ml-4 mt-4">Seus Pratos</div>
                     <div class="relative ml-4 mr-5">
-                        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" />
+                        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" 
+                        onChange={handleChangePesquisa}
+                        />
                         <button type="submit" class="absolute right-0 top-0 mt-2v5 mr-4">
                             <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M35.5014 35.5014L26.4066 26.4066M26.4066 26.4066C28.8681 23.9451 30.251 20.6066 30.251 
@@ -104,9 +123,9 @@ const Homepage = () => {
                 </section>
 
                 <div class="mt-4 grid grid-cols-8 gap-4">
-                    {pratos.map((prato, index) => (
+                    {filteredPratos.map((prato, index) => (
                         <Prato nome={prato.nome} desc={""} autor={prato.user.email} />
-                    ))};
+                    ))}
                 </div>
                 <a href="/pratos" class="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                     Visualizar Seus Pratos
@@ -119,7 +138,9 @@ const Homepage = () => {
                 <section class="flex items-center justify-between">
                     <div class="text-3xl font-bold font-poppins ml-4 mt-4">Pratos Populares</div>
                     <div class="relative ml-4 mr-5">
-                        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" />
+                        <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" 
+                        onChange={handleChangePesquisa2}
+                        />
                         <button type="submit" class="absolute right-0 top-0 mt-2v5 mr-4">
                             <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M35.5014 35.5014L26.4066 26.4066M26.4066 26.4066C28.8681 23.9451 30.251 20.6066 30.251 
@@ -133,7 +154,7 @@ const Homepage = () => {
                 </section>
 
                 <div class="mt-4 grid grid-cols-8 gap-4">
-                    {pratos.map((prato, index) => (
+                    {filteredPratos2.map((prato, index) => (
                         <Prato nome={prato.nome} desc={""} autor={prato.user.email} />
                     ))}
                 </div>
