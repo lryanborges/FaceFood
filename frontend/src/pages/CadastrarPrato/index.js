@@ -17,7 +17,7 @@ function CadastrarPrato() {
     tipos: [],
     ingredientes: [],
     imgUrl: "existe",
-    user: { id: 1 },
+    user: {},
     modoDePreparo: "",
     tempoDePreparo: 0,
   });
@@ -77,6 +77,8 @@ function CadastrarPrato() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    prato.user = { id: `${localStorage.getItem("id")}` };
+    console.log(localStorage.getItem("id"));
     let ingre = [];
     api.get("/api/ingrediente").then((response) => {
       ingre = response.data.filter((ingrediente) => {
@@ -102,22 +104,9 @@ function CadastrarPrato() {
     <div className="flex flex-col w-full h-full">
       <Header />
 
-      <div className="flex justify-between mt-8">
-        <h2 className="ml-16 text-cinza font-bold text-3xl">Seus pratos</h2>
-        <div className=" pl-2 mr-28">
-          <Pesquisa />
-        </div>
-      </div>
-
-      <div>
-        <div className="flex justify-center gap-8 mx-16 my-12">
-          <PratoSemBG />
-          <PratoSemBG />
-          <PratoSemBG />
-        </div>
-      </div>
-
-      <h2 className="font-bold text-cinza text-3xl ml-16">Cadastrar pratos</h2>
+      <h2 className="mt-8 font-bold text-cinza text-3xl ml-16">
+        Cadastrar pratos
+      </h2>
       <form
         className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6"
         onSubmit={handleSubmit}

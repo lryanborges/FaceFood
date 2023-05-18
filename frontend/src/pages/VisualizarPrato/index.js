@@ -47,7 +47,7 @@ function VisualizarPrato() {
               Nome do prato{" "}
             </label>
             <input
-              className="bg-input border-solid border border-facefoodred rounded w-325px"
+              className="bg-input border-solid border border-facefoodred rounded w-325px h-8"
               type="text"
               placeholder="Nome do prato"
               value={prato.nome}

@@ -56,11 +56,7 @@ function EditarPrato() {
   };
   const handleSelectChangeIngredientes = (selectedOptions) => {
     const selectedValues = selectedOptions.map((option) => option.value);
-    setIngredientes(
-      selectedValues.map((value) => {
-        return { label: `${value}`, value: `${value}` };
-      })
-    );
+    setIngredientes(selectedValues);
   };
 
   useEffect(() => {
@@ -75,7 +71,7 @@ function EditarPrato() {
           setTipos(response.data.tipos);
           setIngredientes(
             response.data.ingredientes.map((i) => {
-              return { label: `${i.nome}`, value: `${i.nome}` };
+              return i.nome;
             })
           );
           setTempoDePreparo(response.data.tempoDePreparo);
@@ -121,41 +117,35 @@ function EditarPrato() {
       modoDePreparo,
       tempoDePreparo,
     };
-    console.log(prato);
-    api
-      .put("/api/prato", prato)
-      .then((response) => {
-        if (response.data) {
-          navigate(`/`);
-        } else {
-          alert("Dados errados");
-        }
-      })
-      .catch((error) => {
-        alert("Dados errados transmissao");
+    let ingre = [];
+    api.get("/api/ingrediente").then((response) => {
+      ingre = response.data.filter((ingrediente) => {
+        return ingredientes.includes(ingrediente.nome);
       });
+      const obj = { ...prato, ingredientes: ingre };
+      console.log(ingre);
+      api
+        .put("/api/prato", obj)
+        .then((response) => {
+          if (response.data) {
+            //navigate(`/`);
+          } else {
+            alert("Dados errados");
+          }
+        })
+        .catch((error) => {
+          alert("Dados errados transmissao");
+        });
+    });
   }
 
   return (
     <div className="flex flex-col w-full h-full">
       <Header />
 
-      <div className="flex justify-between mt-8">
-        <h2 className="ml-16 text-cinza font-bold text-3xl">Seus pratos</h2>
-        <div className=" pl-2 mr-28">
-          <Pesquisa />
-        </div>
-      </div>
-
-      <div>
-        <div className="flex justify-center gap-8 mx-16 my-12">
-          <PratoSemBG />
-          <PratoSemBG />
-          <PratoSemBG />
-        </div>
-      </div>
-
-      <h2 className="font-bold text-cinza text-3xl ml-16">Editar prato</h2>
+      <h2 className=" mt-8 font-bold text-cinza text-3xl ml-16">
+        Editar prato
+      </h2>
       <form
         className="flex flex-col bg-cinza flex-1 m-8 p-12 gap-6"
         onSubmit={handleSubmit}
@@ -166,7 +156,7 @@ function EditarPrato() {
               Nome do prato{" "}
             </label>
             <input
-              className="bg-input border-solid border border-facefoodred rounded w-325px"
+              className="bg-input border-solid border border-facefoodred rounded w-325px h-8"
               type="text"
               placeholder="Nome do prato"
               value={nome}
@@ -195,7 +185,9 @@ function EditarPrato() {
               <Select
                 id="ingredientes"
                 name="ingredientes"
-                value={ingredientes}
+                value={ingredientes.map((i) => {
+                  return { label: `${i}`, value: `${i}` };
+                })}
                 options={ingredient}
                 onChange={handleSelectChangeIngredientes}
                 isMulti
@@ -260,12 +252,12 @@ function EditarPrato() {
             </label>
             <textarea
               className="bg-input border border-solid border-facefoodred rounded"
-              name="nutri-info"
-              id="nutri-info"
+              name="calorias"
+              id="calorias"
               placeholder="Informações nutricionais"
               cols="22"
               rows="6"
-              value={"Calorias : " + calorias}
+              value={calorias}
               onChange={(e) => setCalorias(e.target.value)}
               required
             ></textarea>
