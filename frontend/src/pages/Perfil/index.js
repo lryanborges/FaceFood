@@ -99,7 +99,7 @@ const handleIngredientesSelecionados = (event) => {
       </div>
       <div class="max-w-lg mx-auto">
         <div class="flex justify-center">
-          <img src={profilePicture} alt="Foto de perfil" class="w-32 h-32 rounded-full border-2 border-gray-400" />
+          <img src={require("../../assets/icon-default.jpg")} alt="Foto de perfil" class="w-32 h-32 rounded-full border-2 border-gray-400" />
         </div>
         <div class="mt-6">
           <h2 class="text-3xl font-bold text-gray-800">{}</h2>

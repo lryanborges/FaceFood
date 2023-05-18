@@ -6,7 +6,7 @@ import dobraSvg from "../assets/dobra.svg";
 import { Link } from "react-router-dom";
 import { api } from "../services/api";
 
-const AddRefeicao = ({ isOpen, onClose }) => {
+const AddRefeicao = ({ isOpen, onClose, fetchRefeicoes }) => {
 
     const [pratos, setPratos] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
@@ -53,6 +53,7 @@ const AddRefeicao = ({ isOpen, onClose }) => {
         console.log(refeicao);
         const response = await api.post("/api/refeicao", refeicao)
         onClose();
+        fetchRefeicoes();
     }
 
     if (!isOpen) {

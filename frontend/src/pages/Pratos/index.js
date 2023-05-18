@@ -63,10 +63,10 @@ const Pratos = () => {
             </div>
 
             <div class="mt-8">
-                <a href="../dist/detalhar-perfil.html"
+                <a href="../homepage"
                     class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
                     Voltar </a>
-                <a onclick="openPopup()" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
+                <a href="../CadastrarPrato" class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
                     + Adicionar Prato
                 </a>
             </div>
