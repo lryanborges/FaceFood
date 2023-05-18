@@ -12,14 +12,17 @@ function Header() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      try {
+
+      setUsername(localStorage.getItem('username'));
+
+      /*try {
         const response = await fetch('/api/user'); 
         const data = await response.json();
         setUsername(data.username);
         setProfilePicture(data.profilePicture);
       } catch (error) {
         console.log(error);
-      }
+      }*/
     };
 
     fetchUserData();

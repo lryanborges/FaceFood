@@ -32,15 +32,21 @@ export function useAuth() {
         try {
             const { headers } = await api.post("/api/login", login);
 
-
             const authorization = headers.authorization;
 
+            
             const [, token] = authorization.split(" ");
+            const [user,] = email.split("@");
 
             localStorage.setItem('token', JSON.stringify(token));
+            localStorage.setItem('username', user);
             api.defaults.headers.Authorization = `Bearer ${token}`;
             setAuthenticated(true);
             navigate("/homepage");
+
+            const response = await api.get(`/api/user/email/${email}`);
+            const id = response.data.id;
+            localStorage.setItem('id', id);
             
         } catch (error) {
             alert(`${error}.\nCredenciais não coincidem com um usuário do sistema`);

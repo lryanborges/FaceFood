@@ -1,0 +1,53 @@
+.publication {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    padding: 10px;
+    }
+    
+    .user-profile {
+    display: flex;
+    align-items: center;
+    }
+    
+    .profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    }
+    
+    .user-info {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .username {
+    font-weight: bold;
+    font-size: 14px; /* Reduzi o tamanho da fonte do username */
+    }
+    
+    .publication-date {
+    font-size: 10px; /* Reduzi o tamanho da fonte da data de publicação */
+    color: #888;
+    }
+    
+    .publication-text {
+    margin-top: 5px; /* Diminuí a margem superior do texto de publicação /
+    font-size: 12px; / Reduzi o tamanho da fonte do texto de publicação */
+    }
+    
+  
+.publication-image {
+    width: 50%;
+    height: auto;
+    margin-top: 5px; 
+    }
+    
+    
+    
+    
+    
+    
+    

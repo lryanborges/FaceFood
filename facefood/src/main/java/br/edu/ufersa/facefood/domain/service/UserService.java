@@ -33,6 +33,11 @@ public class UserService {
 		return user;
 	}
 	
+	public User getByEmail(String email) {
+		User user = rep.findByEmail(email);
+		return user;
+	}
+	
 	public User createUser(User user) {
 		// Gera um novo UUID para o usuário
 		user.setUuid(UUID.randomUUID());
