@@ -3,13 +3,54 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import {api} from '../../services/api';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from '../../context/AuthContext';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Perfil() {
   const [ingredientes, setIngredientes] = useState([]);
   const [pesquisa, setPesquisa] = useState("");
   const { token } = localStorage.getItem("token");
+
+  const [username, setUsername] = useState('');
+ const [profilePicture, setProfilePicture] = useState('');
+ const [peso, setPeso] = useState('');
+ const[altura, setAltura] = useState('');
+ const[sexo, setSexo] = useState('');
+ const[datanascimento, setDatanascimento] = useState('');
+ const[objetivo,setObjetivo] = useState('');
+ const[preferenciaalimento, setPreferenciaalimento] = useState('');
+ const[preferenciadieta, setPreferenciadieta] = useState('');
+
+ // const profilePicture = "https://pbs.twimg.com/profile_images/1054608902246092802/s_2WNaGB_400x400.jpg"
+
+  const {handleLogout} = useContext(Context);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+
+      setUsername(localStorage.getItem('username'));
+      setPeso(localStorage.getItem('peso'));
+      setAltura(localStorage.getItem('altura'));
+      setObjetivo(localStorage.getItem('objetivo'));
+      setPreferenciaalimento(localStorage.getItem('preferenciaalimento'));
+      setPreferenciadieta(localStorage.getItem('preferenciadieta'));
+      setProfilePicture(localStorage.getItem('foto'));
+      setSexo(localStorage.getItem('sexo'));
+      setDatanascimento(localStorage.getItem('datanascimento'));
+
+      /*try {
+        const response = await fetch('/api/user'); 
+        const data = await response.json();
+        setUsername(data.username);
+        setProfilePicture(data.profilePicture);
+      } catch (error) {
+        console.log(error);
+      }*/
+    };
+
+    fetchUserData();
+  }, []);
   
   useEffect(() => {
     fetchIngredientes();
@@ -58,41 +99,41 @@ const handleIngredientesSelecionados = (event) => {
       </div>
       <div class="max-w-lg mx-auto">
         <div class="flex justify-center">
-          <img src={""} alt="Foto de perfil" class="w-32 h-32 rounded-full border-2 border-gray-400" />
+          <img src={profilePicture} alt="Foto de perfil" class="w-32 h-32 rounded-full border-2 border-gray-400" />
         </div>
         <div class="mt-6">
           <h2 class="text-3xl font-bold text-gray-800">{}</h2>
-          <p class="text-gray-600">@{}</p>
+          <p class="text-gray-600">@{username}</p>
         </div>
         <div class="mt-6 border-t border-gray-300 pt-6">
           <div class="grid grid-cols-2 gap-4">
             <div>
               <p class="text-gray-700 font-semibold">Altura:</p>
-              <p class="text-gray-600">{} m</p>
+              <p class="text-gray-600">{altura} m</p>
             </div>
             <div>
               <p class="text-gray-700 font-semibold">Sexo:</p>
-              <p class="text-gray-600">{}</p>
+              <p class="text-gray-600">{sexo}</p>
             </div>
             <div>
               <p class="text-gray-700 font-semibold">Peso:</p>
-              <p class="text-gray-600">{} kg</p>
+              <p class="text-gray-600">{peso} kg</p>
             </div>
             <div>
               <p class="text-gray-700 font-semibold">Data Nascimento:</p>
-              <p class="text-gray-600">{}</p>
+              <p class="text-gray-600">{datanascimento}</p>
             </div>
             <div>
               <p class="text-gray-700 font-semibold">Objetivo:</p>
-              <p class="text-gray-600">{}</p>
+              <p class="text-gray-600">{objetivo}</p>
             </div>
         <div>
           <p class="text-gray-700 font-semibold">Preferência de dieta:</p>
-          <p class="text-gray-600">{}</p>
+          <p class="text-gray-600">{preferenciadieta}</p>
         </div>
         <div class="col-span-2">
           <p class="text-gray-700 font-semibold">Preferência de alimentos:</p>
-          <p class="text-gray-600">{}</p>
+          <p class="text-gray-600">{preferenciaalimento}</p>
         </div>
       </div>
     </div>
