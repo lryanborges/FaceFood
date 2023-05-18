@@ -22,7 +22,6 @@ public class InsertRefeicaoDTO {
 	@NotNull(message = "Por favor, informe o usuário autor da refeição.")
 	private User user;
 	@NotNull(message = "O horario não pode ser vazio. Digite o horario no formato HH:mm:ss")
-	@DateTimeFormat(pattern = "HH:mm:ss")
    private LocalTime horario;
    @NotNull(message = "Por favor, informe os pratos da refeição.")
    private Set<Prato> pratos;

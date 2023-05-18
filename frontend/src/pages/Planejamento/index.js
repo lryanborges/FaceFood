@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import Refeicao from '../../components/Refeicao'
 import AddRefeicao from '../../components/AddRefeicao';
@@ -6,6 +6,7 @@ import EditRefeicao from '../../components/EditRefeicao';
 import RemoveRefeicao from '../../components/RemoveRefeicao';
 import Header from "../../components/Header"
 import Footer from '../../components/Footer';
+import { api } from '../../services/api';
 import divisoriaSvg from "../../assets/divisória.svg"
 import plusSvg from "../../assets/plus.svg"
 import editSvg from "../../assets/edit.svg"
@@ -16,6 +17,15 @@ const Planejamento = () => {
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
+    const [refeicoes, setRefeicoes] = useState([]);
+    const [data, setData] = useState();
+    const [idUser, setIdUser] = useState();
+    const [isSelected, setIsSelected] = useState(false);
+
+    useEffect(() => {
+        fetchRefeicoes();
+        setIdUser(localStorage.getItem('id'))
+    }, []);
 
     const addOpenModal = () => {
         setAddOpen(true);
@@ -41,6 +51,29 @@ const Planejamento = () => {
         setDeleteOpen(false);
     }
 
+    const fetchRefeicoes = async () => {
+        const response = await api.get("/api/refeicao");
+        console.log(response.data)
+        setRefeicoes(response.data);
+    };
+
+    const filteredRefeicoes = refeicoes.filter(
+        (refeicao) =>
+            refeicao.user.id == localStorage.getItem('id')
+    );
+
+    const handleChangeData = (e) => {
+        setData(e.target.value)
+    }
+
+    const createRotina = async () => {
+        const response = await api.post("/api/rotina", {
+            listaRefeicoes: filteredRefeicoes,
+            user: { id: idUser },
+            data: data,
+        })
+    }
+
     return (
         <div className='bg-brancoamarelado'>
             <Header />
@@ -62,46 +95,77 @@ const Planejamento = () => {
                             </button>
                         </div>
                         <form class="h-10 rounded flex gap-2">
-                            <input class="p-2" type="date" />
-                            <p class="c-FF0038 font-bold text-1v5xl self-center">~</p>
-                            <input class="p-2" type="date" />
+                            <input class="p-2 ml-16" type="date" />
+                            <button class="bg-facefoodred px-4 py-2 text-white rounded-50p ml-4"
+                                onClick={createRotina}
+                            >adicionar rotina</button>
                         </form>
                     </div>
 
                     <div class="flex justify-center mt-12">
-                        <div class="mt-4 scroll-6 hide-scroll p-2">
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
+                    <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <input class="p-2 ml-2" type="date" 
+                            onChange={handleChangeData}
+                            />
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao id={prato.id} pratos={prato.nome} horario={refeicao.horario}/>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
-                        <div class="mt-4 scroll-6 hide-scroll p-2">
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <input class="p-2 ml-2" type="date" 
+                            onChange={handleChangeData}
+                            />
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
-                        <div class="mt-4 scroll-6 hide-scroll p-2">
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <input class="p-2 ml-2" type="date" 
+                            onChange={handleChangeData}
+                            />
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
-                        <div class="mt-4 scroll-6 hide-scroll p-2">
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <input class="p-2 ml-2" type="date" 
+                            onChange={handleChangeData}
+                            />
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                         <img class="mx-4" src={divisoriaSvg} />
-                        <div class="mt-4 scroll-6 hide-scroll p-2">
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
-                            <Refeicao />
+                        <div className={isSelected ? ("border border-facefoodred rounded-50p mt-4 scroll-6 hide-scroll p-2 cursor-pointer") : ("mt-4 scroll-6 hide-scroll p-2 cursor-pointer")}>
+                            <input class="p-2 ml-2" type="date" 
+                            onChange={handleChangeData}
+                            />
+                            {filteredRefeicoes.map((refeicao, index) => (
+                                <div>
+                                    {refeicao.pratos.map((prato, index) => (
+                                        <Refeicao pratos={prato.nome} horario={refeicao.horario} />
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -112,7 +176,7 @@ const Planejamento = () => {
 
             <EditRefeicao isOpen={editOpen} onClose={editCloseModal} />
 
-            <RemoveRefeicao isOpen={deleteOpen} onClose={deleteCloseModal}/>
+            <RemoveRefeicao isOpen={deleteOpen} onClose={deleteCloseModal} />
 
             <Footer />
         </div>

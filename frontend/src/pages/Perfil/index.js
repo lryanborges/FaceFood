@@ -8,6 +8,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 function Perfil() {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    setUsername(localStorage.getItem('username'))
+  })
 
   const openPopup = () => {
     setIsOpen(true);
@@ -30,7 +35,7 @@ function Perfil() {
         </div>
         <div class="mt-6">
           <h2 class="text-3xl font-bold text-gray-800">{}</h2>
-          <p class="text-gray-600">@{}</p>
+          <p class="text-gray-600">@{username}</p>
         </div>
         <div class="mt-6 border-t border-gray-300 pt-6">
           <div class="grid grid-cols-2 gap-4">

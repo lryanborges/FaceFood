@@ -10,9 +10,13 @@ const AddRefeicao = ({ isOpen, onClose }) => {
 
     const [pratos, setPratos] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
+    const [horario, setHorario] = useState();
+    const [idUser, setIdUser] = useState();
+    const [idPratos, setIdPratos] = useState([]);
 
     useEffect(() => {
         fetchPratos();
+        setIdUser(localStorage.getItem('id'))
     }, []);
 
     const fetchPratos = async () => {
@@ -30,6 +34,26 @@ const AddRefeicao = ({ isOpen, onClose }) => {
             prato.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
             prato.descricao.toLowerCase().includes(pesquisa.toLowerCase())
     );
+
+    const handleHorarioChange = (event) => {
+        setHorario(event.target.value);
+    }
+
+    const handleIdPratos = (pts) => {
+        setIdPratos(pts);
+    }
+
+    const refeicao = {
+        pratos:[{id:idPratos}],
+        user:{id:idUser},
+        horario:horario,
+    }
+
+    const addRefeicao = async () => {
+        console.log(refeicao);
+        const response = await api.post("/api/refeicao", refeicao)
+        onClose();
+    }
 
     if (!isOpen) {
         return null;
@@ -65,7 +89,8 @@ const AddRefeicao = ({ isOpen, onClose }) => {
                             <div class="bg-FFFFFF mt-2 p-4 w-104 h-84 rounded relative scroll-7">
                                 {filteredPratos.map((prato, index) => (
                                     <div key={prato.id} className={index === 0 ? "bg-yellow-200" : ""}>
-                                        <RefeicaoDet nome={prato.nome} desc={prato.descricao} tipo={prato.tipos}/>
+                                        <RefeicaoDet id={prato.id} nome={prato.nome} desc={prato.descricao} 
+                                        tipo={prato.tipos} img={prato.imgUrl} handleIdPratos={handleIdPratos}/>
                                         <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
                                     </div>
                                 ))}
@@ -77,12 +102,12 @@ const AddRefeicao = ({ isOpen, onClose }) => {
                             <Link to="../pratos">
                                 <p class="c-001701 underline float-right">abrir detalhes do prato</p>
                             </Link>
-                            <input className="p-4 mt-2" type="time"/>
+                            <input className="p-4 mt-2" type="time" onChange={handleHorarioChange}/>
                             <div class="flex ml-16 mr-4 justify-between mt-8">
                                 <button class="bg-facefoodred c-F1F9E4 p-2 rounded"
                                     onClick={onClose}>Cancelar</button>
                                 <button class="bg-facefoodred c-F1F9E4 p-2 rounded"
-                                    onClick={onClose}>Salvar</button>
+                                    onClick={addRefeicao}>Salvar</button>
                             </div>
                         </div>
                     </div>

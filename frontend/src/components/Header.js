@@ -49,7 +49,7 @@ function Header() {
           <Link to="/perfil"><img src={profilePicture} alt="Imagem de perfil" className="w-10 h-10 rounded-full" /></Link>
           
           <div className="ml-2 font-poppins font-medium text-sm text-3D3D3D flex items-center">
-            <a href="../dist/detalhar-perfil.html">{username}</a>
+            <Link to="../perfil">{username}</Link>
           </div>
         </div>
         <button className="ml-4" onClick={handleLogout}>

@@ -82,6 +82,7 @@ public class RefeicaoController {
 	@PostMapping
 	public ResponseEntity<RefeicaoDTO> criar (@Valid @RequestBody InsertRefeicaoDTO dto){
 		Refeicao refeicao = service.createRefeicao(mapper.map(dto, Refeicao.class));
+		System.out.println(refeicao.getPratos().toString());
 		RefeicaoDTO criado = mapper.map(refeicao, RefeicaoDTO.class);
 		if(criado == null) {
 			return new ResponseEntity<> (null, HttpStatus.INTERNAL_SERVER_ERROR);
