@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -29,7 +30,22 @@ public class PratoDTO {
 	private UUID uuid;
 	@NotNull(message = "Por favor, insira o URL da imagem.")
 	private String imgUrl;
-	
+	@NotEmpty(message = "Por favor, insira o modo de preparo.")
+	private String modoDePreparo;
+	@Positive(message = "O tempo deve ser positivo!")
+	private int tempoDePreparo;
+	public String getModoDePreparo() {
+		return modoDePreparo;
+	}
+	public void setModoDePreparo(String modoDePreparo) {
+		this.modoDePreparo = modoDePreparo;
+	}
+	public int getTempoDePreparo() {
+		return tempoDePreparo;
+	}
+	public void setTempoDePreparo(int tempoDePreparo) {
+		this.tempoDePreparo = tempoDePreparo;
+	}
 	public long getId() {
 		return id;
 	}

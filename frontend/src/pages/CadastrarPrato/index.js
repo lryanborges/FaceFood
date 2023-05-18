@@ -4,7 +4,7 @@ import Select from "react-select";
 import React from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pesquisa from "../../components/Pesquisa";
 import PratoSemBG from "../../components/PratoSemBG";
 import "./style.css";
@@ -16,21 +16,37 @@ function CadastrarPrato() {
     descricao: "",
     tipos: [],
     ingredientes: [],
-    imgUrl: "",
+    imgUrl: "existe",
+    user: { id: 1 },
+    modoDePreparo: "",
+    tempoDePreparo: 0,
   });
   const navigate = useNavigate();
+  //const { option, setOption } = useState([{ label: "", value: "" }]);
+  /*useEffect(() => {
+    async function loadData() {
+      api.get("/api/ingrediente").then((response) => {
+        setOption(response.data);
+        console.log(response.data);
+      });
+    }
+    loadData();
+  }, []);*/
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPrato((prevPrato) => ({ ...prevPrato, [name]: value }));
   };
-  const handleSelectChangeTipos = (selectedOption) => {
+  const handleSelectChangeTipos = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setPrato((prevPrato) => ({ ...prevPrato, tipos: selectedValues }));
+  };
+  const handleSelectChangeIngredientes = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
     setPrato((prevPrato) => ({
       ...prevPrato,
-      tipos: selectedOption,
+      ingredientes: selectedValues,
     }));
-  };
-  const handleSelectChangeIngredientes = (selectedOption) => {
-    setPrato((prevPrato) => ({ ...prevPrato, ingredientes: selectedOption }));
   };
   const tipos = [
     { value: "vegana", label: "Vegana" },
@@ -61,19 +77,26 @@ function CadastrarPrato() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(prato);
-    api
-      .post("/api/prato", prato)
-      .then((response) => {
-        if (response.data) {
-          navigate(`/`);
-        } else {
-          alert("Dados errados");
-        }
-      })
-      .catch((error) => {
-        alert("Dados errados transmissao");
+    let ingre = [];
+    api.get("/api/ingrediente").then((response) => {
+      ingre = response.data.filter((ingrediente) => {
+        return prato.ingredientes.includes(ingrediente.nome);
       });
+      const obj = { ...prato, ingredientes: ingre };
+      console.log(obj);
+      api
+        .post("/api/prato", obj)
+        .then((response) => {
+          if (response.data) {
+            navigate(`/`);
+          } else {
+            alert("Dados errados");
+          }
+        })
+        .catch((error) => {
+          alert("Dados errados transmissao");
+        });
+    });
   }
   return (
     <div className="flex flex-col w-full h-full">
@@ -101,11 +124,11 @@ function CadastrarPrato() {
       >
         <div className="flex justify-between">
           <div className="flex-1 flex gap-6">
-            <label className="w-32" for="nome">
+            <label className="w-32" htmlFor="nome">
               Nome do prato{" "}
             </label>
             <input
-              className="bg-input border-solid border border-facefoodred rounded w-325px"
+              className="bg-input border-solid border border-facefoodred rounded w-325px h-8"
               type="text"
               placeholder="Nome do prato"
               name="nome"
@@ -121,7 +144,9 @@ function CadastrarPrato() {
               <Select
                 name="tipos"
                 id="tipos"
-                value={prato.tipos}
+                value={prato.tipos.map((tipo) => {
+                  return { value: `${tipo}`, label: `${tipo}` };
+                })}
                 onChange={handleSelectChangeTipos}
                 options={tipos}
                 isMulti
@@ -132,7 +157,6 @@ function CadastrarPrato() {
               <Select
                 id="ingredientes"
                 name="ingredientes"
-                value={prato.ingredientes}
                 onChange={handleSelectChangeIngredientes}
                 options={ingredientes}
                 isMulti
@@ -148,10 +172,12 @@ function CadastrarPrato() {
             </label>
             <textarea
               className="bg-input border border-solid border-facefoodred rounded"
-              name="modo-de-preparo"
-              id="modo-de-preparo"
+              name="modoDePreparo"
+              id="modoDePreparo"
               placeholder="Modo de preparo"
               cols="22"
+              value={prato.modoDePreparo}
+              onChange={handleInputChange}
               rows="6"
               required
             ></textarea>
@@ -167,7 +193,7 @@ function CadastrarPrato() {
               className="bg-input border border-solid border-facefoodred rounded w-325px h-146px cursor-pointer"
               for="imagem"
             ></label>
-            <input name="imagem" id="imagem" type="file" hidden required />
+            <input name="imagem" id="imagem" type="file" hidden />
           </div>
           <div className="flex-1">
             <label className="w-32 inline-block" for="tempo-de-preparo">
@@ -179,8 +205,10 @@ function CadastrarPrato() {
               min="1"
               max="600"
               placeholder="Tempo de preparo(Minutos)"
-              name="tempo-de-preparo"
-              id="tempo-de-preparo"
+              name="tempoDePreparo"
+              id="tempoDePreparo"
+              value={prato.tempoDePreparo}
+              onChange={handleInputChange}
               required
             />
           </div>

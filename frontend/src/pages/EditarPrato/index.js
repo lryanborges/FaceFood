@@ -16,15 +16,53 @@ function EditarPrato() {
   const [calorias, setCalorias] = useState();
   const [tipos, setTipos] = useState([]);
   const [ingredientes, setIngredientes] = useState([]);
-  const [modo, setModo] = useState();
-  const [tempo, setTempo] = useState();
+  const [modoDePreparo, setModoDePreparo] = useState();
+  const [tempoDePreparo, setTempoDePreparo] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [user, setUser] = useState({});
   const [uuid, setUuid] = useState();
   const { pratoId } = useParams();
   const navigate = useNavigate();
-  const tipo = [];
-  const ingrediente = [];
+
+  const type = [
+    { value: "vegana", label: "Vegana" },
+    { value: "sem-lactose", label: "Sem Lactose" },
+    { value: "vegetariana", label: "Vegetariana" },
+    { value: "japonesa", label: "Japonesa" },
+    { value: "chinesa", label: "Chinesa" },
+    { value: "nordica", label: "Nórdica" },
+    { value: "sem-gluten", label: "Sem Glúten" },
+  ];
+  const ingredient = [
+    { value: "Peixes", label: "Peixes" },
+    { value: "Carnes", label: "Carnes" },
+    { value: "Frutos do Mar", label: "Frutos do Mar" },
+    { value: "Vegetais", label: "Vegetais" },
+    { value: "Grãos", label: "Grãos" },
+    { value: "Cereais", label: "Cereais" },
+    { value: "Frutas", label: "Frutas" },
+    { value: "Laticínios", label: "Laticínios" },
+    { value: "Temperos", label: "Temperos" },
+    { value: "Ervas", label: "Ervas" },
+    { value: "Óleos e Gorduras", label: "Óleos e Gorduras" },
+    { value: "Nozes e Sementes", label: "Nozes e Sementes" },
+    { value: "Massas", label: "Massas" },
+    { value: "Doces e Sobremesas", label: "Doces e Sobremesas" },
+    { value: "Bebidas", label: "Bebidas" },
+  ];
+  const handleSelectChangeTipos = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setTipos(selectedValues);
+  };
+  const handleSelectChangeIngredientes = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setIngredientes(
+      selectedValues.map((value) => {
+        return { label: `${value}`, value: `${value}` };
+      })
+    );
+  };
+
   useEffect(() => {
     async function loadData() {
       api
@@ -35,11 +73,15 @@ function EditarPrato() {
           setDescricao(response.data.descricao);
           setCalorias(response.data.calorias);
           setTipos(response.data.tipos);
-          setIngredientes(response.data.ingredientes);
-          setTempo(12);
-          setModo("sim meu irmao");
+          setIngredientes(
+            response.data.ingredientes.map((i) => {
+              return { label: `${i.nome}`, value: `${i.nome}` };
+            })
+          );
+          setTempoDePreparo(response.data.tempoDePreparo);
+          setModoDePreparo(response.data.modoDePreparo);
           setUser(response.data.user);
-          setImgUrl("simmmmmmmm");
+          setImgUrl(response.data.imgUrl);
           setUuid(response.data.uuid);
         })
         .catch((err) => {
@@ -76,6 +118,8 @@ function EditarPrato() {
       user,
       imgUrl,
       uuid,
+      modoDePreparo,
+      tempoDePreparo,
     };
     console.log(prato);
     api
@@ -134,11 +178,15 @@ function EditarPrato() {
           </div>
           <div className="flex justify-between flex-1">
             <div>
-              <label htmlFor="tipo-de-comida">Tipos</label>
+              <label htmlFor="tipos">Tipos</label>
               <Select
-                name="tipo-de-comida"
-                id="tipo-de-comida"
-                options={tipo}
+                name="tipos"
+                id="tipos"
+                options={type}
+                value={tipos.map((tipo) => {
+                  return { value: `${tipo}`, label: `${tipo}` };
+                })}
+                onChange={handleSelectChangeTipos}
                 isMulti
               />
             </div>
@@ -147,7 +195,9 @@ function EditarPrato() {
               <Select
                 id="ingredientes"
                 name="ingredientes"
-                options={ingrediente}
+                value={ingredientes}
+                options={ingredient}
+                onChange={handleSelectChangeIngredientes}
                 isMulti
               />
             </div>
@@ -156,18 +206,18 @@ function EditarPrato() {
 
         <div>
           <div className="flex gap-6">
-            <label className="w-32" for="modo-de-preparo">
+            <label className="w-32" for="modoDePreparo">
               Modo de preparo
             </label>
             <textarea
               className="bg-input border border-solid border-facefoodred rounded"
-              name="modo-de-preparo"
-              id="modo-de-preparo"
+              name="modoDePreparo"
+              id="modoDePreparo"
               placeholder="Modo de preparo"
               cols="22"
               rows="6"
-              value={modo}
-              onChange={(e) => setModo(e.target.value)}
+              value={modoDePreparo}
+              onChange={(e) => setModoDePreparo(e.target.value)}
               required
             ></textarea>
           </div>
@@ -180,12 +230,12 @@ function EditarPrato() {
             </span>
             <label
               className="bg-input border border-solid border-facefoodred rounded w-325px h-146px cursor-pointer"
-              for="imagem"
+              htmlFor="imagem"
             ></label>
             <input name="imagem" id="imagem" type="file" hidden />
           </div>
           <div className="flex-1">
-            <label className="w-32 inline-block" htmlFor="tempo-de-preparo">
+            <label className="w-32 inline-block" htmlFor="tempoDePreparo">
               Tempo de preparo
             </label>
             <input
@@ -194,10 +244,10 @@ function EditarPrato() {
               min="1"
               max="600"
               placeholder="Tempo de preparo(Minutos)"
-              name="tempo-de-preparo"
-              id="tempo-de-preparo"
-              value={tempo}
-              onChange={(e) => setTempo(e.target.value)}
+              name="tempoDePreparo"
+              id="tempoDePreparo"
+              value={tempoDePreparo}
+              onChange={(e) => setTempoDePreparo(e.target.value)}
               required
             />
           </div>
@@ -215,7 +265,7 @@ function EditarPrato() {
               placeholder="Informações nutricionais"
               cols="22"
               rows="6"
-              value={calorias}
+              value={"Calorias : " + calorias}
               onChange={(e) => setCalorias(e.target.value)}
               required
             ></textarea>
