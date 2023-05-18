@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./style.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Prato from "../../components/Prato";
+import { api } from "../../services/api";
 
 const Pratos = () => {
+
+    const [pratos, setPratos] = useState([]);
+    const [pesquisa, setPesquisa] = useState("");
+
+    useEffect(() => {
+        fetchPratos();
+    }, []);
+
+    const fetchPratos = async () => {
+        const response = await api.get("/api/prato");
+        console.log(response.data);
+        setPratos(response.data);
+    };
+
+    const handlePesquisaChange = (event) => {
+        setPesquisa(event.target.value);
+    };
+
+    const filteredPratos = pratos.filter(
+        (prato) =>
+            prato.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+            prato.descricao.toLowerCase().includes(pesquisa.toLowerCase())
+    );
+
     return (
         <div>
             <Header />
@@ -16,7 +41,9 @@ const Pratos = () => {
                     <h2 class="text-3xl font-light c-FF0038 ml-8">Pratos</h2>
                 </div>
                 <div class="relative ml-4 mr-5 mt-5">
-                    <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" />
+                    <input type="text" class="border-2 border-red rounded-full py-2 px-4 w-64" placeholder="Pesquisar pratos" 
+                    onChange={handlePesquisaChange}
+                    />
                     <button type="submit" class="absolute right-0 top-0 mt-2v5 mr-4">
                         <svg width="25" height="25" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M35.5014 35.5014L26.4066 26.4066M26.4066 26.4066C28.8681 23.9451 30.251 20.6066 30.251 
@@ -30,20 +57,12 @@ const Pratos = () => {
             </section>
 
             <div class="mt-8 mx-16 grid grid-cols-8 gap-4 bg-white justify-items-center">
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
-                <Prato />
+                {filteredPratos.map((prato, index) => (
+                    <Prato nome={prato.nome} desc={""} autor={prato.user.email} />
+                ))}
             </div>
 
-            <div class="mt-8 mx-16">
+            <div class="mt-8">
                 <a href="../dist/detalhar-perfil.html"
                     class="bg-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded mb-5 ml-5">
                     Voltar </a>

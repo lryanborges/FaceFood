@@ -61,6 +61,16 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 	}
 	
+	@GetMapping("/email/{email}")
+	public ResponseEntity<UserDTO> buscar (@PathVariable String email){
+		UserDTO dto = mapper.map(service.getByEmail(email), UserDTO.class);
+		if(dto != null) {
+			return new ResponseEntity<>(dto, HttpStatus.OK);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
 	@PostMapping
 	public ResponseEntity<UserDTO> criar (@Valid @RequestBody InsertUserDTO dto){
 		User user = service.createUser(mapper.map(dto, User.class));
