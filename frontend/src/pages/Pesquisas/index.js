@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './style.css';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import homemComendoSvg from "../../assets/Eating healthy food-cuate 1.svg"
 import PratoPesquisa from "../../components/PratoPesquisa";
+import { api } from "../../services/api";
 
 const Pesquisas = () => {
+
+    const [pratos, setPratos] = useState([]);
+    const [pesquisa, setPesquisa] = useState("");
+
+    useEffect(() => {
+        fetchPratos();
+    }, []);
+
+    const fetchPratos = async () => {
+        const response = await api.get("/api/prato");
+        console.log(response.data);
+        setPratos(response.data);
+    };
+
+    const handlePesquisaChange = (event) => {
+        setPesquisa(event.target.value);
+    };
+
+    const filteredPratos = pratos.filter(
+        (prato) =>
+            prato.nome.toLowerCase().includes(pesquisa.toLowerCase()) ||
+            prato.descricao.toLowerCase().includes(pesquisa.toLowerCase())
+    );
+
     return (
         <div className='bg-brancoamarelado'>
             <Header />
@@ -19,7 +44,9 @@ const Pesquisas = () => {
                     <img class="ml-16 mt-8" src={homemComendoSvg} width="65%" />
                     <div>
                         <div class="flex mt--8 mb-4">
-                            <input class="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-full h-10" type="text" placeholder="  Pesquise aqui!" />
+                            <input class="bg-brancoamarelado border-2 border-facefoodred rounded p-1 w-full h-10" type="text" placeholder="  Pesquise aqui!" 
+                            onChange={handlePesquisaChange}
+                            />
                             <button type="submit" class="bg-facefoodred p-1 px-4 rounded ml--4">
                                 <svg width="28" height="28" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -33,26 +60,12 @@ const Pesquisas = () => {
                         </div>
 
                         <div class="bg-F0F0F0 p-8 rounded relative scroll-7">
-                            <div>
-                                <PratoPesquisa />
-                                <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
-                            </div>
-                            <div class="mt-4">
-                                <PratoPesquisa />
-                                <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
-                            </div>
-                            <div class="mt-4">
-                                <PratoPesquisa />
-                                <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
-                            </div>
-                            <div class="mt-4">
-                                <PratoPesquisa />
-                                <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
-                            </div>
-                            <div class="mt-4">
-                                <PratoPesquisa />
-                                <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
-                            </div>
+                            {filteredPratos.map((prato, index) => (
+                                <div key={prato.id} className={index === 0 ? "bg-yellow-200" : ""}>
+                                    <PratoPesquisa nome={prato.nome} desc={prato.descricao} tipo={prato.tipos} />
+                                    <span class="mt-2 bg-FFB1C2 h-0v5 w-semifull absolute rounded"></span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

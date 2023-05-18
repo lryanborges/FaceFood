@@ -53,7 +53,7 @@ export default function Dashboard() {
                     <button
                         className="border rounded p-2 px-8 bg-facefoodred c-F7FEE5 cursor-pointer font-semibold" type="button"
                         value="Entrar" onClick={login}>Entrar</button>
-                    <a className="absolute r-4 t-2 c-001701 underline font-medium" href="criar-conta.html">Não tenho uma conta!</a>
+                    <Link to={"../cadastro"} className="absolute r-4 t-2 c-001701 underline font-medium">Não tenho uma conta!</Link>
                 </form>
             </header>
 

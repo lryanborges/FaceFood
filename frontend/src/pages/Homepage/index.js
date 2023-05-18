@@ -1,12 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import Opcoes from '../../components/Opcoes'
 import Header from '../../components/Header'
 import Prato from '../../components/Prato'
 import Footer from '../../components/Footer'
-import axios from 'axios'
+import { api } from '../../services/api';
 
 const Homepage = () => {
+
+    const [pratos, setPratos] = useState([]);
+
+    useEffect(() => {
+        fetchPratos();
+    }, []);
+
+    const fetchPratos = async () => {
+        const response = await api.get("/api/prato");
+        console.log(response.data);
+        setPratos(response.data);
+    };
+
+    const filteredPratos = pratos.filter(
+        (prato) =>
+            prato.nome.toLowerCase() ||
+            prato.desc.toLowerCase()
+    );
 
     return (
         <div class="bg-brancoamarelado">
@@ -23,7 +41,7 @@ const Homepage = () => {
                     <img src={require("../../assets/Eating healthy food-bro 3.png")} alt="Imagem ilustrativa" />
                 </div>
             </div>
-            
+
             <div class="mx-32 my-12">
                 <Opcoes />
             </div>
@@ -61,10 +79,9 @@ const Homepage = () => {
                 </section>
 
                 <div class="mt-4 grid grid-cols-8 gap-4">
-                    <Prato />
-                    <Prato />
-                    <Prato />
-                    <Prato />
+                    {pratos.map((prato, index) => (
+                        <Prato nome={prato.nome} desc={""} autor={prato.user.email} />
+                    ))};
                 </div>
                 <a href="/pratos" class="bg-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                     Visualizar Seus Pratos
@@ -91,10 +108,9 @@ const Homepage = () => {
                 </section>
 
                 <div class="mt-4 grid grid-cols-8 gap-4">
-                    <Prato />
-                    <Prato />
-                    <Prato />
-                    <Prato />
+                    {pratos.map((prato, index) => (
+                        <Prato nome={prato.nome} desc={""} autor={prato.user.email} />
+                    ))}
                 </div>
 
 
